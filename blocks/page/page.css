@@ -2,4 +2,6 @@
   margin: 0;
   background-color: #000;
   box-sizing: border-box;
+  font-family: 'Inter', Arial, Helvetica, sans-serif;
+  font-style: normal;
 }
