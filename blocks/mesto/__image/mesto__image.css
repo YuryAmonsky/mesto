@@ -1,0 +1,6 @@
+.mesto__image {
+  width: 282px;
+  height: 282px;
+  object-fit: scale-down;
+  grid-column: 1/span 2;
+}

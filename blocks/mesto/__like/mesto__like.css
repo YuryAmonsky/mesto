@@ -1,0 +1,12 @@
+.mesto__like {
+  margin-top: 30px;
+  width: 22px;
+  height: 19px;
+  background-image: url(../../../images/ui/like.svg);
+  transition: opacity .3s;
+}
+
+.mesto__like:hover {
+  opacity: .5;
+  cursor: pointer;
+}
