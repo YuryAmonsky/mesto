@@ -3,7 +3,6 @@
   width: 100%;
   min-width: 282px;
   max-width: 880px;
-  outline: 1px solid red;
 }
 
 @media screen and (max-width: 917px) {
