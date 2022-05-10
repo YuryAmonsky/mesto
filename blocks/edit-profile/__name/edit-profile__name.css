@@ -1,0 +1,16 @@
+.edit-profile__name {
+  margin-top: 54px;
+  padding: 0;
+  border: none;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+  height: 27px;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 17px;
+}
+
+@media screen and (max-width: 619px) {
+  .edit-profile__name {
+    margin-top: calc(75px - 21 * (100vw - 320px) /300);
+  }
+}

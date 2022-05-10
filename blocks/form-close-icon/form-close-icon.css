@@ -1,0 +1,26 @@
+.form-close-icon {
+  width: 32px;
+  height: 32px;
+  position: relative;
+  background-image: url(../../images/ui/Close_icon.svg);
+  background-size: contain;
+  grid-column: 3;
+  grid-row: 1;
+  align-self: end;
+  justify-self: start;
+  transition: opacity .3s;
+}
+
+.form-close-icon:hover {
+  opacity: .6;
+  cursor: pointer;
+}
+
+@media screen and (max-width: 619px) {
+  .form-close-icon {
+    grid-column: 2;
+    justify-self: end;
+    width: calc(20px + 12 * (100vw - 320px) / 300);
+    height: calc(20px + 12 * (100vw - 320px) / 300);
+  }
+}

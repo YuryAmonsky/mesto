@@ -1,0 +1,29 @@
+.form-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  display: grid;
+  grid-template-columns: auto 430px auto;
+  grid-template-rows: 187px auto auto;
+  gap: 8px;
+}
+
+.form-container::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #000;
+  opacity: .5;
+}
+
+@media screen and (max-width: 619px) {
+  .form-container {
+    grid-template-columns: auto calc(282px + 148 * (100vw - 320px) / 300) auto;
+    grid-template-rows: calc(107px + 80 * (100vw - 320px) / 300) auto auto;
+  }
+}
