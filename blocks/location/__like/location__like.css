@@ -1,4 +1,4 @@
-.mesto__like {
+.location__like {
   margin-top: 30px;
   width: 22px;
   height: 19px;
@@ -6,7 +6,7 @@
   transition: opacity .3s;
 }
 
-.mesto__like:hover {
-  opacity: .5;  
+.location__like:hover {
+  opacity: .5;
   cursor: pointer;
 }
