@@ -1,7 +1,8 @@
 .profile__info {
   margin: auto 0 auto 30px;
   padding: 0;
-  width: 336px;
+  width: auto;
+  max-width: calc(880px - 330px);
   display: flex;
   align-items: baseline;
   align-content: flex-start;
@@ -13,7 +14,8 @@
 @media screen and (max-width: 719px) {
   .profile__info {
     margin: 26px auto 36px;
-    width: calc(282px + 54 * (100vw - 320px) / 400);
+    width: 100%;
+    max-width: 100%;
     justify-content: center;
     column-gap: 10px;
     row-gap: 14px;

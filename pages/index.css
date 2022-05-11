@@ -16,10 +16,11 @@
 @import url(../blocks/mesto/__image/mesto__image.css);
 @import url(../blocks/mesto/__name/mesto__name.css);
 @import url(../blocks/mesto/__like/mesto__like.css);
+@import url(../blocks/mesto/__like/_active/mesto__like_active.css);
 @import url(../blocks/footer/footer.css);
 @import url(../blocks/copyright/copyright.css);
-@import url(../blocks/form-container/form-container.css);
-@import url(../blocks/form-hidden/form-hidden.css);
+@import url(../blocks/popup/popup.css);
+@import url(../blocks/popup/_opened/popup_opened.css);
 @import url(../blocks/form-close-icon/form-close-icon.css);
 @import url(../blocks/edit-profile/edit-profile.css);
 @import url(../blocks/edit-profile/__title/edit-profile__title.css);

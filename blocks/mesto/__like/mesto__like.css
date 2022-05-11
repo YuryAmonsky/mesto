@@ -7,6 +7,6 @@
 }
 
 .mesto__like:hover {
-  opacity: .5;
+  opacity: .5;  
   cursor: pointer;
 }
