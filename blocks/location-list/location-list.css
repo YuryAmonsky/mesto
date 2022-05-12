@@ -1,6 +1,6 @@
 .location-list {
   margin: 51px 0 0;
-  padding: 0;  
+  padding: 0;
   list-style: none;
   display: grid;
   justify-items: center;
@@ -10,7 +10,7 @@
 
 @media screen and (max-width: 917px) {
   .location-list {
-    margin: 43px auto 0;    
+    margin: 43px auto 0;
     width: 580px;
     grid-template-columns: 1fr 1fr;
     column-gap: 16px;

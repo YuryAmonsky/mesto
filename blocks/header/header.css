@@ -1,5 +1,5 @@
 .header {
-  margin: 45px auto 0;  
+  margin: 45px auto 0;
   width: calc(100% - 38px);
   min-width: 320px;
   max-width: 880px;
@@ -10,7 +10,7 @@
 
 @media screen and (max-width: 880px) {
   .header {
-    margin-top: calc(28px + 17 * (100vw - 320px) / 560);    
+    margin-top: calc(28px + 17 * (100vw - 320px) / 560);
     height: calc(56px + 18 * (100vw - 320px) / 560);
   }
 }
