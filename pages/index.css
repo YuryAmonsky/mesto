@@ -25,6 +25,5 @@
 @import url(../blocks/popup/popup__close-icon/popup__close-icon.css);
 @import url(../blocks/edit-profile/edit-profile.css);
 @import url(../blocks/edit-profile/__title/edit-profile__title.css);
-@import url(../blocks/edit-profile/__name/edit-profile__name.css);
-@import url(../blocks/edit-profile/__about-me/edit-profile__about-me.css);
+@import url(../blocks/edit-profile/__input/edit-profile__input.css);
 @import url(../blocks/edit-profile/__submit-button/edit-profile__submit-button.css);
