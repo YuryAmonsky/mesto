@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="ru">
+
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -7,18 +8,19 @@
   <link rel="stylesheet" href="pages/index.css">
   <title>Место</title>
 </head>
+
 <body class="page">
   <header class="header">
     <img class="logo" src="images/logo/logo.svg" alt="Место">
   </header>
   <main class="content">
-    <section class="profile">      
+    <section class="profile">
       <img class="profile__avatar" src="images/avatar/Kusto.jpg" alt="Жак-Ив Кусто">
       <div class="profile__info">
         <h1 class="profile__name">Жак-Ив Кусто</h1>
         <button class="profile__edit-button"></button>
-        <p class="profile__about-me">Исследователь океана</p>        
-      </div>      
+        <p class="profile__about-me">Исследователь океана</p>
+      </div>
       <button class="profile__add-button"></button>
     </section>
     <ul class="location-list">
@@ -33,7 +35,8 @@
         <div class="location__like"></div>
       </li>
       <li class="location">
-        <img class="location__image" src="images/content/Dombai.jpg" alt="Спереди лес на склоне горы, высокий горный пик на заднем плане.">
+        <img class="location__image" src="images/content/Dombai.jpg"
+          alt="Спереди лес на склоне горы, высокий горный пик на заднем плане.">
         <h2 class="location__name">Домбай</h2>
         <div class="location__like"></div>
       </li>
@@ -48,25 +51,26 @@
         <div class="location__like"></div>
       </li>
       <li class="location">
-        <img class="location__image" src="images/content/Teletskoe_ozero.jpg" alt="Зеркальная гладь воды отражает небо и горы">
+        <img class="location__image" src="images/content/Teletskoe_ozero.jpg"
+          alt="Зеркальная гладь воды отражает небо и горы">
         <h2 class="location__name">Телецкое озеро</h2>
         <div class="location__like"></div>
       </li>
-    </ul>   
+    </ul>
   </main>
   <footer class="footer">
-    <p class="copyright">&copy; 2022 Mesto Russia</p> 
+    <p class="copyright">&copy; 2022 Mesto Russia</p>
   </footer>
-  
   <div class="popup">
     <div class="form-close-icon"></div>
     <form class="edit-profile">
       <h2 class="edit-profile__title">Редактировать профиль</h2>
       <input class="edit-profile__name">
       <input class="edit-profile__about-me">
-      <button class="edit-profile__submit-button" type="submit">Сохранить</button>     
+      <button class="edit-profile__submit-button" type="submit">Сохранить</button>
     </form>
   </div>
-  <script src="pages/index.js"></script> 
+  <script src="script/index.js"></script>
 </body>
+
 </html>

@@ -8,7 +8,6 @@ let formInputAboutMe = document.querySelector('.edit-profile__about-me');
 let textProfileName = document.querySelector('.profile__name');
 let textProfileAboutMe = document.querySelector('.profile__about-me')
 
-
 function openForm() {  
   formInputName.value = textProfileName.textContent;
   formInputAboutMe.value = textProfileAboutMe.textContent;
