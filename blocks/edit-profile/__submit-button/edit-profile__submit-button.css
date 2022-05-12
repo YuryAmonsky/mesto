@@ -22,6 +22,7 @@
 @media screen and (max-width: 619px) {
   .edit-profile__submit-button {
     margin-top: 45px;
+    margin-bottom: 25px;
     height: calc(46px + 4 * (100vw - 320px) /300);
     font-size: calc(14px + 4 * (100vw - 320px) /300);
     line-height: calc(17px + 5 * (100vw - 320px) /300);
