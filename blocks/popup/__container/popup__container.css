@@ -1,0 +1,12 @@
+.popup__container {
+  display: grid;
+  grid-template-columns: 1fr 430px 1fr;
+  grid-template-rows: 1fr min-content 1fr;
+  gap: 8px;
+}
+
+@media screen and (max-width: 619px) {
+  .popup__container {
+    grid-template-columns: 1fr calc(282px + 148 * (100vw - 320px) / 300) 1fr;
+  }
+}
