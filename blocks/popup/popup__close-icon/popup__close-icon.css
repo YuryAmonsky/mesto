@@ -1,9 +1,9 @@
-.form-close-icon {
+.popup__close-icon {
   border: none;
   width: 32px;
   height: 32px;
   position: relative;
-  background-image: url(../../images/ui/Close_icon.svg);
+  background-image: url(../../../images/ui/Close_icon.svg);
   background-size: contain;
   /*задал прозрачный цвет фона кнопке*/
   background-color: #00000000;
@@ -14,13 +14,13 @@
   transition: opacity .3s;
 }
 
-.form-close-icon:hover {
+.popup__close-icon:hover {
   opacity: .6;
   cursor: pointer;
 }
 
 @media screen and (max-width: 619px) {
-  .form-close-icon {
+  .popup__close-icon {
     grid-column: 2;
     justify-self: end;
     width: calc(20px + 12 * (100vw - 320px) / 300);
