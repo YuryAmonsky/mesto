@@ -1,9 +1,12 @@
 .form-close-icon {
+  border: none;
   width: 32px;
   height: 32px;
   position: relative;
   background-image: url(../../images/ui/Close_icon.svg);
   background-size: contain;
+  /*задал прозрачный цвет фона кнопке*/
+  background-color: #00000000;
   grid-column: 3;
   grid-row: 1;
   align-self: end;
