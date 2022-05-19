@@ -1,4 +1,5 @@
-
+//Объявление глобальных переменных и констант
+//----------------------
 const initialCards = [
   {
     name: 'Карачаево-Черкессия',
@@ -32,54 +33,81 @@ const initialCards = [
   }
 ]; 
 
-const buttonOpenEditProfile = document.querySelector('.profile__edit-button');
 const textProfileName = document.querySelector('.profile__name');
 const textProfileAboutMe = document.querySelector('.profile__about-me');
-//записываю в константу элемент форма редактирования профиля
+const listLocations = document.querySelector('.location-list');
+const templateCardLocation = document.querySelector('.location-template');
+//записываем в константу элемент 'форма редактирования профиля'
 const formEditProfile = document.querySelector('.dialog-form_type_edit-profile');
+const buttonOpenEditProfile = document.querySelector('.profile__edit-button');
 const buttonCloseEditProfile = formEditProfile.parentElement.querySelector('.popup__close-icon');
+//записываем в константу элемент 'форма добавления нового места'
+const formNewLocation = document.querySelector('.dialog-form_type_new-location');
+const inputLocationName = formNewLocation.querySelector('.dialog-form__input_type_new-location-name');
+const inputLocationLink = formNewLocation.querySelector('.dialog-form__input_type_new-location-link');
+const buttonOpenNewLocation = document.querySelector('.profile__add-button');
+const buttonCloseNewLocation = formNewLocation.parentElement.querySelector('.popup__close-icon');
 
-function loadPage(locations){
-  //выбираем контейнер для карточек
-  const locationList = document.querySelector('.location-list');
-  //выбираем шаблон карточки
-  const locationTemplate = document.querySelector('.location-template').content;
-  for(let i=0; i<locations.length; i++){
-    //клонируем курточку из шаблона
-    const location = locationTemplate.querySelector('.location').cloneNode(true);
-    //выбираем элемент 'изображение' и задаем ему атрибуты
-    const locationImage = location.querySelector('.location__image');
-    locationImage.setAttribute('src', initialCards[i].link);
-    locationImage.setAttribute('alt', initialCards[i].alt);
-    //выбираем элемент 'имя' и задаем ему текстовое содержимое
-    const locationName = location.querySelector('.location__name');
-    locationName.textContent = initialCards[i].name;
-  //добавляем в DOM
-    locationList.append(location);
+//Объявление функций
+//------------------
+function prepareCardLocation(name, link, textAlt){
+  //клонируем курточку из шаблона
+  const location = templateCardLocation.content.querySelector('.location').cloneNode(true);
+  //выбираем элемент 'изображение' и задаем ему атрибуты
+  const imageLocation = location.querySelector('.location__image');
+  imageLocation.setAttribute('src', link);
+  imageLocation.setAttribute('alt', textAlt);
+  //выбираем элемент 'имя' и задаем ему текстовое содержимое
+  const textLocationName = location.querySelector('.location__name');
+  textLocationName.textContent = name;
+  return location;
+}
+function initializeLocations(locations){  
+  for(let i=0; i<locations.length; i++){    
+    //добавляем в DOM
+    listLocations.append(prepareCardLocation(initialCards[i].name, initialCards[i].link, initialCards[i].alt));
   }
 }
 
 function openPopupEditProfile() { 
   const popup = document.querySelector('.popup_type_edit-profile');
-  const formInputName = popup.querySelector('.dialog-form__input_type_edit-profile-name');
-  const formInputAboutMe = popup.querySelector('.dialog-form__input_type_edit-profile-about-me');
-  formInputName.value = textProfileName.textContent;
-  formInputAboutMe.value = textProfileAboutMe.textContent;
+  const inputName = popup.querySelector('.dialog-form__input_type_edit-profile-name');
+  const inputAboutMe = popup.querySelector('.dialog-form__input_type_edit-profile-about-me');
+  inputName.value = textProfileName.textContent;
+  inputAboutMe.value = textProfileAboutMe.textContent;
   popup.classList.add('popup_opened');
 }
 
-function closePopup(evt) {
-  evt.target.parentElement.parentElement.classList.remove('popup_opened');
-}
-
-function saveData(evt) {
+function saveProfileData(evt) {
   evt.preventDefault();
   textProfileName.textContent = evt.target.querySelector('.dialog-form__input_type_edit-profile-name').value;
   textProfileAboutMe.textContent = evt.target.querySelector('.dialog-form__input_type_edit-profile-about-me').value;
   closePopup(evt);
 }
 
-loadPage(initialCards);
+function openPopupNewLocation(){
+  const popup = document.querySelector('.popup_type_type_new-location');
+  inputLocationName.value = '';
+  inputLocationLink.value = '';
+  popup.classList.add('popup_opened');
+}
+
+function PrependCardNewLocation(evt){
+  evt.preventDefault();  
+  //добавляем в DOM
+  listLocations.prepend(prepareCardLocation(inputLocationName.value, inputLocationLink.value, ''));
+  closePopup(evt);
+}
+
+function closePopup(evt) {
+  evt.target.parentElement.parentElement.classList.remove('popup_opened');
+}
+//Вызовы функций
+//--------------
+initializeLocations(initialCards);
 buttonOpenEditProfile.addEventListener('click', openPopupEditProfile);
 buttonCloseEditProfile.addEventListener('click', closePopup);
-formEditProfile.addEventListener('submit', saveData);
+buttonOpenNewLocation.addEventListener('click', openPopupNewLocation)
+buttonCloseNewLocation.addEventListener('click', closePopup);
+formEditProfile.addEventListener('submit', saveProfileData);
+formNewLocation.addEventListener('submit', PrependCardNewLocation);
