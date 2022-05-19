@@ -1,14 +1,3 @@
 .edit-profile__title {
-  margin: 34px 0 0;
-  font-weight: 900;
-  font-size: 24px;
-  line-height: 29px;
-}
-
-@media screen and (max-width: 619px) {
-  .edit-profile__title {
-    margin-top: calc(25px + 9 * (100vw - 320px) /300);
-    font-size: calc(18px + 6 * (100vw - 320px) /300);
-    line-height: calc(22px + 7 * (100vw - 320px) /300);
-  }
+  
 }

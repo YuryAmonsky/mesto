@@ -1,23 +1,6 @@
 .edit-profile__input {
-  padding: 0;
-  border: none;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.2);
-  height: 27px;
-  font-weight: 400;
-  font-size: 14px;
-  line-height: 17px;
+  
 }
 
-.edit-profile__input:first-of-type {
-  margin-top: 54px;
-}
 
-.edit-profile__input:last-of-type {
-  margin-top: 30px;
-}
 
-@media screen and (max-width: 619px) {
-  .edit-profile__input:first-of-type {
-    margin-top: calc(75px - 21 * (100vw - 320px) /300);
-  }
-}

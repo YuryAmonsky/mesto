@@ -32,15 +32,12 @@ const initialCards = [
   }
 ]; 
 
-
-const popup = document.querySelector('.popup');
-const formElement = document.querySelector('.edit-profile');
-const profileEditButton = document.querySelector('.profile__edit-button');
-const formCloseIcon = document.querySelector('.popup__close-icon');
-const formInputName = document.querySelector('.edit-profile__input_type_name');
-const formInputAboutMe = document.querySelector('.edit-profile__input_type_about-me');
+const buttonOpenEditProfile = document.querySelector('.profile__edit-button');
 const textProfileName = document.querySelector('.profile__name');
-const textProfileAboutMe = document.querySelector('.profile__about-me')
+const textProfileAboutMe = document.querySelector('.profile__about-me');
+//записываю в константу элемент форма редактирования профиля
+const formEditProfile = document.querySelector('.dialog-form_type_edit-profile');
+const buttonCloseEditProfile = formEditProfile.parentElement.querySelector('.popup__close-icon');
 
 function loadPage(locations){
   //выбираем контейнер для карточек
@@ -62,24 +59,27 @@ function loadPage(locations){
   }
 }
 
-function openForm() {  
+function openPopupEditProfile() { 
+  const popup = document.querySelector('.popup_type_edit-profile');
+  const formInputName = popup.querySelector('.dialog-form__input_type_edit-profile-name');
+  const formInputAboutMe = popup.querySelector('.dialog-form__input_type_edit-profile-about-me');
   formInputName.value = textProfileName.textContent;
   formInputAboutMe.value = textProfileAboutMe.textContent;
   popup.classList.add('popup_opened');
 }
 
-function closeForm() {
-  popup.classList.remove('popup_opened');
+function closePopup(evt) {
+  evt.target.parentElement.parentElement.classList.remove('popup_opened');
 }
 
 function saveData(evt) {
   evt.preventDefault();
-  textProfileName.textContent = formInputName.value;  
-  textProfileAboutMe.textContent = formInputAboutMe.value;  
-  closeForm();
+  textProfileName.textContent = evt.target.querySelector('.dialog-form__input_type_edit-profile-name').value;
+  textProfileAboutMe.textContent = evt.target.querySelector('.dialog-form__input_type_edit-profile-about-me').value;
+  closePopup(evt);
 }
 
 loadPage(initialCards);
-profileEditButton.addEventListener('click', openForm);
-formCloseIcon.addEventListener('click', closeForm);
-formElement.addEventListener('submit', saveData);
+buttonOpenEditProfile.addEventListener('click', openPopupEditProfile);
+buttonCloseEditProfile.addEventListener('click', closePopup);
+formEditProfile.addEventListener('submit', saveData);

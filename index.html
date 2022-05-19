@@ -72,16 +72,27 @@
   <footer class="footer">
     <p class="copyright">&copy; 2022 Mesto Russia</p>
   </footer>
-  <div class="popup">    
+  <div class="popup popup_type_edit-profile">    
     <div class="popup__container">
       <button class="popup__close-icon" type="button"></button>
-      <form class="edit-profile" name="editProfile">
-        <h2 class="edit-profile__title">Редактировать профиль</h2>
-        <input class="edit-profile__input edit-profile__input_type_name" name="editProfileName" type="text">
-        <input class="edit-profile__input edit-profile__input_type_about-me" name="editProfileAboutMe" type="text">
-        <button class="edit-profile__submit-button" type="submit">Сохранить</button>
-      </form> 
-    </div>    
+      <form class="dialog-form dialog-form_type_edit-profile" name="formEditProfile">
+        <h2 class="dialog-form__title dialog-form__title_type_edit-profile">Редактировать профиль</h2>
+        <input class="dialog-form__input dialog-form__input_type_edit-profile-name" name="inputEditProfileName" type="text">
+        <input class="dialog-form__input dialog-form__input_type_edit-profile-about-me" name="inputEditProfileAboutMe" type="text">
+        <button class="dialog-form__submit-button" type="submit" name="submitEditProfile" formmethod="post">Сохранить</button>
+      </form>
+    </div>
+  </div>
+  <div class="popup popup_type_type_new-location">    
+    <div class="popup__container">
+      <button class="popup__close-icon" type="button"></button>
+      <form class="dialog-form dialog-form_type_new-location" name="formNewLocation">
+        <h2 class="dialog-form__title dialog-form__title_type_new-location">Новое место</h2>
+        <input class="dialog-form__input dialog-form__input_type_new-location-name" name="inputNewLocationName" type="text">
+        <input class="dialog-form__input dialog-form__input_type_new-location-link" name="inputNewLocationAboutMe" type="text">
+        <button class="dialog-form__submit-button" type="submit" name="submitNewLocation" formmethod="post">Создать</button>
+      </form>
+    </div>
   </div>
   <script src="script/index.js"></script>
 </body>
