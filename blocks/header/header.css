@@ -3,7 +3,7 @@
   width: calc(100% - 38px);
   min-width: 320px;
   max-width: 880px;
-  border-bottom: 1px solid #545454;
+  border-bottom: 1px solid #545454;  
   display: flex;
 }
 

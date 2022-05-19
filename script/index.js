@@ -60,6 +60,8 @@ function prepareCardLocation(name, link, textAlt){
   //выбираем элемент 'имя' и задаем ему текстовое содержимое
   const textLocationName = location.querySelector('.location__name');
   textLocationName.textContent = name;
+  const buttonLike = location.querySelector('.location__like');
+  buttonLike.addEventListener('click', () => {buttonLike.classList.toggle('location__like_active');});
   return location;
 }
 function initializeLocations(locations){  
