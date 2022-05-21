@@ -2,6 +2,7 @@
   margin: 0 auto;
   padding: 0;
   width: 282px;
+  position: relative;
   border-radius: 10px;
   background-color: #fff;
   overflow: hidden;
