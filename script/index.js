@@ -31,7 +31,7 @@ const initialCards = [
     link: 'images/content/Teletskoe_ozero.jpg',
     alt: '"Зеркальная гладь воды отражает небо и горы.'
   }
-]; 
+];
 
 const textProfileName = document.querySelector('.profile__name');
 const textProfileAboutMe = document.querySelector('.profile__about-me');
@@ -50,7 +50,7 @@ const buttonCloseNewLocation = formNewLocation.parentElement.querySelector('.pop
 
 //Объявление функций
 //------------------
-function prepareCardLocation(name, link, textAlt){
+function prepareCardLocation(name, link, textAlt) {
   //клонируем курточку из шаблона
   const location = templateCardLocation.content.querySelector('.location').cloneNode(true);
   //выбираем элемент 'изображение' и задаем ему атрибуты
@@ -60,18 +60,20 @@ function prepareCardLocation(name, link, textAlt){
   //выбираем элемент 'имя' и задаем ему текстовое содержимое
   const textLocationName = location.querySelector('.location__name');
   textLocationName.textContent = name;
+  const buttonDelete = location.querySelector('.location__delete-icon');
   const buttonLike = location.querySelector('.location__like');
-  buttonLike.addEventListener('click', () => {buttonLike.classList.toggle('location__like_active');});
+  buttonDelete.addEventListener('click', evt=>listLocations.removeChild(evt.target.parentElement));
+  buttonLike.addEventListener('click', () => { buttonLike.classList.toggle('location__like_active'); });
   return location;
 }
-function initializeLocations(locations){  
-  for(let i=0; i<locations.length; i++){    
+function initializeLocations(locations) {
+  for (let i = 0; i < locations.length; i++) {
     //добавляем в DOM
     listLocations.append(prepareCardLocation(initialCards[i].name, initialCards[i].link, initialCards[i].alt));
   }
 }
 
-function openPopupEditProfile() { 
+function openPopupEditProfile() {
   const popup = document.querySelector('.popup_type_edit-profile');
   const inputName = popup.querySelector('.dialog-form__input_type_edit-profile-name');
   const inputAboutMe = popup.querySelector('.dialog-form__input_type_edit-profile-about-me');
@@ -87,15 +89,15 @@ function saveProfileData(evt) {
   closePopup(evt);
 }
 
-function openPopupNewLocation(){
+function openPopupNewLocation() {
   const popup = document.querySelector('.popup_type_type_new-location');
   inputLocationName.value = '';
   inputLocationLink.value = '';
   popup.classList.add('popup_opened');
 }
 
-function PrependCardNewLocation(evt){
-  evt.preventDefault();  
+function PrependCardNewLocation(evt) {
+  evt.preventDefault();
   //добавляем в DOM
   listLocations.prepend(prepareCardLocation(inputLocationName.value, inputLocationLink.value, ''));
   closePopup(evt);
