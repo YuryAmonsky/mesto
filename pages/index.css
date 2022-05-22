@@ -28,3 +28,5 @@
 @import url(../blocks/dialog-form/__title/dialog-form__title.css);
 @import url(../blocks/dialog-form/__input/dialog-form__input.css);
 @import url(../blocks/dialog-form/__submit-button/dialog-form__submit-button.css);
+@import url(../blocks/original-image/original-image.css);
+@import url(../blocks/image-caption/image-caption.css);
