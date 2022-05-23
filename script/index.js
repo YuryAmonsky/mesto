@@ -29,7 +29,17 @@ const initialCards = [
   {
     name: 'Телецкое озеро',
     link: 'images/content/Teletskoe_ozero.jpg',
-    alt: '"Зеркальная гладь воды отражает небо и горы.'
+    alt: 'Зеркальная гладь воды отражает небо и горы.'
+  },
+  {
+    name: 'Паанаярви, Карелия',
+    link: 'images/content/Paanajarvi_Karelia_med.jpg',
+    alt: 'Озерезо среди участков хвойного леса.'
+  },
+  {
+    name: 'Алтай',
+    link: 'images/content/Altay.jpg',
+    alt: 'Река тчет мимо деревни у подножия горного склона, покрытого хвойным лесом .'
   }
 ];
 
@@ -119,13 +129,11 @@ function openPopupViewImage(evt){
 }
 
 function closePopup(evt) {
-  
-  
-  if(evt.target.tagName==='FORM'){
-    evt.target.parentElement.parentElement.classList.remove('popup_opened');
-  }else {
+  //if(evt.target.tagName==='FORM'){
+  //  evt.target.parentElement.parentElement.classList.remove('popup_opened');
+  //}else {
     evt.target.parentElement.classList.remove('popup_opened');
-  }    
+  //}    
 }
 //Вызовы функций
 //--------------

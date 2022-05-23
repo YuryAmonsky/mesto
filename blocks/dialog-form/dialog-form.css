@@ -1,12 +1,14 @@
 .dialog-form {
+  position: relative;
+  grid-column: 2;
+  grid-row: 2;
   margin: 0;
   padding: 0 36px;
   box-sizing: border-box;
   width: 430px;
   border-radius: 10px;
   display: flex;
-  flex-direction: column;
-  position: relative;
+  flex-direction: column; 
   background-color: #fff;
   box-shadow: 0px 0px 25px rgba(0, 0, 0, 0.15);
 }
