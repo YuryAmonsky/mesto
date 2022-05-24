@@ -75,7 +75,7 @@ function prepareCardLocation(name, link, textAlt) {
 function initializeLocations(locations) {
   for (let i = 0; i < locations.length; i++) {
     //ниже добавляем в DOM
-    listLocations.append(prepareCardLocation(initialCards[i].name, initialCards[i].link, initialCards[i].alt));
+    listLocations.append(prepareCardLocation(initialCards[i].name, initialCards[i].link, `Фотография места ${initialCards[i].name}`));
   }
 }
 
@@ -104,7 +104,7 @@ function openPopupNewLocation() {
 function prependCardNewLocation(evt) {
   evt.preventDefault();
   //ниже добавляем в DOM
-  listLocations.prepend(prepareCardLocation(inputLocationName.value, inputLocationLink.value, ''));
+  listLocations.prepend(prepareCardLocation(inputLocationName.value, inputLocationLink.value, `Фотография места ${inputLocationName.value}`));
   closePopup(evt);
 }
 
