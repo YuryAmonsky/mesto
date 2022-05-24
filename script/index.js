@@ -35,6 +35,8 @@ const templateCardLocation = document.querySelector('.location-template');
 //элементы попапа сформой редактирования профиля
 const popupEditProfile = document.querySelector('.popup_type_edit-profile');
 const formEditProfile = popupEditProfile.querySelector('.dialog-form_type_edit-profile');
+const inputProfileName = formEditProfile.querySelector('.dialog-form__input_type_edit-profile-name');
+const inputAboutMe = formEditProfile.querySelector('.dialog-form__input_type_edit-profile-about-me');
 const buttonCloseEditProfile = popupEditProfile.querySelector('.popup__close-icon');
 //элементы попапа с формой добавления нового места
 const popupNewLocation = document.querySelector('.popup_type_new-location');
@@ -78,20 +80,17 @@ function initializeLocations(locations) {
 }
 
 //открытие попапа редактирования профиля
-function openPopupEditProfile() {
-  const popup = document.querySelector('.popup_type_edit-profile');
-  const inputName = popup.querySelector('.dialog-form__input_type_edit-profile-name');
-  const inputAboutMe = popup.querySelector('.dialog-form__input_type_edit-profile-about-me');
-  inputName.value = textProfileName.textContent;
+function openPopupEditProfile() {  
+  inputProfileName.value = textProfileName.textContent;
   inputAboutMe.value = textProfileAboutMe.textContent;
-  popup.classList.add('popup_opened');
+  popupEditProfile.classList.add('popup_opened');
 }
 
 //сохранение внесенных пользователем данных профиля
 function saveProfileData(evt) {
   evt.preventDefault();
-  textProfileName.textContent = evt.target.querySelector('.dialog-form__input_type_edit-profile-name').value;
-  textProfileAboutMe.textContent = evt.target.querySelector('.dialog-form__input_type_edit-profile-about-me').value;
+  textProfileName.textContent = inputProfileName.value;
+  textProfileAboutMe.textContent = inputAboutMe.value;
   closePopup(evt);
 }
 
