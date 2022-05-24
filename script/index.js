@@ -91,7 +91,7 @@ function saveProfileData(evt) {
   evt.preventDefault();
   textProfileName.textContent = inputProfileName.value;
   textProfileAboutMe.textContent = inputAboutMe.value;
-  closePopup(evt);
+  closePopup(popupEditProfile);
 }
 
 //открытие попапа добавления новой карточки
@@ -105,7 +105,7 @@ function prependCardNewLocation(evt) {
   evt.preventDefault();
   //ниже добавляем в DOM
   listLocations.prepend(prepareCardLocation(inputLocationName.value, inputLocationLink.value, `Фотография места ${inputLocationName.value}`));
-  closePopup(evt);
+  closePopup(popupNewLocation);
 }
 
 //открытие попапа просмотра картинки
@@ -121,16 +121,16 @@ function openPopup(popup) {
 } 
 
 //закрытие попапов
-function closePopup(evt) {
-  evt.target.parentElement.parentElement.classList.remove('popup_opened');  
+function closePopup(popup) {
+  popup.classList.remove('popup_opened');  
 }
 //Вызовы функций
 //--------------
 initializeLocations(initialCards);
 buttonOpenEditProfile.addEventListener('click', openPopupEditProfile);
-buttonCloseEditProfile.addEventListener('click', closePopup);
+buttonCloseEditProfile.addEventListener('click', () => {closePopup(popupEditProfile);});
 buttonOpenNewLocation.addEventListener('click', openPopupNewLocation)
-buttonCloseNewLocation.addEventListener('click', closePopup);
-buttonCloseViewImage.addEventListener('click', closePopup);
+buttonCloseNewLocation.addEventListener('click', () => {closePopup(popupNewLocation);});
+buttonCloseViewImage.addEventListener('click', () => {closePopup(popupViewImage);});
 formEditProfile.addEventListener('submit', saveProfileData);
 formNewLocation.addEventListener('submit', prependCardNewLocation);
