@@ -1,4 +1,4 @@
-.dialog-form {  
+.dialog-form {
   grid-column: 2;
   grid-row: 2;
   margin: 0;
@@ -7,7 +7,7 @@
   width: 430px;
   border-radius: 10px;
   display: flex;
-  flex-direction: column;  
+  flex-direction: column;
   background-color: #fff;
   box-shadow: 0px 0px 25px rgba(0, 0, 0, 0.15);
 }

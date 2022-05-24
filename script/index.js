@@ -32,7 +32,6 @@ const initialCards = [
     alt: 'Между двух плакучих ив замок посреди озера.'
   }
 ];
-
 const textProfileName = document.querySelector('.profile__name');
 const textProfileAboutMe = document.querySelector('.profile__about-me');
 const buttonOpenEditProfile = document.querySelector('.profile__edit-button');
@@ -57,6 +56,7 @@ const buttonCloseViewImage = popupViewImage.querySelector('.popup__close-icon');
 
 //Объявление функций
 //------------------
+//создание из шаблона и подготовка новой карточки место
 function prepareCardLocation(name, link, textAlt) {
   //клонируем курточку из шаблона
   const location = templateCardLocation.content.querySelector('.location').cloneNode(true);
@@ -65,7 +65,7 @@ function prepareCardLocation(name, link, textAlt) {
   imageLocation.setAttribute('src', link);
   imageLocation.setAttribute('alt', textAlt);
   imageLocation.addEventListener('click', openPopupViewImage);
-  //выбираем элемент 'имя' и задаем ему текстовое содержимое
+  //ниже выбираем элемент 'имя' и задаем ему текстовое содержимое
   const textLocationName = location.querySelector('.location__name');
   textLocationName.textContent = name;
   const buttonDelete = location.querySelector('.location__delete-icon');
@@ -74,22 +74,26 @@ function prepareCardLocation(name, link, textAlt) {
   buttonLike.addEventListener('click', () => buttonLike.classList.toggle('location__like_active'));
   return location;
 }
+
+//начальное заполнение списка мест из массива initialCards
 function initializeLocations(locations) {
   for (let i = 0; i < locations.length; i++) {
-    //добавляем в DOM
+    //ниже добавляем в DOM
     listLocations.append(prepareCardLocation(initialCards[i].name, initialCards[i].link, initialCards[i].alt));
   }
 }
 
+//открытие попапа редактирования профиля
 function openPopupEditProfile() {
   const popup = document.querySelector('.popup_type_edit-profile');
   const inputName = popup.querySelector('.dialog-form__input_type_edit-profile-name');
   const inputAboutMe = popup.querySelector('.dialog-form__input_type_edit-profile-about-me');
   inputName.value = textProfileName.textContent;
-  inputAboutMe.value = textProfileAboutMe.textContent;  
+  inputAboutMe.value = textProfileAboutMe.textContent;
   popup.classList.add('popup_opened');
 }
 
+//сохранение внесенных пользователем данных профиля
 function saveProfileData(evt) {
   evt.preventDefault();
   textProfileName.textContent = evt.target.querySelector('.dialog-form__input_type_edit-profile-name').value;
@@ -97,35 +101,33 @@ function saveProfileData(evt) {
   closePopup(evt);
 }
 
+//открытие попапа добавления новой карточки
 function openPopupNewLocation() {
   const popup = document.querySelector('.popup_type_new-location');
   inputLocationName.value = '';
-  inputLocationLink.value = '';  
+  inputLocationLink.value = '';
   popup.classList.add('popup_opened');
 }
 
+//добавление новой карточки на страницу
 function prependCardNewLocation(evt) {
   evt.preventDefault();
-  //добавляем в DOM
+  //ниже добавляем в DOM
   listLocations.prepend(prepareCardLocation(inputLocationName.value, inputLocationLink.value, ''));
   closePopup(evt);
 }
 
-function openPopupViewImage(evt){  
+//открытие попапа просмотра картинки
+function openPopupViewImage(evt) {
   imageOrigin.setAttribute('src', evt.target.getAttribute('src'));
   imageOrigin.setAttribute('alt', evt.target.getAttribute('alt'));
-  textCaption.textContent=evt.target.parentElement.querySelector('.location__name').textContent;  
+  textCaption.textContent = evt.target.parentElement.querySelector('.location__name').textContent;
   popupViewImage.classList.add('popup_opened');
 }
 
+//закрытие попапов
 function closePopup(evt) {
-  evt.target.parentElement.parentElement.classList.remove('popup_opened');
-  /*
-  if(evt.target.tagName==='FORM'){
-    evt.target.parentElement.parentElement.classList.remove('popup_opened');
-  }else {
-    evt.target.parentElement.classList.remove('popup_opened');
-  } */   
+  evt.target.parentElement.parentElement.classList.remove('popup_opened');  
 }
 //Вызовы функций
 //--------------

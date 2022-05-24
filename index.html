@@ -27,75 +27,47 @@
       <ul class="location-list">
         <template class="location-template">
           <li class="location">
-            <button  class="location__delete-icon" type="button"></button>
+            <button class="location__delete-icon" type="button"></button>
             <img class="location__image" src="" alt="">
             <h2 class="location__name"></h2>
             <button class="location__like" type="button"></button>
-          </li>  
-        </template>
-    <!--
-        <li class="location">          
-          <img class="location__image" src="images/content/Karachaevsk.jpg" alt="Заброшенный храм на фоне горы.">
-          <h2 class="location__name">Карачаево-Черкессия</h2>
-          <button class="location__like" type="button"></button>
-        </li>
-        <li class="location">
-          <img class="location__image" src="images/content/Elbrus.jpg" alt="Гора вдали.">
-          <h2 class="location__name">Гора Эльбрус</h2>
-          <button class="location__like" type="button"></button>
-        </li>
-        <li class="location">
-          <img class="location__image" src="images/content/Dombai.jpg"
-            alt="Спереди лес на склоне горы, высокий горный пик на заднем плане.">
-          <h2 class="location__name">Домбай</h2>
-          <button class="location__like" type="button"></button>
-        </li>
-        <li class="location">
-          <img class="location__image" src="images/content/Zelenograd.jpg" alt="Янтарь на песке у моря.">
-          <h2 class="location__name">Зеленоград</h2>
-          <button class="location__like" type="button"></button>
-        </li>
-        <li class="location">
-          <img class="location__image" src="images/content/Sochi.jpg" alt="За лесом на горной гряде город у моря.">
-          <h2 class="location__name">Сочи</h2>
-          <button class="location__like" type="button"></button>
-        </li>
-        <li class="location">
-          <img class="location__image" src="images/content/Teletskoe_ozero.jpg"
-            alt="Зеркальная гладь воды отражает небо и горы.">
-          <h2 class="location__name">Телецкое озеро</h2>
-          <button class="location__like" type="button"></button>
-        </li>
-    -->  
+          </li>
+        </template>        
       </ul>
-    </section>    
+    </section>
   </main>
   <footer class="footer">
     <p class="copyright">&copy; 2022 Mesto Russia</p>
   </footer>
-  <div class="popup popup_type_edit-profile">    
+  <div class="popup popup_type_edit-profile">
     <div class="popup__container">
       <button class="popup__close-icon" type="button"></button>
       <form class="dialog-form dialog-form_type_edit-profile" name="formEditProfile">
         <h2 class="dialog-form__title dialog-form__title_type_edit-profile">Редактировать профиль</h2>
-        <input class="dialog-form__input dialog-form__input_type_edit-profile-name" name="inputEditProfileName" type="text">
-        <input class="dialog-form__input dialog-form__input_type_edit-profile-about-me" name="inputEditProfileAboutMe" type="text">
-        <button class="dialog-form__submit-button" type="submit" name="submitEditProfile" formmethod="post">Сохранить</button>
+        <input class="dialog-form__input dialog-form__input_type_edit-profile-name" name="inputEditProfileName"
+          type="text">
+        <input class="dialog-form__input dialog-form__input_type_edit-profile-about-me" name="inputEditProfileAboutMe"
+          type="text">
+        <button class="dialog-form__submit-button" type="submit" name="submitEditProfile"
+          formmethod="post">Сохранить</button>
       </form>
     </div>
   </div>
-  <div class="popup popup_type_new-location">    
+  <div class="popup popup_type_new-location">
     <div class="popup__container">
       <button class="popup__close-icon" type="button"></button>
       <form class="dialog-form dialog-form_type_new-location" name="formNewLocation">
         <h2 class="dialog-form__title dialog-form__title_type_new-location">Новое место</h2>
-        <input class="dialog-form__input dialog-form__input_type_new-location-name" name="inputNewLocationName" type="text" placeholder="Название">
-        <input class="dialog-form__input dialog-form__input_type_new-location-link" name="inputNewLocationAboutMe" type="text" placeholder="Ссылка на картинку">
-        <button class="dialog-form__submit-button" type="submit" name="submitNewLocation" formmethod="post">Создать</button>
+        <input class="dialog-form__input dialog-form__input_type_new-location-name" name="inputNewLocationName"
+          type="text" placeholder="Название">
+        <input class="dialog-form__input dialog-form__input_type_new-location-link" name="inputNewLocationAboutMe"
+          type="text" placeholder="Ссылка на картинку">
+        <button class="dialog-form__submit-button" type="submit" name="submitNewLocation"
+          formmethod="post">Создать</button>
       </form>
     </div>
   </div>
-  <div class="popup popup_type_view-image">    
+  <div class="popup popup_type_view-image">
     <div class="popup__container">
       <button class="popup__close-icon" type="button"></button>
       <img class="original-image" src="" alt="">
