@@ -83,7 +83,7 @@ function initializeLocations(locations) {
 function openPopupEditProfile() {  
   inputProfileName.value = textProfileName.textContent;
   inputAboutMe.value = textProfileAboutMe.textContent;
-  popupEditProfile.classList.add('popup_opened');
+  openPopup(popupEditProfile);  
 }
 
 //сохранение внесенных пользователем данных профиля
@@ -96,10 +96,8 @@ function saveProfileData(evt) {
 
 //открытие попапа добавления новой карточки
 function openPopupNewLocation() {
-  const popup = document.querySelector('.popup_type_new-location');
-  inputLocationName.value = '';
-  inputLocationLink.value = '';
-  popup.classList.add('popup_opened');
+  formNewLocation.reset();
+  openPopup(popupNewLocation);
 }
 
 //добавление новой карточки на страницу
@@ -115,8 +113,12 @@ function openPopupViewImage(name, link) {
   imageOrigin.setAttribute('src', link);
   imageOrigin.setAttribute('alt', `Фотография места ${name}`);
   textCaption.textContent = name;
-  popupViewImage.classList.add('popup_opened');
+  openPopup(popupViewImage);
 }
+
+function openPopup(popup) {
+  popup.classList.add('popup_opened');
+} 
 
 //закрытие попапов
 function closePopup(evt) {
