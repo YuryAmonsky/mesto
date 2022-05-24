@@ -75,30 +75,32 @@
   </footer>
   <div class="popup popup_type_edit-profile">
     <button class="popup__close-icon" type="button"></button>
-    <!--<div class="popup__container">      -->
+    <div class="popup__container">
       <form class="dialog-form dialog-form_type_edit-profile" name="formEditProfile">
         <h2 class="dialog-form__title dialog-form__title_type_edit-profile">Редактировать профиль</h2>
         <input class="dialog-form__input dialog-form__input_type_edit-profile-name" name="inputEditProfileName" type="text">
         <input class="dialog-form__input dialog-form__input_type_edit-profile-about-me" name="inputEditProfileAboutMe" type="text">
         <button class="dialog-form__submit-button" type="submit" name="submitEditProfile" formmethod="post">Сохранить</button>
       </form>
-    <!--</div>-->
+    </div>
   </div>
   <div class="popup popup_type_new-location">
     <button class="popup__close-icon" type="button"></button>
-    <!--<div class="popup__container">      -->
+    <div class="popup__container">      
       <form class="dialog-form dialog-form_type_new-location" name="formNewLocation">
         <h2 class="dialog-form__title dialog-form__title_type_new-location">Новое место</h2>
         <input class="dialog-form__input dialog-form__input_type_new-location-name" name="inputNewLocationName" type="text" placeholder="Название">
         <input class="dialog-form__input dialog-form__input_type_new-location-link" name="inputNewLocationAboutMe" type="text" placeholder="Ссылка на картинку">
         <button class="dialog-form__submit-button" type="submit" name="submitNewLocation" formmethod="post">Создать</button>
       </form>
-    <!--</div>-->
+    </div>
   </div>
   <div class="popup popup_type_view-image">
     <button class="popup__close-icon" type="button"></button>
-    <img class="original-image" src="" alt="">
-    <h3 class="image-caption">Подпись к картинке</h3>    
+    <div class="popup__container">      
+      <img class="original-image" src="" alt="">
+      <h3 class="image-caption">Подпись к картинке</h3>
+    </div>
   </div>
   <script src="script/index.js"></script>
 </body>
