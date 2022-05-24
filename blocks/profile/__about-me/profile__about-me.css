@@ -1,6 +1,7 @@
 .profile__about-me {
   margin: 0;
   padding: 0;
+  width: 100%;
   font-weight: 400;
   font-size: 18px;
   line-height: 1.22;
@@ -10,8 +11,7 @@
 }
 
 @media screen and (max-width: 719px) {
-  .profile__about-me {
-    width: 100%;
+  .profile__about-me {    
     font-size: calc(14px + 4 * (100vw - 320px) / 400);
     text-align: center;
   }
