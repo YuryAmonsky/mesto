@@ -4,32 +4,26 @@ const initialCards = [
   {
     name: 'Карачаево-Черкессия',
     link: 'images/content/Karachaevsk.jpg',
-    alt: 'Заброшенный храм на фоне горы.'
   },
   {
     name: 'Гора Эльбрус',
     link: 'images/content/Elbrus.jpg',
-    alt: 'Дорога, ведущая к заснеженной горе вдали.'
   },
   {
     name: 'Сочи',
     link: 'images/content/Sochi.jpg',
-    alt: 'За лесом на горной гряде город у моря.'
   },
   {
     name: 'Алтай',
     link: 'images/content/Altay.jpg',
-    alt: 'Бурная река течет мимо деревни у подножия горы, покрытой хвойным лесом.'
   },
   {
     name: 'Телецкое озеро',
     link: 'images/content/Teletskoe_ozero.jpg',
-    alt: 'Зеркальная гладь воды отражает небо и горы.'
   },
   {
     name: 'Шато Эркен, Кабардино-балкария',
     link: 'images/content/Shato_Erken_Nalchik.jpg',
-    alt: 'Между двух плакучих ив замок посреди озера.'
   }
 ];
 const textProfileName = document.querySelector('.profile__name');
@@ -64,7 +58,7 @@ function prepareCardLocation(name, link, textAlt) {
   const imageLocation = location.querySelector('.location__image');
   imageLocation.setAttribute('src', link);
   imageLocation.setAttribute('alt', textAlt);
-  imageLocation.addEventListener('click', openPopupViewImage);
+  imageLocation.addEventListener('click', () => {openPopupViewImage(name, link);});
   //ниже выбираем элемент 'имя' и задаем ему текстовое содержимое
   const textLocationName = location.querySelector('.location__name');
   textLocationName.textContent = name;
@@ -118,10 +112,10 @@ function prependCardNewLocation(evt) {
 }
 
 //открытие попапа просмотра картинки
-function openPopupViewImage(evt) {
-  imageOrigin.setAttribute('src', evt.target.getAttribute('src'));
-  imageOrigin.setAttribute('alt', evt.target.getAttribute('alt'));
-  textCaption.textContent = evt.target.parentElement.querySelector('.location__name').textContent;
+function openPopupViewImage(name, link) {
+  imageOrigin.setAttribute('src', link);
+  imageOrigin.setAttribute('alt', `Фотография места ${name}`);
+  textCaption.textContent = name;
   popupViewImage.classList.add('popup_opened');
 }
 
