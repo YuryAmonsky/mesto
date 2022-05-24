@@ -4,11 +4,9 @@
   left: 0;
   right: 0;
   bottom: 0;
-  display: none;
-  /*justify-content: center;*/  
-  grid-template-columns: 1fr 430px 1fr;
-  grid-template-rows: 1fr min-content 1fr;
-  gap: 8px;
+  visibility: hidden;
+  opacity: 0;
+  transition: opacity .5s linear;  
 }
 
 .popup::before {

@@ -9,17 +9,7 @@ const initialCards = [
   {
     name: 'Гора Эльбрус',
     link: 'images/content/Elbrus.jpg',
-    alt: 'Гора вдали.'
-  },
-  {
-    name: 'Домбай',
-    link: 'images/content/Dombai.jpg',
-    alt: 'Спереди лес на склоне горы, высокий горный пик на заднем плане.'
-  },
-  {
-    name: 'Зеленоград',
-    link: 'images/content/Zelenograd.jpg',
-    alt: 'Янтарь на песке у моря.'
+    alt: 'Дорога, ведущая к заснеженной горе вдали.'
   },
   {
     name: 'Сочи',
@@ -27,9 +17,19 @@ const initialCards = [
     alt: 'За лесом на горной гряде город у моря.'
   },
   {
+    name: 'Алтай',
+    link: 'images/content/Altay.jpg',
+    alt: 'Бурная река течет мимо деревни у подножия горы, покрытой хвойным лесом.'
+  },
+  {
     name: 'Телецкое озеро',
     link: 'images/content/Teletskoe_ozero.jpg',
-    alt: '"Зеркальная гладь воды отражает небо и горы.'
+    alt: 'Зеркальная гладь воды отражает небо и горы.'
+  },
+  {
+    name: 'Шато Эркен, Кабардино-балкария',
+    link: 'images/content/Shato_Erken_Nalchik.jpg',
+    alt: 'Между двух плакучих ив замок посреди озера.'
   }
 ];
 
@@ -119,13 +119,13 @@ function openPopupViewImage(evt){
 }
 
 function closePopup(evt) {
-  
-  
+  evt.target.parentElement.parentElement.classList.remove('popup_opened');
+  /*
   if(evt.target.tagName==='FORM'){
     evt.target.parentElement.parentElement.classList.remove('popup_opened');
   }else {
     evt.target.parentElement.classList.remove('popup_opened');
-  }    
+  } */   
 }
 //Вызовы функций
 //--------------

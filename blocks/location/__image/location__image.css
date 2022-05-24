@@ -1,7 +1,7 @@
 .location__image {
   width: 282px;
   height: 282px;
-  object-fit: scale-down;
+  object-fit: scover;
   grid-column: 1/span 2;
   cursor: pointer;
 }
