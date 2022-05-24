@@ -24,15 +24,7 @@
       <button class="profile__add-button" type="button"></button>
     </section>
     <section aria-label="locations">
-      <ul class="location-list">
-        <template class="location-template">
-          <li class="location">
-            <button class="location__delete-icon" type="button"></button>
-            <img class="location__image" src="#" alt="">
-            <h2 class="location__name"></h2>
-            <button class="location__like" type="button"></button>
-          </li>
-        </template>        
+      <ul class="location-list">        
       </ul>
     </section>
   </main>
@@ -74,6 +66,14 @@
       <h3 class="image-caption">Подпись к картинке</h3>
     </div>
   </div>
+  <template class="location-template">
+    <li class="location">
+      <button class="location__delete-icon" type="button"></button>
+      <img class="location__image" src="#" alt="">
+      <h2 class="location__name"></h2>
+      <button class="location__like" type="button"></button>
+    </li>
+  </template>
   <script src="script/index.js"></script>
 </body>
 
