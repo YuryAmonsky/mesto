@@ -3,6 +3,7 @@
   grid-row: 1;
   align-self: end;
   justify-self: start;
+  margin:0 0 8px 8px;
   padding: 0;
   border: none;
   width: 32px;
@@ -22,6 +23,7 @@
 @media screen and (max-width: 619px) {
   .popup__close-icon {
     grid-column: 2;
+    margin:0 0 16px 0;
     justify-self: end;
     width: calc(20px + 12 * (100vw - 320px) / 300);
     height: calc(20px + 12 * (100vw - 320px) / 300);
