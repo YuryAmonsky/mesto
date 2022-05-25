@@ -60,7 +60,7 @@ function prepareCardLocation(name, link, textAlt) {
   const imageLocation = location.querySelector('.location__image');
   imageLocation.setAttribute('src', link);
   imageLocation.setAttribute('alt', textAlt);
-  imageLocation.addEventListener('click', () => {openPopupViewImage(name, link);});
+  imageLocation.addEventListener('click', () => { openPopupViewImage(name, link); });
   //ниже выбираем элемент 'имя' и задаем ему текстовое содержимое
   const textLocationName = location.querySelector('.location__name');
   textLocationName.textContent = name;
@@ -80,10 +80,10 @@ function initializeLocations(locations) {
 }
 
 //открытие попапа редактирования профиля
-function openPopupEditProfile() {  
+function openPopupEditProfile() {
   inputProfileName.value = textProfileName.textContent;
   inputAboutMe.value = textProfileAboutMe.textContent;
-  openPopup(popupEditProfile);  
+  openPopup(popupEditProfile);
 }
 
 //сохранение внесенных пользователем данных профиля
@@ -118,19 +118,19 @@ function openPopupViewImage(name, link) {
 
 function openPopup(popup) {
   popup.classList.add('popup_opened');
-} 
+}
 
 //закрытие попапов
 function closePopup(popup) {
-  popup.classList.remove('popup_opened');  
+  popup.classList.remove('popup_opened');
 }
 //Вызовы функций
 //--------------
 initializeLocations(initialCards);
 buttonOpenEditProfile.addEventListener('click', openPopupEditProfile);
-buttonCloseEditProfile.addEventListener('click', () => {closePopup(popupEditProfile);});
+buttonCloseEditProfile.addEventListener('click', () => { closePopup(popupEditProfile); });
 buttonOpenNewLocation.addEventListener('click', openPopupNewLocation)
-buttonCloseNewLocation.addEventListener('click', () => {closePopup(popupNewLocation);});
-buttonCloseViewImage.addEventListener('click', () => {closePopup(popupViewImage);});
+buttonCloseNewLocation.addEventListener('click', () => { closePopup(popupNewLocation); });
+buttonCloseViewImage.addEventListener('click', () => { closePopup(popupViewImage); });
 formEditProfile.addEventListener('submit', saveProfileData);
 formNewLocation.addEventListener('submit', prependCardNewLocation);
