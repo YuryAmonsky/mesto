@@ -6,7 +6,7 @@
   bottom: 0;
   visibility: hidden;
   opacity: 0;
-  transition: opacity .5s linear;
+  transition: visibility .5s, opacity .5s linear;
 }
 
 .popup::before {
