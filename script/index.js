@@ -32,12 +32,13 @@ const buttonOpenEditProfile = document.querySelector('.profile__edit-button');
 const buttonOpenNewLocation = document.querySelector('.profile__add-button');
 const listLocations = document.querySelector('.location-list');
 const templateCardLocation = document.querySelector('.location-template');
-//элементы попапа сформой редактирования профиля
+//элементы попапа с формой редактирования профиля
 const popupEditProfile = document.querySelector('.popup_type_edit-profile');
 const formEditProfile = popupEditProfile.querySelector('.dialog-form_type_edit-profile');
 const inputProfileName = formEditProfile.querySelector('.dialog-form__input_type_edit-profile-name');
 const inputAboutMe = formEditProfile.querySelector('.dialog-form__input_type_edit-profile-about-me');
 const buttonCloseEditProfile = popupEditProfile.querySelector('.popup__close-icon');
+
 //элементы попапа с формой добавления нового места
 const popupNewLocation = document.querySelector('.popup_type_new-location');
 const formNewLocation = popupNewLocation.querySelector('.dialog-form_type_new-location');
@@ -49,6 +50,15 @@ const popupViewImage = document.querySelector('.popup_type_view-image');
 const imageOrigin = popupViewImage.querySelector('.original-image');
 const textCaption = popupViewImage.querySelector('.image-caption');
 const buttonCloseViewImage = popupViewImage.querySelector('.popup__close-icon');
+
+const objFormElementsClassHolder{
+  selectorForm: '.dialog-form',
+  selectorInput: '.dialog-form__input',
+  selectorSubmitButton: '.dialog-form__submit-button',
+  classButtonDisabled: 'dialog-form__submit-button_disabled',
+  classInputInvalid: 'dialog-form__input-invalid',
+  classErrorActive: 'dialog-form__input-error_active'
+};
 
 //Объявление функций
 //------------------
