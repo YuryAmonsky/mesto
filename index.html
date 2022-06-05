@@ -37,10 +37,10 @@
       <form class="dialog-form dialog-form_type_edit-profile" name="formEditProfile">
         <h2 class="dialog-form__title dialog-form__title_type_edit-profile">Редактировать профиль</h2>
         <input class="dialog-form__input dialog-form__input_type_edit-profile-name" name="inputEditProfileName"
-          type="text">
+          type="text" minlength="2" maxlength="40" required>
         <span class="dialog-form__input-error"></span>
         <input class="dialog-form__input dialog-form__input_type_edit-profile-about-me" name="inputEditProfileAboutMe"
-          type="text">
+          type="text" minlength="2" maxlength="200" required>
         <span class="dialog-form__input-error"></span>  
         <button class="dialog-form__submit-button" type="submit" name="submitEditProfile"
           formmethod="post">Сохранить</button>
