@@ -51,7 +51,7 @@ const imageOrigin = popupViewImage.querySelector('.original-image');
 const textCaption = popupViewImage.querySelector('.image-caption');
 const buttonCloseViewImage = popupViewImage.querySelector('.popup__close-icon');
 
-const objFormElementsClassHolder{
+const objFormElementsClassHolder={
   selectorForm: '.dialog-form',
   selectorInput: '.dialog-form__input',
   selectorSubmitButton: '.dialog-form__submit-button',
