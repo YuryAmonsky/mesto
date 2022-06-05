@@ -53,10 +53,10 @@
       <form class="dialog-form dialog-form_type_new-location" name="formNewLocation">
         <h2 class="dialog-form__title dialog-form__title_type_new-location">Новое место</h2>
         <input class="dialog-form__input dialog-form__input_type_new-location-name" name="inputNewLocationName"
-          type="text" placeholder="Название">
+          type="text" placeholder="Название" minlength="2" maxlength="30" required>
         <span class="dialog-form__input-error"></span>  
         <input class="dialog-form__input dialog-form__input_type_new-location-link" name="inputNewLocationAboutMe"
-          type="text" placeholder="Ссылка на картинку">
+          type="url" placeholder="Ссылка на картинку" required>
         <span class="dialog-form__input-error"></span>
         <button class="dialog-form__submit-button" type="submit" name="submitNewLocation"
           formmethod="post">Создать</button>
