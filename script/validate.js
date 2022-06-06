@@ -24,7 +24,7 @@ function checkValidity(form, input, objClassHolder){
     showInputError(form, input, input.validationMessage);
     disableSubmitButton(form, objClassHolder);
   }else{
-    hideInputError(form, input);
+    hideInputError(form, input, objClassHolder);
     enableSubmitButton(form, objClassHolder);
   }
 }
