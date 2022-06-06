@@ -51,14 +51,6 @@ const imageOrigin = popupViewImage.querySelector('.original-image');
 const textCaption = popupViewImage.querySelector('.image-caption');
 const buttonCloseViewImage = popupViewImage.querySelector('.popup__close-icon');
 
-const objFormElementsClassHolder = {
-  selectorForm: '.dialog-form',
-  selectorInput: '.dialog-form__input',
-  selectorSubmitButton: '.dialog-form__submit-button',
-  classButtonDisabled: 'dialog-form__submit-button_disabled',
-  classInputInvalid: 'dialog-form__input_invalid',
-  classErrorActive: 'dialog-form__input-error_active'
-};
 
 //Объявление функций
 //------------------
