@@ -12,11 +12,11 @@ function hideInputError(form, input, objClassHolder){
   elementError.classList.remove(objClassHolder.classErrorActive);
 }
 function enableSubmitButton(form, objClassHolder){
-  form.querySelector(objClassHolder.selectorSubmitButton).setAttribute('disabled', "false");
+  form.querySelector(objClassHolder.selectorSubmitButton).removeAttribute('disabled');
 }
 
 function disableSubmitButton(form, objClassHolder){
-  form.querySelector(objClassHolder.selectorSubmitButton).setAttribute('disabled', "true");
+  form.querySelector(objClassHolder.selectorSubmitButton).setAttribute('disabled', 'true');
 }
 
 function checkValidity(form, input, objClassHolder){
