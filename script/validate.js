@@ -30,7 +30,7 @@ function checkValidity(form, input, objClassHolder){
 }
 
 function assignEventListenersToAllInputs(form, objClassHolder){
-  const inputList = Array.from(form.querySelectorAll(objClassHolder.selectorInput);
+  const inputList = Array.from(form.querySelectorAll(objClassHolder.selectorInput));
   inputList.forEach((input) => {    
     input.addEventListener('input', () => {
       checkValidity(form, input, objClassHolder)
