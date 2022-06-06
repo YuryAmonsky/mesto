@@ -1,7 +1,7 @@
 .dialog-form__input-error {
-  margin: 0;
+  margin: 5px 0 0 0;
   padding: 0;  
-  display: none;
+  display: block;
   font-weight: 400;
   font-size: 12px;
   line-height: 15px;

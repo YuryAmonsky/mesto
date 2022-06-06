@@ -12,16 +12,16 @@ function hideInputError(form, input, objClassHolder){
   elementError.classList.remove(objClassHolder.classErrorActive);
 }
 function enableSubmitButton(form, objClassHolder){
-  form.querySelector(objClassHolder.selectorSubmitButton).classList.remove(objClassHolder.classButtonDisabled);
+  form.querySelector(objClassHolder.selectorSubmitButton).setAttribute('disabled', "false");
 }
 
 function disableSubmitButton(form, objClassHolder){
-  form.querySelector(objClassHolder.selectorSubmitButton).classList.add(objClassHolder.classButtonDisabled);
+  form.querySelector(objClassHolder.selectorSubmitButton).setAttribute('disabled', "true");
 }
 
 function checkValidity(form, input, objClassHolder){
   if (!input.validity.valid) {
-    showInputError(form, input, input.validationMessage);
+    showInputError(form, input, objClassHolder, input.validationMessage);
     disableSubmitButton(form, objClassHolder);
   }else{
     hideInputError(form, input, objClassHolder);
