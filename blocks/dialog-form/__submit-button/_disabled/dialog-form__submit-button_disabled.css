@@ -1,4 +1,4 @@
-.dialog-form__submit-button_disabled {
+.dialog-form__submit-button_disabled, .dialog-form__submit-button_disabled:hover {
   background: none;
   border: 1px solid #000;
   border-radius: 2px;
