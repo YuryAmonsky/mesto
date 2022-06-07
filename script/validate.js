@@ -1,11 +1,3 @@
-const objFormElementsClassHolder = {
-  selectorForm: '.dialog-form',
-  selectorInput: '.dialog-form__input',
-  selectorSubmitButton: '.dialog-form__submit-button',
-  classButtonDisabled: 'dialog-form__submit-button_disabled',
-  classInputInvalid: 'dialog-form__input_invalid',
-  classErrorActive: 'dialog-form__input-error_active'
-};
 
 function showInputError(form, input, objClassHolder, errorText){
   input.classList.add(objClassHolder.classInputInvalid);
@@ -50,8 +42,8 @@ function assignEventListenersToAllInputs(form, objClassHolder){
   const inputList = Array.from(form.querySelectorAll(objClassHolder.selectorInput));
   inputList.forEach((input) => {    
     input.addEventListener('input', () => {
-      checkInputValidity(form, input, objClassHolder)
-      toggleSubmitButtonState(form, inputList, objClassHolder)
+      checkInputValidity(form, input, objClassHolder);
+      toggleSubmitButtonState(form, inputList, objClassHolder);
     });
   });
 };
@@ -66,5 +58,14 @@ function enableValidation(objClassHolder){
   });
 };
 
+//Ниже функция валидации для использования при открытии формы, чтобы избежать соохранения состояния спана ошибки
+//при закрытии попапа с невалидными инпутами
+function validateForm(form, objClassHolder){
+  const inputList = Array.from(form.querySelectorAll(objClassHolder.selectorInput));
+  inputList.forEach(input=>{
+    checkInputValidity(form, input, objClassHolder);
+  })
+  toggleSubmitButtonState(form, inputList, objClassHolder);
+}
 
 enableValidation(objFormElementsClassHolder); 
