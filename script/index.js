@@ -141,7 +141,7 @@ function isClickedOnElement(element, evt){
    return evt.clientX > rect.left && evt.clientX < rect.right && evt.clientY > rect.top && evt.clientY < rect.bottom;
 }
 
-function closePopupByBGClick(popup, evt){
+function closePopupOnBGClick(popup, evt){
   const popupContainer=popup.children[0];
   for(let i=0; i<popupContainer.children.length; i++){
     if(isClickedOnElement(popupContainer.children[i],evt)){
@@ -149,6 +149,15 @@ function closePopupByBGClick(popup, evt){
     }
   }
   closePopup(popup);
+}
+
+function closePopupOnEscapePress(evt){  
+   if(evt.key === 'Escape'){
+    const popup=document.querySelector('.popup_opened');
+     if(popup){
+      closePopup(popup);
+     }
+   } 
 }
 
 //Вызовы функций
@@ -159,8 +168,9 @@ buttonCloseEditProfile.addEventListener('click', () => { closePopup(popupEditPro
 buttonOpenNewLocation.addEventListener('click', openPopupNewLocation)
 buttonCloseNewLocation.addEventListener('click', () => { closePopup(popupNewLocation); });
 buttonCloseViewImage.addEventListener('click', () => { closePopup(popupViewImage); });
-popupEditProfile.addEventListener('click', (evt) => {closePopupByBGClick(popupEditProfile, evt);});
-popupNewLocation.addEventListener('click', (evt) => {closePopupByBGClick(popupNewLocation, evt);});
-popupViewImage.addEventListener('click', (evt) => {closePopupByBGClick(popupViewImage,evt);});
+popupEditProfile.addEventListener('click', (evt) => {closePopupOnBGClick(popupEditProfile, evt);});
+popupNewLocation.addEventListener('click', (evt) => {closePopupOnBGClick(popupNewLocation, evt);});
+popupViewImage.addEventListener('click', (evt) => {closePopupOnBGClick(popupViewImage,evt);});
 formEditProfile.addEventListener('submit', saveProfileData);
 formNewLocation.addEventListener('submit', prependCardNewLocation);
+document.addEventListener('keydown', (evt) => closePopupOnEscapePress(evt));
