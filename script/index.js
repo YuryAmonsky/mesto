@@ -155,7 +155,7 @@ function closePopupOnBGClick(popup, evt){
   closePopup(popup);
 }
 
-function closePopupOnEscapePress(evt){  
+function closePopupOnEscapePress(evt){     
    if(evt.key === 'Escape'){
     const popup=document.querySelector('.popup_opened');
      if(popup){      
@@ -177,4 +177,3 @@ popupNewLocation.addEventListener('click', (evt) => {closePopupOnBGClick(popupNe
 popupViewImage.addEventListener('click', (evt) => {closePopupOnBGClick(popupViewImage,evt);});
 formEditProfile.addEventListener('submit', saveProfileData);
 formNewLocation.addEventListener('submit', prependCardNewLocation);
-//document.addEventListener('keydown', (evt) => closePopupOnEscapePress(evt));
