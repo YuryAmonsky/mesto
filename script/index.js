@@ -135,6 +135,22 @@ function openPopup(popup) {
 function closePopup(popup) {
   popup.classList.remove('popup_opened');
 }
+
+function isClickedOnElement(element, evt){
+  const rect=element.getBoundingClientRect();
+   return evt.clientX > rect.left && evt.clientX < rect.right && evt.clientY > rect.top && evt.clientY < rect.bottom;
+}
+
+function closePopupByBGClick(popup, evt){
+  const popupContainer=popup.children[0];
+  for(let i=0; i<popupContainer.children.length; i++){
+    if(isClickedOnElement(popupContainer.children[i],evt)){
+      return null;
+    }
+  }
+  closePopup(popup);
+}
+
 //Вызовы функций
 //--------------
 initializeLocations(initialCards);
@@ -143,5 +159,8 @@ buttonCloseEditProfile.addEventListener('click', () => { closePopup(popupEditPro
 buttonOpenNewLocation.addEventListener('click', openPopupNewLocation)
 buttonCloseNewLocation.addEventListener('click', () => { closePopup(popupNewLocation); });
 buttonCloseViewImage.addEventListener('click', () => { closePopup(popupViewImage); });
+popupEditProfile.addEventListener('click', (evt) => {closePopupByBGClick(popupEditProfile, evt);});
+popupNewLocation.addEventListener('click', (evt) => {closePopupByBGClick(popupNewLocation, evt);});
+popupViewImage.addEventListener('click', (evt) => {closePopupByBGClick(popupViewImage,evt);});
 formEditProfile.addEventListener('submit', saveProfileData);
 formNewLocation.addEventListener('submit', prependCardNewLocation);
