@@ -94,6 +94,7 @@ function openPopupEditProfile() {
   inputAboutMe.value = textProfileAboutMe.textContent;
   validateForm(formEditProfile, objFormElementsClassHolder);
   openPopup(popupEditProfile);
+  document.addEventListener('keydown', closePopupOnEscapePress);
 }
 
 //сохранение внесенных пользователем данных профиля
@@ -109,6 +110,7 @@ function openPopupNewLocation() {
   formNewLocation.reset();
   validateForm(formNewLocation, objFormElementsClassHolder);
   openPopup(popupNewLocation);
+  document.addEventListener('keydown', closePopupOnEscapePress);
 }
 
 //добавление новой карточки на страницу
@@ -125,6 +127,7 @@ function openPopupViewImage(name, link) {
   imageOrigin.setAttribute('alt', `Фотография места ${name}`);
   textCaption.textContent = name;
   openPopup(popupViewImage);
+  document.addEventListener('keydown', closePopupOnEscapePress);
 }
 
 function openPopup(popup) {
@@ -133,7 +136,8 @@ function openPopup(popup) {
 
 //закрытие попапов
 function closePopup(popup) {
-  popup.classList.remove('popup_opened');
+  document.removeEventListener('keydown', closePopupOnEscapePress);
+  popup.classList.remove('popup_opened');  
 }
 
 function isClickedOnElement(element, evt){
@@ -154,7 +158,7 @@ function closePopupOnBGClick(popup, evt){
 function closePopupOnEscapePress(evt){  
    if(evt.key === 'Escape'){
     const popup=document.querySelector('.popup_opened');
-     if(popup){
+     if(popup){      
       closePopup(popup);
      }
    } 
@@ -173,4 +177,4 @@ popupNewLocation.addEventListener('click', (evt) => {closePopupOnBGClick(popupNe
 popupViewImage.addEventListener('click', (evt) => {closePopupOnBGClick(popupViewImage,evt);});
 formEditProfile.addEventListener('submit', saveProfileData);
 formNewLocation.addEventListener('submit', prependCardNewLocation);
-document.addEventListener('keydown', (evt) => closePopupOnEscapePress(evt));
+//document.addEventListener('keydown', (evt) => closePopupOnEscapePress(evt));
