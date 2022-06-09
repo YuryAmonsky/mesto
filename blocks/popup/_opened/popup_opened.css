@@ -1,5 +1,4 @@
 .popup_opened {
-  display: block;/*для того,чтобы при открытии страницы не появлялись попапы*/
   visibility: visible;
   opacity: 1;
 }
