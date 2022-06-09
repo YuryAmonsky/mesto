@@ -65,14 +65,14 @@ function enableValidation(objClassHolder){
   });
 };
 
-//Ниже функция валидации для использования при открытии формы, чтобы избежать соохранения состояния спана ошибки
-//при закрытии попапа с невалидными инпутами
-function validateForm(form, objClassHolder){
+//Ниже функция инициализации ошибок для использования при открытии формы, 
+//чтобы избежать соохранения состояния спана ошибки при закрытии попапа с невалидными инпутами
+function initErrorHints(form, objClassHolder){
   const inputList = Array.from(form.querySelectorAll(objClassHolder.selectorInput));
   inputList.forEach(input=>{
-    checkInputValidity(form, input, objClassHolder);
+    hideInputError(form, input, objClassHolder);
   })
   toggleSubmitButtonState(form, inputList, objClassHolder);
 }
 
-enableValidation(objFormElementsClassHolder); 
+enableValidation(objFormElementsClassHolder);

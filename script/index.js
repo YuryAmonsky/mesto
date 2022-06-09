@@ -107,7 +107,7 @@ function openPopupEditProfile() {
   inputProfileName.value = textProfileName.textContent;
   inputAboutMe.value = textProfileAboutMe.textContent;
   formEditProfile.addEventListener('submit', saveProfileData);
-  validateForm(formEditProfile, objFormElementsClassHolder);
+  initErrorHints(formEditProfile, objFormElementsClassHolder);
   openPopup(popupEditProfile);
 }
 
@@ -123,7 +123,7 @@ function saveProfileData(evt) {
 function openPopupNewLocation() {
   formNewLocation.reset();
   formNewLocation.addEventListener('submit', prependCardNewLocation);
-  validateForm(formNewLocation, objFormElementsClassHolder);
+  initErrorHints(formNewLocation, objFormElementsClassHolder);
   openPopup(popupNewLocation);
 }
 
