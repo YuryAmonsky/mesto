@@ -18,15 +18,22 @@ function isFormValid(inputList){// проверяет все ли инпуты �
     return !input.validity.valid;
   })  
 }
+function disableButton(button, objClassHolder){
+  button.setAttribute('disabled','true');
+  button.classList.add(objClassHolder.classButtonDisabled);
+}
+
+function enableButton(button, objClassHolder){
+  button.removeAttribute('disabled');
+  button.classList.remove(objClassHolder.classButtonDisabled);
+}
 
 function toggleSubmitButtonState(form, inputList, objClassHolder){
   const buttonSubmit = form.querySelector(objClassHolder.selectorSubmitButton);
   if(isFormValid(inputList)){
-    buttonSubmit.removeAttribute('disabled');
-    buttonSubmit.classList.remove(objClassHolder.classButtonDisabled);
+    enableButton(buttonSubmit, objClassHolder);
   } else{
-    buttonSubmit.setAttribute('disabled','true');
-    buttonSubmit.classList.add(objClassHolder.classButtonDisabled);
+    disableButton(buttonSubmit, objClassHolder);
   }  
 }
 
