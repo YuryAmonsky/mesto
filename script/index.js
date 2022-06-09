@@ -83,11 +83,13 @@ function prepareCardLocation(name, link, textAlt) {
 //открытие попапа
 function openPopup(popup) {
   popup.classList.add('popup_opened');
+  popup.addEventListener('click', closePopupOnBGClick);
   document.addEventListener('keydown', closePopupOnEscapePress);
 }
 
 //закрытие попапов
 function closePopup(popup) {
+  popup.removeEventListener('click', closePopupOnBGClick);
   document.removeEventListener('keydown', closePopupOnEscapePress);
   popup.classList.remove('popup_opened');
 }
@@ -104,6 +106,7 @@ function initializeLocations(locations) {
 function openPopupEditProfile() {
   inputProfileName.value = textProfileName.textContent;
   inputAboutMe.value = textProfileAboutMe.textContent;
+  formEditProfile.addEventListener('submit', saveProfileData);
   validateForm(formEditProfile, objFormElementsClassHolder);
   openPopup(popupEditProfile);
 }
@@ -112,13 +115,14 @@ function openPopupEditProfile() {
 function saveProfileData(evt) {
   evt.preventDefault();
   textProfileName.textContent = inputProfileName.value;
-  textProfileAboutMe.textContent = inputAboutMe.value;
+  textProfileAboutMe.textContent = inputAboutMe.value; 
   closePopup(popupEditProfile);
 }
 
 //открытие попапа добавления новой карточки
 function openPopupNewLocation() {
   formNewLocation.reset();
+  formNewLocation.addEventListener('submit', prependCardNewLocation);
   validateForm(formNewLocation, objFormElementsClassHolder);
   openPopup(popupNewLocation);
 }
@@ -139,19 +143,10 @@ function openPopupViewImage(name, link) {
   openPopup(popupViewImage);
 }
 
-function isClickedOnElement(element, evt) {
-  const rect = element.getBoundingClientRect();
-  return evt.clientX > rect.left && evt.clientX < rect.right && evt.clientY > rect.top && evt.clientY < rect.bottom;
-}
-
-function closePopupOnBGClick(popup, evt) {
-  const popupContainer = popup.children[0];
-  for (let i = 0; i < popupContainer.children.length; i++) {
-    if (isClickedOnElement(popupContainer.children[i], evt)) {
-      return null;
-    }
-  }
-  closePopup(popup);
+function closePopupOnBGClick(evt) {
+  if(evt.target.classList.contains('popup__container')){
+    closePopup(evt.target.closest('.popup'));
+  }  
 }
 
 function closePopupOnEscapePress(evt) {
@@ -171,8 +166,3 @@ buttonCloseEditProfile.addEventListener('click', () => { closePopup(popupEditPro
 buttonOpenNewLocation.addEventListener('click', openPopupNewLocation)
 buttonCloseNewLocation.addEventListener('click', () => { closePopup(popupNewLocation); });
 buttonCloseViewImage.addEventListener('click', () => { closePopup(popupViewImage); });
-popupEditProfile.addEventListener('click', (evt) => { closePopupOnBGClick(popupEditProfile, evt); });
-popupNewLocation.addEventListener('click', (evt) => { closePopupOnBGClick(popupNewLocation, evt); });
-popupViewImage.addEventListener('click', (evt) => { closePopupOnBGClick(popupViewImage, evt); });
-formEditProfile.addEventListener('submit', saveProfileData);
-formNewLocation.addEventListener('submit', prependCardNewLocation);
