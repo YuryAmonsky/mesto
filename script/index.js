@@ -80,6 +80,18 @@ function prepareCardLocation(name, link, textAlt) {
   return location;
 }
 
+//открытие попапа
+function openPopup(popup) {
+  popup.classList.add('popup_opened');
+  document.addEventListener('keydown', closePopupOnEscapePress);
+}
+
+//закрытие попапов
+function closePopup(popup) {
+  document.removeEventListener('keydown', closePopupOnEscapePress);
+  popup.classList.remove('popup_opened');
+}
+
 //начальное заполнение списка мест из массива initialCards
 function initializeLocations(locations) {
   for (let i = 0; i < locations.length; i++) {
@@ -125,17 +137,6 @@ function openPopupViewImage(name, link) {
   imageOrigin.setAttribute('alt', `Фотография места ${name}`);
   textCaption.textContent = name;
   openPopup(popupViewImage);
-}
-
-function openPopup(popup) {
-  popup.classList.add('popup_opened');
-  document.addEventListener('keydown', closePopupOnEscapePress);
-}
-
-//закрытие попапов
-function closePopup(popup) {
-  document.removeEventListener('keydown', closePopupOnEscapePress);
-  popup.classList.remove('popup_opened');
 }
 
 function isClickedOnElement(element, evt) {
