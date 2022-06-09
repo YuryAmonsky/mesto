@@ -94,7 +94,6 @@ function openPopupEditProfile() {
   inputAboutMe.value = textProfileAboutMe.textContent;
   validateForm(formEditProfile, objFormElementsClassHolder);
   openPopup(popupEditProfile);
-  document.addEventListener('keydown', closePopupOnEscapePress);
 }
 
 //сохранение внесенных пользователем данных профиля
@@ -110,7 +109,6 @@ function openPopupNewLocation() {
   formNewLocation.reset();
   validateForm(formNewLocation, objFormElementsClassHolder);
   openPopup(popupNewLocation);
-  document.addEventListener('keydown', closePopupOnEscapePress);
 }
 
 //добавление новой карточки на страницу
@@ -127,41 +125,41 @@ function openPopupViewImage(name, link) {
   imageOrigin.setAttribute('alt', `Фотография места ${name}`);
   textCaption.textContent = name;
   openPopup(popupViewImage);
-  document.addEventListener('keydown', closePopupOnEscapePress);
 }
 
 function openPopup(popup) {
   popup.classList.add('popup_opened');
+  document.addEventListener('keydown', closePopupOnEscapePress);
 }
 
 //закрытие попапов
 function closePopup(popup) {
   document.removeEventListener('keydown', closePopupOnEscapePress);
-  popup.classList.remove('popup_opened');  
+  popup.classList.remove('popup_opened');
 }
 
-function isClickedOnElement(element, evt){
-  const rect=element.getBoundingClientRect();
-   return evt.clientX > rect.left && evt.clientX < rect.right && evt.clientY > rect.top && evt.clientY < rect.bottom;
+function isClickedOnElement(element, evt) {
+  const rect = element.getBoundingClientRect();
+  return evt.clientX > rect.left && evt.clientX < rect.right && evt.clientY > rect.top && evt.clientY < rect.bottom;
 }
 
-function closePopupOnBGClick(popup, evt){
-  const popupContainer=popup.children[0];
-  for(let i=0; i<popupContainer.children.length; i++){
-    if(isClickedOnElement(popupContainer.children[i],evt)){
+function closePopupOnBGClick(popup, evt) {
+  const popupContainer = popup.children[0];
+  for (let i = 0; i < popupContainer.children.length; i++) {
+    if (isClickedOnElement(popupContainer.children[i], evt)) {
       return null;
     }
   }
   closePopup(popup);
 }
 
-function closePopupOnEscapePress(evt){     
-   if(evt.key === 'Escape'){
-    const popup=document.querySelector('.popup_opened');
-     if(popup){      
+function closePopupOnEscapePress(evt) {
+  if (evt.key === 'Escape') {
+    const popup = document.querySelector('.popup_opened');
+    if (popup) {
       closePopup(popup);
-     }
-   } 
+    }
+  }
 }
 
 //Вызовы функций
@@ -172,8 +170,8 @@ buttonCloseEditProfile.addEventListener('click', () => { closePopup(popupEditPro
 buttonOpenNewLocation.addEventListener('click', openPopupNewLocation)
 buttonCloseNewLocation.addEventListener('click', () => { closePopup(popupNewLocation); });
 buttonCloseViewImage.addEventListener('click', () => { closePopup(popupViewImage); });
-popupEditProfile.addEventListener('click', (evt) => {closePopupOnBGClick(popupEditProfile, evt);});
-popupNewLocation.addEventListener('click', (evt) => {closePopupOnBGClick(popupNewLocation, evt);});
-popupViewImage.addEventListener('click', (evt) => {closePopupOnBGClick(popupViewImage,evt);});
+popupEditProfile.addEventListener('click', (evt) => { closePopupOnBGClick(popupEditProfile, evt); });
+popupNewLocation.addEventListener('click', (evt) => { closePopupOnBGClick(popupNewLocation, evt); });
+popupViewImage.addEventListener('click', (evt) => { closePopupOnBGClick(popupViewImage, evt); });
 formEditProfile.addEventListener('submit', saveProfileData);
 formNewLocation.addEventListener('submit', prependCardNewLocation);

@@ -3,17 +3,19 @@
   border: none;
   border-bottom: 1px solid rgba(0, 0, 0, 0.2);
   height: 27px;
+  position: relative;
+  z-index: 2;
   font-weight: 400;
   font-size: 14px;
   line-height: 17px;
 }
 
 .dialog-form__input:first-of-type {
-  margin-top: 54px;
+  margin: 54px 0 0 0;
 }
 
 .dialog-form__input:last-of-type {
-  margin-top: 13px;
+  margin: 0;
 }
 
 @media screen and (max-width: 619px) {
