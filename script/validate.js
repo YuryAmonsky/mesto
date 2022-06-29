@@ -1,4 +1,4 @@
-
+import{objFormElementsClassHolder} from './index.js';
 function showInputError(form, input, objClassHolder, errorText){
   input.classList.add(objClassHolder.classInputInvalid);
   const elementError = form.querySelector(`.${input.id}-error`);

@@ -1,5 +1,6 @@
 //Объявление глобальных переменных и констант
 //----------------------
+import{Card} from './card.js'; 
 const initialCards = [
   {
     name: 'Карачаево-Черкессия',
@@ -51,7 +52,19 @@ const imageOrigin = popupViewImage.querySelector('.original-image');
 const textCaption = popupViewImage.querySelector('.image-caption');
 const buttonCloseViewImage = popupViewImage.querySelector('.popup__close-icon');
 
-const objFormElementsClassHolder = {
+const objCardElementsClassHolder = {
+  selectorTemplate: '.location-template',
+  selectorCard: '.location',
+  selectorImage: '.location__image',
+  selectorName: '.location__name',
+  selectorButtonDelete: '.location__delete-icon',
+  selectorButtonLike: '.location__like',
+  selectorPopup: '.popup_type_view-image',
+  //handleImageClick: openPopupViewImage,
+  classLike: 'location__like_active'
+}
+
+export const objFormElementsClassHolder = {
   selectorForm: '.dialog-form',
   selectorInput: '.dialog-form__input',
   selectorSubmitButton: '.dialog-form__submit-button',
@@ -59,10 +72,10 @@ const objFormElementsClassHolder = {
   classInputInvalid: 'dialog-form__input_invalid',
   classErrorActive: 'dialog-form__input-error_active'
 };
-//Объявление функций
+//Объявление функций 
 //------------------
 //создание из шаблона и подготовка новой карточки место
-function prepareCardLocation(name, link, textAlt) {
+/*function prepareCardLocation(name, link, textAlt) {
   //клонируем курточку из шаблона
   const location = templateCardLocation.content.querySelector('.location').cloneNode(true);
   //выбираем элемент 'изображение' и задаем ему атрибуты
@@ -78,7 +91,7 @@ function prepareCardLocation(name, link, textAlt) {
   buttonDelete.addEventListener('click', evt => listLocations.removeChild(evt.target.parentElement));
   buttonLike.addEventListener('click', () => buttonLike.classList.toggle('location__like_active'));
   return location;
-}
+}*/
 
 //открытие попапа
 function openPopup(popup) {
@@ -98,7 +111,7 @@ function closePopup(popup) {
 function initializeLocations(locations) {
   for (let i = 0; i < locations.length; i++) {
     //ниже добавляем в DOM
-    listLocations.append(prepareCardLocation(initialCards[i].name, initialCards[i].link, `Фотография места ${initialCards[i].name}`));
+    listLocations.append((new Card(initialCards[i].name, initialCards[i].link, objCardElementsClassHolder,openPopupViewImage)).prepareCard());
   }
 }
 
@@ -131,7 +144,7 @@ function openPopupNewLocation() {
 function prependCardNewLocation(evt) {
   evt.preventDefault();
   //ниже добавляем в DOM
-  listLocations.prepend(prepareCardLocation(inputLocationName.value, inputLocationLink.value, `Фотография места ${inputLocationName.value}`));
+  listLocations.prepend((new Card(inputLocationName.vlaue, inputLocationLink.value, objCardElementsClassHolder, openPopupViewImage)).prepareCard());
   closePopup(popupNewLocation);
 }
 
