@@ -1,7 +1,7 @@
-class FormValidator{
-  constuctor(objClassHolder, form){
-    this._objClassHolder = objClassHolder;
-    this._form = from;
+export class FormValidator {
+  constructor(form, objClassHolder){
+    this._form = form;
+    this._objClassHolder = objClassHolder;    
     this._buttonSubmit = this._form.querySelector(this._objClassHolder.selectorSubmitButton);
     this._inputList = Array.from(form.querySelectorAll(this._objClassHolder.selectorInput));
   }
@@ -36,8 +36,8 @@ class FormValidator{
     })  
   } 
 
-  toggleSubmitButtonState(){    
-    if(isFormValid(this._inputList)){
+  _toggleSubmitButtonState(){    
+    if(this._isFormValid(this._inputList)){
       this._enableButton(this._buttonSubmit);
     } else{
       this._disableButton(this._buttonSubmit);
@@ -63,7 +63,7 @@ class FormValidator{
 
   //Ниже функция инициализации ошибок для использования при открытии формы, 
   //чтобы избежать соохранения состояния спана ошибки при закрытии попапа с невалидными инпутами
-  _initErrorHints(){
+  initErrorHints(){
     this._inputList.forEach(input=>{
       this._hideInputError(input);
     })

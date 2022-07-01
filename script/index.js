@@ -1,6 +1,11 @@
+//Подключение модулей
+//---------------------
+import{Card} from './card.js';
+import{FormValidator} from './FormValidator.js';
+
 //Объявление глобальных переменных и констант
 //----------------------
-import{Card} from './card.js'; 
+
 const initialCards = [
   {
     name: 'Карачаево-Черкессия',
@@ -27,30 +32,15 @@ const initialCards = [
     link: 'images/content/Shato_Erken_Nalchik.jpg',
   }
 ];
-const textProfileName = document.querySelector('.profile__name');
-const textProfileAboutMe = document.querySelector('.profile__about-me');
-const buttonOpenEditProfile = document.querySelector('.profile__edit-button');
-const buttonOpenNewLocation = document.querySelector('.profile__add-button');
-const listLocations = document.querySelector('.location-list');
-const templateCardLocation = document.querySelector('.location-template');
-//элементы попапа с формой редактирования профиля
-const popupEditProfile = document.querySelector('.popup_type_edit-profile');
-const formEditProfile = popupEditProfile.querySelector('.dialog-form_type_edit-profile');
-const inputProfileName = formEditProfile.querySelector('.dialog-form__input_type_edit-profile-name');
-const inputAboutMe = formEditProfile.querySelector('.dialog-form__input_type_edit-profile-about-me');
-const buttonCloseEditProfile = popupEditProfile.querySelector('.popup__close-icon');
 
-//элементы попапа с формой добавления нового места
-const popupNewLocation = document.querySelector('.popup_type_new-location');
-const formNewLocation = popupNewLocation.querySelector('.dialog-form_type_new-location');
-const inputLocationName = formNewLocation.querySelector('.dialog-form__input_type_new-location-name');
-const inputLocationLink = formNewLocation.querySelector('.dialog-form__input_type_new-location-link');
-const buttonCloseNewLocation = popupNewLocation.querySelector('.popup__close-icon');
-//'элементы попапа просмотра картинки
-const popupViewImage = document.querySelector('.popup_type_view-image');
-const imageOrigin = popupViewImage.querySelector('.original-image');
-const textCaption = popupViewImage.querySelector('.image-caption');
-const buttonCloseViewImage = popupViewImage.querySelector('.popup__close-icon');
+const objFormElementsClassHolder = {
+  selectorForm: '.dialog-form',
+  selectorInput: '.dialog-form__input',
+  selectorSubmitButton: '.dialog-form__submit-button',
+  classButtonDisabled: 'dialog-form__submit-button_disabled',
+  classInputInvalid: 'dialog-form__input_invalid',
+  classErrorActive: 'dialog-form__input-error_active'
+};
 
 const objCardElementsClassHolder = {
   selectorTemplate: '.location-template',
@@ -64,14 +54,36 @@ const objCardElementsClassHolder = {
   classLike: 'location__like_active'
 }
 
-export const objFormElementsClassHolder = {
-  selectorForm: '.dialog-form',
-  selectorInput: '.dialog-form__input',
-  selectorSubmitButton: '.dialog-form__submit-button',
-  classButtonDisabled: 'dialog-form__submit-button_disabled',
-  classInputInvalid: 'dialog-form__input_invalid',
-  classErrorActive: 'dialog-form__input-error_active'
-};
+const textProfileName = document.querySelector('.profile__name');
+const textProfileAboutMe = document.querySelector('.profile__about-me');
+const buttonOpenEditProfile = document.querySelector('.profile__edit-button');
+const buttonOpenNewLocation = document.querySelector('.profile__add-button');
+const listLocations = document.querySelector('.location-list');
+const templateCardLocation = document.querySelector('.location-template');
+//элементы попапа с формой редактирования профиля
+const popupEditProfile = document.querySelector('.popup_type_edit-profile');
+const formEditProfile = popupEditProfile.querySelector('.dialog-form_type_edit-profile');
+const inputProfileName = formEditProfile.querySelector('.dialog-form__input_type_edit-profile-name');
+const inputAboutMe = formEditProfile.querySelector('.dialog-form__input_type_edit-profile-about-me');
+const buttonCloseEditProfile = popupEditProfile.querySelector('.popup__close-icon');
+const formEditProfileValidator = new FormValidator(formEditProfile, objFormElementsClassHolder);
+
+//элементы попапа с формой добавления нового места
+const popupNewLocation = document.querySelector('.popup_type_new-location');
+const formNewLocation = popupNewLocation.querySelector('.dialog-form_type_new-location');
+const inputLocationName = formNewLocation.querySelector('.dialog-form__input_type_new-location-name');
+const inputLocationLink = formNewLocation.querySelector('.dialog-form__input_type_new-location-link');
+const buttonCloseNewLocation = popupNewLocation.querySelector('.popup__close-icon');
+const formNewLocationValidator = new FormValidator(formNewLocation, objFormElementsClassHolder);
+
+
+//'элементы попапа просмотра картинки
+const popupViewImage = document.querySelector('.popup_type_view-image');
+const imageOrigin = popupViewImage.querySelector('.original-image');
+const textCaption = popupViewImage.querySelector('.image-caption');
+const buttonCloseViewImage = popupViewImage.querySelector('.popup__close-icon');
+
+
 //Объявление функций 
 //------------------
 //создание из шаблона и подготовка новой карточки место
@@ -111,7 +123,7 @@ function closePopup(popup) {
 function initializeLocations(locations) {
   for (let i = 0; i < locations.length; i++) {
     //ниже добавляем в DOM
-    listLocations.append((new Card(initialCards[i].name, initialCards[i].link, objCardElementsClassHolder,openPopupViewImage)).prepareCard());
+    listLocations.append((new Card(initialCards[i].name, initialCards[i].link, objCardElementsClassHolder, openPopupViewImage)).prepareCard());
   }
 }
 
@@ -120,7 +132,7 @@ function openPopupEditProfile() {
   inputProfileName.value = textProfileName.textContent;
   inputAboutMe.value = textProfileAboutMe.textContent;
   formEditProfile.addEventListener('submit', saveProfileData);
-  initErrorHints(formEditProfile, objFormElementsClassHolder);
+  formEditProfileValidator.initErrorHints();
   openPopup(popupEditProfile);
 }
 
@@ -132,20 +144,20 @@ function saveProfileData(evt) {
   closePopup(popupEditProfile);
 }
 
-//открытие попапа добавления новой карточки
-function openPopupNewLocation() {
-  formNewLocation.reset();
-  formNewLocation.addEventListener('submit', prependCardNewLocation);
-  initErrorHints(formNewLocation, objFormElementsClassHolder);
-  openPopup(popupNewLocation);
-}
-
 //добавление новой карточки на страницу
 function prependCardNewLocation(evt) {
   evt.preventDefault();
   //ниже добавляем в DOM
-  listLocations.prepend((new Card(inputLocationName.vlaue, inputLocationLink.value, objCardElementsClassHolder, openPopupViewImage)).prepareCard());
+  listLocations.prepend((new Card(inputLocationName.value, inputLocationLink.value, objCardElementsClassHolder, openPopupViewImage)).prepareCard());
   closePopup(popupNewLocation);
+}
+
+//открытие попапа добавления новой карточки
+function openPopupNewLocation() {
+  formNewLocation.reset();
+  formNewLocation.addEventListener('submit', prependCardNewLocation);
+  formNewLocationValidator.initErrorHints();
+  openPopup(popupNewLocation);
 }
 
 //открытие попапа просмотра картинки
@@ -171,16 +183,6 @@ function closePopupOnEscapePress(evt) {
   }
 }
 
-function startValidation(objClassHolder){  
-  const formList = Array.from(document.querySelectorAll(objClassHolder.selectorForm));
-  formList.forEach((form) => {
-    form.addEventListener('submit', (evt) => {
-      evt.preventDefault();
-    });
-    (new FormValidator()).enableValidation();    
-  });
-};
-
 //Вызовы функций
 //--------------
 initializeLocations(initialCards);
@@ -189,5 +191,5 @@ buttonCloseEditProfile.addEventListener('click', () => { closePopup(popupEditPro
 buttonOpenNewLocation.addEventListener('click', openPopupNewLocation)
 buttonCloseNewLocation.addEventListener('click', () => { closePopup(popupNewLocation); });
 buttonCloseViewImage.addEventListener('click', () => { closePopup(popupViewImage); });
-
-startValidation(objFormElementsClassHolder);
+formEditProfileValidator.enableValidation();
+formNewLocationValidator.enableValidation();
