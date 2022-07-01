@@ -171,6 +171,16 @@ function closePopupOnEscapePress(evt) {
   }
 }
 
+function startValidation(objClassHolder){  
+  const formList = Array.from(document.querySelectorAll(objClassHolder.selectorForm));
+  formList.forEach((form) => {
+    form.addEventListener('submit', (evt) => {
+      evt.preventDefault();
+    });
+    (new FormValidator()).enableValidation();    
+  });
+};
+
 //Вызовы функций
 //--------------
 initializeLocations(initialCards);
@@ -179,3 +189,5 @@ buttonCloseEditProfile.addEventListener('click', () => { closePopup(popupEditPro
 buttonOpenNewLocation.addEventListener('click', openPopupNewLocation)
 buttonCloseNewLocation.addEventListener('click', () => { closePopup(popupNewLocation); });
 buttonCloseViewImage.addEventListener('click', () => { closePopup(popupViewImage); });
+
+startValidation(objFormElementsClassHolder);
