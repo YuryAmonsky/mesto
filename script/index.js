@@ -101,12 +101,19 @@ function closePopup(popup) {
 
 //начальное заполнение списка мест из массива initialCards
 function initializeLocations(locations) {
+  locations.forEach((cardData)=>{
+    //ниже добавляем в DOM
+    //const data = {name: card.name, link: card.link};
+    const newCard = new Card(cardData, objCardElementsClassHolder, openPopupViewImage);
+    listLocations.append(newCard.prepareCard());
+  });
+  /*
   for (let i = 0; i < locations.length; i++) {
     //ниже добавляем в DOM
     const data = {name: initialCards[i].name, link: initialCards[i].link};
     const newCard = new Card(data, objCardElementsClassHolder, openPopupViewImage);
     listLocations.append(newCard.prepareCard());
-  }
+  }*/
 }
 
 //открытие попапа редактирования профиля
