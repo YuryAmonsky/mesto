@@ -1,9 +1,9 @@
 //import {openPopupViewImage} from './index.js';
 
 export class Card {
-  constructor (name, link, objClassHolder, handleClick){
-    this._name = name;
-    this._link = link;    
+  constructor (cardData, objClassHolder, handleClick){
+    this._name = cardData.name;
+    this._link = cardData.link;    
     this._template = document.querySelector(objClassHolder.selectorTemplate);
     this._elementCard = null;
     this._elementImage = null;
@@ -36,7 +36,7 @@ export class Card {
   }
 
   _handleButtonDeleteClick(){
-     this._elementCard.remove();
+    this._elementCard = null;
   }
 
   _setEventListeners(){

@@ -86,24 +86,6 @@ const buttonCloseViewImage = popupViewImage.querySelector('.popup__close-icon');
 
 //Объявление функций 
 //------------------
-//создание из шаблона и подготовка новой карточки место
-/*function prepareCardLocation(name, link, textAlt) {
-  //клонируем курточку из шаблона
-  const location = templateCardLocation.content.querySelector('.location').cloneNode(true);
-  //выбираем элемент 'изображение' и задаем ему атрибуты
-  const imageLocation = location.querySelector('.location__image');
-  imageLocation.setAttribute('src', link);
-  imageLocation.setAttribute('alt', textAlt);
-  imageLocation.addEventListener('click', () => { openPopupViewImage(name, link); });
-  //ниже выбираем элемент 'имя' и задаем ему текстовое содержимое
-  const textLocationName = location.querySelector('.location__name');
-  textLocationName.textContent = name;
-  const buttonDelete = location.querySelector('.location__delete-icon');
-  const buttonLike = location.querySelector('.location__like');
-  buttonDelete.addEventListener('click', evt => listLocations.removeChild(evt.target.parentElement));
-  buttonLike.addEventListener('click', () => buttonLike.classList.toggle('location__like_active'));
-  return location;
-}*/
 
 //открытие попапа
 function openPopup(popup) {
@@ -123,7 +105,9 @@ function closePopup(popup) {
 function initializeLocations(locations) {
   for (let i = 0; i < locations.length; i++) {
     //ниже добавляем в DOM
-    listLocations.append((new Card(initialCards[i].name, initialCards[i].link, objCardElementsClassHolder, openPopupViewImage)).prepareCard());
+    const data = {name: initialCards[i].name, link: initialCards[i].link};
+    const newCard = new Card(data, objCardElementsClassHolder, openPopupViewImage);
+    listLocations.append(newCard.prepareCard());
   }
 }
 
@@ -148,7 +132,9 @@ function saveProfileData(evt) {
 function prependCardNewLocation(evt) {
   evt.preventDefault();
   //ниже добавляем в DOM
-  listLocations.prepend((new Card(inputLocationName.value, inputLocationLink.value, objCardElementsClassHolder, openPopupViewImage)).prepareCard());
+  const data = {name: inputLocationName.value, link: inputLocationLink.value};
+  const newCard = new Card(data, objCardElementsClassHolder, openPopupViewImage);
+  listLocations.prepend(newCard.prepareCard());
   closePopup(popupNewLocation);
 }
 
