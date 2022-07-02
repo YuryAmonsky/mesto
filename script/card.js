@@ -36,6 +36,7 @@ export class Card {
   }
 
   _handleButtonDeleteClick(){
+    this._elementCard.remove();
     this._elementCard = null;
   }
 
