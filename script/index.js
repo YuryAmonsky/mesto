@@ -49,8 +49,7 @@ const objCardElementsClassHolder = {
   selectorName: '.location__name',
   selectorButtonDelete: '.location__delete-icon',
   selectorButtonLike: '.location__like',
-  selectorPopup: '.popup_type_view-image',
-  //handleImageClick: openPopupViewImage,
+  selectorPopup: '.popup_type_view-image',  
   classLike: 'location__like_active'
 }
 
@@ -59,7 +58,6 @@ const textProfileAboutMe = document.querySelector('.profile__about-me');
 const buttonOpenEditProfile = document.querySelector('.profile__edit-button');
 const buttonOpenNewLocation = document.querySelector('.profile__add-button');
 const listLocations = document.querySelector('.location-list');
-const templateCardLocation = document.querySelector('.location-template');
 //элементы попапа с формой редактирования профиля
 const popupEditProfile = document.querySelector('.popup_type_edit-profile');
 const formEditProfile = popupEditProfile.querySelector('.dialog-form_type_edit-profile');
