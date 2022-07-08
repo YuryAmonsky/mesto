@@ -10,4 +10,9 @@ export default class Section{
       this._renderer(item);
     });
   }
+
+  /*метод для добавления элемента в контейнер*/
+  addItem(element){
+    this._container.prepend(element);
+  }
 }
