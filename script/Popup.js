@@ -1,6 +1,7 @@
 export default class Popup{
-  constructor({selectorPopup, classOpenedPopup}){
-    this._element = document.querySelector(selectorPopup);    
+  constructor({selectorPopup, selectorButtonClose, classOpenedPopup}){
+    this._element = document.querySelector(selectorPopup);
+    this._elementButtonClose = this._element.querySelector(selectorButtonClose);
     this._classOpened = classOpenedPopup;/*class = 'popup_opened' */
   }
   
@@ -27,12 +28,17 @@ export default class Popup{
       this._close();
     } 
   }
-  //закрытие попапов
-  /*
- function closePopup(popup) {
-  popup.removeEventListener('click', closePopupOnBGClick);
-  document.removeEventListener('keydown', closePopupOnEscapePress);
-  
-}*/
+
+  setEventListeners(){
+    this._elementButtonClose.addEventListener('click', this.close.bind(this));
+    this._element.addEventListener('click', this._handleOnBGClickClose.bind(this));
+    document.addEventListener('keydown', this._handleEscClose.bind(this));
+  }
+
+  removeEventListeners(){
+    this._elementButtonClose.removeEventListener('click', this.close);
+    this._element.removeEventListener('click', this._handleOnBGClickClose);
+    document.removeEventListener('keydown', this._handleEscClose);
+  }  
 
 }
