@@ -6,8 +6,8 @@ export default class Popup{
   }
   
   /** открытие попапа*/
-  open(){
-    this._element.classList.add(this._classOpened);    
+  open(){    
+    this._element.classList.add(this._classOpened);
   }
 
   /** закрытие попапа*/
@@ -29,12 +29,14 @@ export default class Popup{
     } 
   }
 
+  /** метод добавления слушателей событий*/ 
   setEventListeners(){
     this._elementButtonClose.addEventListener('click', this.close.bind(this));
     this._element.addEventListener('click', this._handleOnBGClickClose.bind(this));
     document.addEventListener('keydown', this._handleEscClose.bind(this));
   }
 
+  /** метод удаления слушателей событий*/
   removeEventListeners(){
     this._elementButtonClose.removeEventListener('click', this.close);
     this._element.removeEventListener('click', this._handleOnBGClickClose);
