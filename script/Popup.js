@@ -14,6 +14,13 @@ export default class Popup{
     this._element.classList.remove(this._classOpened);
   }
 
+  /* обработчик закрытия по ESC */
+  _handleEscClose(evt){
+    if (evt.key === 'Escape') {
+      this.close();      
+    }
+  }
+
   //закрытие попапов
   /*
  function closePopup(popup) {
@@ -21,5 +28,6 @@ export default class Popup{
   document.removeEventListener('keydown', closePopupOnEscapePress);
   
 }*/
+
 
 }
