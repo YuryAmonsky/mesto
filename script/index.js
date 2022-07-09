@@ -85,20 +85,6 @@ const buttonCloseViewImage = popupViewImage.querySelector('.popup__close-icon');
 //Объявление функций 
 //------------------
 
-//открытие попапа
-function openPopup(popup) {
-  popup.classList.add('popup_opened');
-  popup.addEventListener('click', closePopupOnBGClick);
-  document.addEventListener('keydown', closePopupOnEscapePress);
-}
-
-//закрытие попапов
-function closePopup(popup) {
-  popup.removeEventListener('click', closePopupOnBGClick);
-  document.removeEventListener('keydown', closePopupOnEscapePress);
-  popup.classList.remove('popup_opened');
-}
-
 //начальное заполнение списка мест из массива initialCards
 function initializeLocations(locations) {
   locations.forEach((cardData)=>{
@@ -149,21 +135,6 @@ function openPopupViewImage(name, link) {
   imageOrigin.alt = `Фотография места ${name}`;
   textCaption.textContent = name;
   openPopup(popupViewImage);
-}
-
-function closePopupOnBGClick(evt) {
-  if(evt.target.classList.contains('popup__container')){
-    closePopup(evt.target.closest('.popup'));
-  }  
-}
-
-function closePopupOnEscapePress(evt) {
-  if (evt.key === 'Escape') {
-    const popup = document.querySelector('.popup_opened');
-    if (popup) {
-      closePopup(popup);
-    }
-  }
 }
 
 //Вызовы функций
