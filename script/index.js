@@ -129,14 +129,6 @@ function openPopupNewLocation() {
   openPopup(popupNewLocation);
 }
 
-//открытие попапа просмотра картинки
-function openPopupViewImage(name, link) {
-  imageOrigin.src = link;
-  imageOrigin.alt = `Фотография места ${name}`;
-  textCaption.textContent = name;
-  openPopup(popupViewImage);
-}
-
 //Вызовы функций
 //--------------
 initializeLocations(initialCards);
