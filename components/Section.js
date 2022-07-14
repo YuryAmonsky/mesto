@@ -11,8 +11,13 @@ export default class Section{
     });
   }
 
-  /*метод для добавления элемента в контейнер*/
-  addItem(item){
+  /*метод для добавления элемента в начало списка*/
+  prependItem(item){
     this._container.prepend(item);
+  }
+
+  /*метод для добавления элемента в конец списка*/
+  appendItem(item){
+    this._container.append(item);
   }
 }
