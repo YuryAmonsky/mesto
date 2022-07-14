@@ -7,7 +7,7 @@ export default class UserInfo{
   }
 
   getUserInfo(){
-   return {textProfileName:this._elementProfileName.textContent, textProfileAboutMe:this._elementProfileAboutMe.textContent};
+   return {inputEditProfileName:this._elementProfileName.textContent, inputEditProfileAboutMe:this._elementProfileAboutMe.textContent};
   }
 
   setUserinfo({textProfileName, textProfileAboutMe}){
