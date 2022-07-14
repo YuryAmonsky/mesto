@@ -86,6 +86,7 @@ const objPopupViewImageContentClassHolder = {
 }
 
 export{
+  selectorListLocations,
   initialCards,
   objCardElementsClassHolder,
   objProfileElementsClassHolder,
