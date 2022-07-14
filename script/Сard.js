@@ -1,6 +1,4 @@
-//import {openPopupViewImage} from './index.js';
-
-export class Card {
+export default class Card {
   constructor (cardData, objClassHolder, handleClick){
     this._name = cardData.name;
     this._link = cardData.link;    
