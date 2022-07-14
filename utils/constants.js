@@ -1,3 +1,5 @@
+const selectorListLocations = '.location-list';
+/**массив с даннымии для инициализации списка карточек */
 const initialCards = [
   {
     name: 'Карачаево-Черкессия',
