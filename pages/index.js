@@ -1,11 +1,11 @@
 //Подключение модулей
 //---------------------
-import UserInfo from './UserInfo.js';
+import UserInfo from '../components/UserInfo.js';
 import Card from '../components/Сard.js';
 import FormValidator from '../utils/FormValidator.js';
-import Section from './Section.js';
-import PopupWithForm from './PopupWithForm.js';
-import PopupWithImage from './PopupWithImage.js';
+import Section from '../components/Section.js';
+import PopupWithForm from '../components/PopupWithForm.js';
+import PopupWithImage from '../components/PopupWithImage.js';
 
 //Объявление глобальных переменных и констант
 //----------------------
