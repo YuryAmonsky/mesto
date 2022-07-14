@@ -10,28 +10,26 @@ export default class PopupWithForm extends Popup{
   }
 
   open({...inputValues}){
-    this._inputsList.forEach((item, i) => item.value=inputsValues[i]);
+    this._inputsList.forEach((input, i) => input.value = inputsValues[input.name]);
     super.open();
   }
-
   close(){
     this._elementForm.reset();
     super.close();
   }
 
   _getInputValues(){
-    const inputsValues = [];
-    this._inputsList.forEach(item => inputsValues.push(item.value));
-    return inputsValues;
+    this._inputsValues = {};
+    this._inputsList.forEach(input => this._inputsValues[input.name] = input.value);
+    return this._inputsValues;
   }
 
   setEventListeners(){
     super.setEventListeners();
-    this._elementForm.addEventListener('submit', this._handleSubmit.bind(this));
-  }
-
-  removeEventListeners(){
-    super.removeEventListeners();
-    this._elementForm.removeEventListener('submit', this._handleSubmit);
+    this._elementForm.addEventListener('submit', (evt)=>{
+      evt.preventDefault();
+      this._handleSubmit(this._getInputValues());
+      this.close();      
+    });
   }
 }
