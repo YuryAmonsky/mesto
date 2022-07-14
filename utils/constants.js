@@ -38,8 +38,8 @@ const objCardElementsClassHolder = {
 
 /** объект с селекторами элементов профиля пользователя*/
 const objProfileElementsClassHolder = {
-  selectorInputName: '.profile__name',
-  selectorInputAboutMe: '.profile__about-me',
+  selectorTextName: '.profile__name',
+  selectorTexAboutMe: '.profile__about-me',
   selectorButtonEditProfile: '.profile__edit-button',
   selectorButtonNewLocation: '.profile__add-button'
 }
