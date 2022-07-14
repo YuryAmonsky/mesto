@@ -1,5 +1,6 @@
 //Подключение модулей
 //---------------------
+import {*} from '../utils/constants.js';
 import UserInfo from '../components/UserInfo.js';
 import Card from '../components/Сard.js';
 import FormValidator from '../components/FormValidator.js';
@@ -10,33 +11,32 @@ import PopupWithImage from '../components/PopupWithImage.js';
 //Объявление глобальных переменных и констант
 //----------------------
 
-const textProfileName = document.querySelector('.profile__name');
-const textProfileAboutMe = document.querySelector('.profile__about-me');
-const buttonOpenEditProfile = document.querySelector('.profile__edit-button');
-const buttonOpenNewLocation = document.querySelector('.profile__add-button');
 const listLocations = document.querySelector('.location-list');
 //элементы попапа с формой редактирования профиля
+/**
 const popupEditProfile = document.querySelector('.popup_type_edit-profile');
 const formEditProfile = popupEditProfile.querySelector('.dialog-form_type_edit-profile');
 const inputProfileName = formEditProfile.querySelector('.dialog-form__input_type_edit-profile-name');
 const inputAboutMe = formEditProfile.querySelector('.dialog-form__input_type_edit-profile-about-me');
-const buttonCloseEditProfile = popupEditProfile.querySelector('.popup__close-icon');
+const buttonCloseEditProfile = popupEditProfile.querySelector('.popup__close-icon');*/
 const formEditProfileValidator = new FormValidator(formEditProfile, objFormElementsClassHolder);
 
 //элементы попапа с формой добавления нового места
+/**
 const popupNewLocation = document.querySelector('.popup_type_new-location');
 const formNewLocation = popupNewLocation.querySelector('.dialog-form_type_new-location');
 const inputLocationName = formNewLocation.querySelector('.dialog-form__input_type_new-location-name');
 const inputLocationLink = formNewLocation.querySelector('.dialog-form__input_type_new-location-link');
-const buttonCloseNewLocation = popupNewLocation.querySelector('.popup__close-icon');
+const buttonCloseNewLocation = popupNewLocation.querySelector('.popup__close-icon');*/
 const formNewLocationValidator = new FormValidator(formNewLocation, objFormElementsClassHolder);
 
 
 //'элементы попапа просмотра картинки
+/**
 const popupViewImage = document.querySelector('.popup_type_view-image');
 const imageOrigin = popupViewImage.querySelector('.original-image');
 const textCaption = popupViewImage.querySelector('.image-caption');
-const buttonCloseViewImage = popupViewImage.querySelector('.popup__close-icon');
+const buttonCloseViewImage = popupViewImage.querySelector('.popup__close-icon');*/
 
 
 //Объявление функций 
