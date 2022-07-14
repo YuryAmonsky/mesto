@@ -9,7 +9,7 @@ export default class PopupWithForm extends Popup{
     this._handleSubmit =  handleSubmit;
   }
 
-  open(...inputValues){
+  open({...inputValues}){
     this._inputsList.forEach((item, i) => item.value=inputsValues[i]);
     super.open();
   }
