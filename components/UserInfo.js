@@ -1,9 +1,9 @@
 export default class UserInfo{
-  constructor({selectorInputName, selectorInputAboutMe}, handleClickButtonEditProfile, handleClickButtonNewLocation){
-    this._elementProfileName = document.querySelector('.profile__name');
-    this._elementProfileAboutMe = document.querySelector('.profile__about-me');
-    this._buttonEditProfile = document.querySelector('.profile__edit-button');
-    this._buttonNewLocation = document.querySelector('.profile__add-button');
+  constructor({selectorTextName, selectorTextAboutMe, selectorButtonEditProfile, selectorButtonNewLocation}, handleClickButtonEditProfile, handleClickButtonNewLocation){
+    this._elementProfileName = document.querySelector(selectorTextName);
+    this._elementProfileAboutMe = document.querySelector(selectorTextAboutMe);
+    this._buttonEditProfile = document.querySelector(selectorButtonEditProfile);
+    this._buttonNewLocation = document.querySelector(selectorButtonNewLocation);
     this._handleClickButtonEditrofile = handleClickButtonEditProfile;
     this._handleClickButtonNewLocation = handleClickButtonNewLocation;
   }
