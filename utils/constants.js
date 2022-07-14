@@ -82,3 +82,14 @@ const objPopupViewImageContentClassHolder = {
   selectorImage: '.original-image',
   selectorCaption: '.image-caption'
 }
+
+export{
+  initialCards,
+  objCardElementsClassHolder,
+  objProfileElementsClassHolder,
+  objPopupEditProfileElementsClassHolder,
+  objPopupNewLocationElementsClassHolder,
+  objFormElementsClassHolder,
+  objPopupViewImageElementsClassHolder,
+  objPopupViewImageContentClassHolder
+}

@@ -1,6 +1,15 @@
 //Подключение модулей
 //---------------------
-import {*} from '../utils/constants.js';
+import {
+  initialCards,
+  objCardElementsClassHolder,
+  objProfileElementsClassHolder,
+  objPopupEditProfileElementsClassHolder,
+  objPopupNewLocationElementsClassHolder,
+  objFormElementsClassHolder,
+  objPopupViewImageElementsClassHolder,
+  objPopupViewImageContentClassHolder  
+} from '../utils/constants.js';
 import UserInfo from '../components/UserInfo.js';
 import Card from '../components/Сard.js';
 import FormValidator from '../components/FormValidator.js';
