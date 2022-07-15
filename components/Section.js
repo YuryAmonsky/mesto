@@ -18,6 +18,6 @@ export default class Section{
 
   /*метод для добавления элемента в конец списка*/
   appendItem(item){
-    this._container.append(item);
+    this._element.append(item);
   }
 }
