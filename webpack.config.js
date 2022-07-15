@@ -27,7 +27,12 @@ module.exports = {
         use: 'babel-loader',
         // исключает папку node_modules
         exclude: '/node_modules/'
-      }
+      },
+      {
+        // выбор всех изображений и шрифтов
+        test: /\.(png|svg|jpg|gif|woff(2)?|eot|ttf|otf)$/,
+        type: 'asset/resource'
+      },
       ]
   },
   plugins: [
