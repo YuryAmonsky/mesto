@@ -1,0 +1,19 @@
+{
+  "name": "mesto",
+  "version": "1.0.0",
+  "description": "website",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/YuryAmonsky/mesto.git"
+  },
+  "author": "Yuriy Amonskiy",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/YuryAmonsky/mesto/issues"
+  },
+  "homepage": "https://github.com/YuryAmonsky/mesto#readme"
+}
