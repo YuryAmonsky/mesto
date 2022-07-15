@@ -9,22 +9,22 @@ module.exports = {
   },
   mode: 'development',
   devServer: {
-    static: path.resolve(__dirname, './dist'), // путь, куда "смотрит" режим разработчика
+    static: path.resolve(__dirname, './dist'), // путь для выходных файлов режима разработчика
     compress: true, // это ускорит загрузку в режиме разработки
-    port: 8080, // порт, чтобы открывать сайт по адресу localhost:8080, но можно поменять порт
+    port: 8080, 
 
     open: true // сайт будет открываться сам при запуске npm run dev
   },
 
   module: {
-    rules: [ // rules — это массив правил
-      // добавим в него объект правил для бабеля
+    rules: [ 
+      // правила для бабеля
       {
-        // регулярное выражение, которое ищет все js файлы
+        // искать все js файлы
         test: /\.js$/,
         // при обработке этих файлов нужно использовать babel-loader
         use: 'babel-loader',
-        // исключает папку node_modules, файлы в ней обрабатывать не нужно
+        // исключает папку node_modules
         exclude: '/node_modules/'
       }
       ]
