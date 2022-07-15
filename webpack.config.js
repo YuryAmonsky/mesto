@@ -50,5 +50,6 @@ module.exports = {
       template: './src/index.html' // путь к файлу index.html
     }),
     new CleanWebpackPlugin(),
+    new MiniCssExtractPlugin()
   ]
 }
