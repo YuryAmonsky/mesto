@@ -128,13 +128,13 @@ const popupNewLocation = new PopupWithForm(objPopupNewLocationElementsClassHolde
 });
 const validatorАormNewLocation = new FormValidator(popupNewLocation.getForm(), objFormElementsClassHolder);
 
-profile.setEventListeners(()=>{
-    validatorFormEditProfile.initErrorHints();
+profile.setEventListeners(()=>{    
     popupEditProfile.open(profile.getUserInfo());
+    validatorFormEditProfile.initErrorHints();
   },
-  ()=>{
-    formNewLocationValidator.initErrorHints({});
-    popupNewLocation.open();
+  ()=>{    
+    popupNewLocation.open({});
+    formNewLocationValidator.initErrorHints();
   });
 /*
 buttonOpenEditProfile.addEventListener('click', openPopupEditProfile);
