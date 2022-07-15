@@ -102,10 +102,11 @@ const profile = new UserInfo(objProfileElementsClassHolder);
 
 
 const popupViewImage = new PopupWithImage(objPopupViewImageElementsClassHolder, objPopupViewImageContentClassHolder)
+popupViewImage.setEventListeners();
 
 const listlocations = new Section(selectorListLocations,{items: initialCards, renderer:(cardData)=>{
-    const newCard = new Card(cardData, objCardElementsClassHolder, (name, link)=>{      
-      popupViewImage.open({name, link});
+    const newCard = new Card(cardData, objCardElementsClassHolder, (name, link)=>{            
+      popupViewImage.open({name, link});      
     });    
     listlocations.appendItem(newCard.prepareCard());
   }

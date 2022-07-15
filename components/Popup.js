@@ -25,7 +25,7 @@ export default class Popup{
   /** Обработчик закрытия при нажатии на фон попапа */
   _handleOnBGClickClose(evt){
     if(evt.target.classList.contains('popup__container')){
-      this._close();
+      this.close();
     } 
   }
 
