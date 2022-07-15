@@ -1,10 +1,10 @@
 const selectorListLocations = '.location-list';
-const karachaevsk = new URL('images/content/Karachaevsk.jpg', import.meta.url);
-const elbrus = new URL('images/content/Elbrus.jpg', import.meta.url);
-const sochi = new URL('images/content/Sochi.jpg', import.meta.url);
-const altay = new URL('images/content/Altay.jpg', import.meta.url);
-const telets = new URL('images/content/Teletskoe_ozero.jpg', import.meta.url);
-const shato = new URL('images/content/Shato_Erken_Nalchik.jpg', import.meta.url);
+const karachaevsk = new URL('../images/content/Karachaevsk.jpg', import.meta.url);
+const elbrus = new URL('../images/content/Elbrus.jpg', import.meta.url);
+const sochi = new URL('../images/content/Sochi.jpg', import.meta.url);
+const altay = new URL('../images/content/Altay.jpg', import.meta.url);
+const telets = new URL('../images/content/Teletskoe_ozero.jpg', import.meta.url);
+const shato = new URL('../images/content/Shato_Erken_Nalchik.jpg', import.meta.url);
 /**массив с даннымии для инициализации списка карточек */
 const initialCards = [
   {
