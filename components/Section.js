@@ -13,7 +13,7 @@ export default class Section{
 
   /*метод для добавления элемента в начало списка*/
   prependItem(item){
-    this._container.prepend(item);
+    this._element.prepend(item);
   }
 
   /*метод для добавления элемента в конец списка*/
