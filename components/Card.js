@@ -24,8 +24,8 @@ export default class Card {
     this._elementButtonDelete = this._elementCard.querySelector(this._objElementClassHolder.selectorButtonDelete);
     this._elementButtonLike = this._elementCard.querySelector(this._objElementClassHolder.selectorButtonLike);
     //this._elementPopup = document.querySelector(this._objElementClassHolder.selectorPopup);    
-    this._elementImage.setAttribute('src', this._link);
-    this._elementImage.setAttribute('alt', `Фотография места ${this._name}`);
+    this._elementImage.src = this._link;
+    this._elementImage.alt = `Фотография места ${this._name}`;
     this._elementName.textContent = this._name;
   }
 
