@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/YuryAmonsky/mesto/issues"
   },
-  "homepage": "https://github.com/YuryAmonsky/mesto#readme"
+  "homepage": "https://github.com/YuryAmonsky/mesto#readme",
+  "devDependencies": {
+    "webpack": "^5.73.0"
+  }
 }
