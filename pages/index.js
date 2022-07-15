@@ -111,7 +111,6 @@ const listlocations = new Section(selectorListLocations,{items: initialCards, re
     listlocations.appendItem(newCard.prepareCard());
   }
 });
-
 listlocations.renderItems();
 
 const popupEditProfile = new PopupWithForm(objPopupEditProfileElementsClassHolder, objFormElementsClassHolder, (objProfileData)=>{
@@ -131,10 +130,10 @@ const formNewLocationValidator = new FormValidator(popupNewLocation.getForm(), o
 
 profile.setEventListeners(()=>{
     validatorFormEditProfile.initErrorHints();
-    popupEditProfile.open();
+    popupEditProfile.open(profile.getUserInfo());
   },
   ()=>{
-    formNewLocationValidator.initErrorHints();
+    formNewLocationValidator.initErrorHints({});
     popupNewLocation.open();
   });
 /*
