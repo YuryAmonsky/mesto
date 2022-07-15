@@ -1,5 +1,5 @@
 export default class UserInfo{
-  constructor({selectorTextName, selectorTextAboutMe, selectorButtonEditProfile, selectorButtonNewLocation}){
+  constructor({selectorButtonEditProfile, selectorButtonNewLocation, selectorTextAboutMe, selectorTextName}){
     this._elementProfileName = document.querySelector(selectorTextName);
     this._elementProfileAboutMe = document.querySelector(selectorTextAboutMe);
     this._buttonEditProfile = document.querySelector(selectorButtonEditProfile);

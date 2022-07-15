@@ -12,7 +12,7 @@ import {
   objPopupViewImageContentClassHolder  
 } from '../utils/constants.js';
 import UserInfo from '../components/UserInfo.js';
-import Card from '../components/Сard.js';
+import Card from '../components/Card.js';
 import FormValidator from '../components/FormValidator.js';
 import Section from '../components/Section.js';
 import PopupWithForm from '../components/PopupWithForm.js';
@@ -107,7 +107,7 @@ const listlocations = new Section(selectorListLocations,{items: initialCards, re
     const newCard = new Card(cardData, objCardElementsClassHolder, (name, link)=>{      
       popupViewImage.open(name, link);
     });    
-    listLocations.appendItem(newCard.prepareCard());
+    listlocations.appendItem(newCard.prepareCard());
   }
 });
 

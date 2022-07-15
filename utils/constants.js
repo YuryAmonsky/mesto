@@ -75,7 +75,7 @@ const objFormElementsClassHolder = {
 
 /**объект с селекторами и html-классами попапа промотра кртинки*/
 const objPopupViewImageElementsClassHolder = {
-  selectorPopup: 'popup_type_view-image',
+  selectorPopup: '.popup_type_view-image',
   selectorButtonClose: selectorPopupCloseButton,
   classOpenedPopup: classOpenedPopup
 }
