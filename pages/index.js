@@ -126,7 +126,7 @@ const popupNewLocation = new PopupWithForm(objPopupNewLocationElementsClassHolde
   listLocations.prependItem(newCard.prepareCard());
   popupNewLocation.close();
 });
-const formNewLocationValidator = new FormValidator(popupNewLocation.getForm(), objFormElementsClassHolder);
+const validatorАormNewLocation = new FormValidator(popupNewLocation.getForm(), objFormElementsClassHolder);
 
 profile.setEventListeners(()=>{
     validatorFormEditProfile.initErrorHints();
@@ -142,5 +142,5 @@ buttonCloseEditProfile.addEventListener('click', () => { closePopup(popupEditPro
 buttonOpenNewLocation.addEventListener('click', openPopupNewLocation)
 buttonCloseNewLocation.addEventListener('click', () => { closePopup(popupNewLocation); });
 buttonCloseViewImage.addEventListener('click', () => { closePopup(popupViewImage); });*/
-formEditProfileValidator.enableValidation();
-formNewLocationValidator.enableValidation();
+validatorFormEditProfile.enableValidation();
+validatorАormNewLocation.enableValidation();
