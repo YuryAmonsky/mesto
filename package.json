@@ -2,7 +2,7 @@
   "name": "mesto",
   "version": "1.0.0",
   "description": "website",
-  "main": "index.js",
+  "main": "./pages/index.js",
   "scripts": {
     "build": "webpack"
   },
