@@ -105,7 +105,7 @@ const popupViewImage = new PopupWithImage(objPopupViewImageElementsClassHolder, 
 
 const listlocations = new Section(selectorListLocations,{items: initialCards, renderer:(cardData)=>{
     const newCard = new Card(cardData, objCardElementsClassHolder, (name, link)=>{      
-      popupViewImage.open(name, link);
+      popupViewImage.open({name, link});
     });    
     listlocations.appendItem(newCard.prepareCard());
   }
