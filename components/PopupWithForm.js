@@ -9,8 +9,8 @@ export default class PopupWithForm extends Popup{
     this._handleSubmit =  handleSubmit;
   }
 
-  open({...inputValues}){
-    this._inputsList.forEach((input, i) => input.value = inputsValues[input.name]);
+  open(inputValues){
+    this._inputsList.forEach((input, i) => input.value = inputValues[input.name]);
     super.open();
   }
   close(){
