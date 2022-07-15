@@ -1,29 +1,35 @@
 const selectorListLocations = '.location-list';
+const karachaevsk = new URL('images/content/Karachaevsk.jpg', import.meta.url);
+const elbrus = new URL('images/content/Elbrus.jpg', import.meta.url);
+const sochi = new URL('images/content/Sochi.jpg', import.meta.url);
+const altay = new URL('images/content/Altay.jpg', import.meta.url);
+const telets = new URL('images/content/Teletskoe_ozero.jpg', import.meta.url);
+const shato = new URL('images/content/Shato_Erken_Nalchik.jpg', import.meta.url);
 /**массив с даннымии для инициализации списка карточек */
 const initialCards = [
   {
     name: 'Карачаево-Черкессия',
-    link: 'images/content/Karachaevsk.jpg',
+    link: karachaevsk,
   },
   {
     name: 'Гора Эльбрус',
-    link: 'images/content/Elbrus.jpg',
+    link: elbrus,
   },
   {
     name: 'Сочи',
-    link: 'images/content/Sochi.jpg',
+    link: sochi,
   },
   {
     name: 'Алтай',
-    link: 'images/content/Altay.jpg',
+    link: altay,
   },
   {
     name: 'Телецкое озеро',
-    link: 'images/content/Teletskoe_ozero.jpg',
+    link: telets,
   },
   {
     name: 'Шато Эркен, Кабардино-балкария',
-    link: 'images/content/Shato_Erken_Nalchik.jpg',
+    link: shato,
   }
 ];
 /**объект с селекторами и html-классами карточки места*/
