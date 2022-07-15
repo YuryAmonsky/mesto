@@ -1,6 +1,7 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 module.exports = {
   entry: {main: './src/index.js'},
   output: {
@@ -33,6 +34,15 @@ module.exports = {
         test: /\.(png|svg|jpg|gif|woff(2)?|eot|ttf|otf)$/,
         type: 'asset/resource'
       },
+      {
+        // правило для CSS-файлов
+        test: /\.css$/,
+        // при обработке этих файлов нужно использовать
+        // MiniCssExtractPlugin.loader и css-loader
+        use: [MiniCssExtractPlugin.loader, {
+          loader: 'css-loader'
+        }]
+      }
       ]
   },
   plugins: [
