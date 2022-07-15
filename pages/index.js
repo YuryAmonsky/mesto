@@ -120,8 +120,9 @@ const popupEditProfile = new PopupWithForm(objPopupEditProfileElementsClassHolde
 const validatorFormEditProfile = new FormValidator(popupEditProfile.getForm(), objFormElementsClassHolder);
 
 const popupNewLocation = new PopupWithForm(objPopupNewLocationElementsClassHolder, objFormElementsClassHolder, (objNewLocationData)=>{
-    const newCard = new Card(objNewLocationData, objCardElementsClassHolder, (name, link)=>{      
-    popupViewImage.open(name, link);
+    const newCard = new Card({name:objNewLocationData.inputNewLocationName, link:objNewLocationData.inputNewLocationLink}, objCardElementsClassHolder, 
+   (name, link)=>{      
+     popupViewImage.open({name: name, link: link});
   });
   listlocations.prependItem(newCard.prepareCard());
   popupNewLocation.close();
