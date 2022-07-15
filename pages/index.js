@@ -123,18 +123,18 @@ const popupNewLocation = new PopupWithForm(objPopupNewLocationElementsClassHolde
     const newCard = new Card(objNewLocationData, objCardElementsClassHolder, (name, link)=>{      
     popupViewImage.open(name, link);
   });
-  listLocations.prependItem(newCard.prepareCard());
+  listlocations.prependItem(newCard.prepareCard());
   popupNewLocation.close();
 });
-const validatorАormNewLocation = new FormValidator(popupNewLocation.getForm(), objFormElementsClassHolder);
+const validatorFormNewLocation = new FormValidator(popupNewLocation.getForm(), objFormElementsClassHolder);
 
 profile.setEventListeners(()=>{    
     popupEditProfile.open(profile.getUserInfo());
     validatorFormEditProfile.initErrorHints();
   },
   ()=>{    
-    popupNewLocation.open({});
-    formNewLocationValidator.initErrorHints();
+    popupNewLocation.open({inputNewLocationName:'',inputNewLocationLink:''});
+    validatorFormNewLocation.initErrorHints();
   });
 
   popupEditProfile.setEventListeners();
@@ -146,4 +146,4 @@ buttonOpenNewLocation.addEventListener('click', openPopupNewLocation)
 buttonCloseNewLocation.addEventListener('click', () => { closePopup(popupNewLocation); });
 buttonCloseViewImage.addEventListener('click', () => { closePopup(popupViewImage); });*/
 validatorFormEditProfile.enableValidation();
-validatorАormNewLocation.enableValidation();
+validatorFormNewLocation.enableValidation();
