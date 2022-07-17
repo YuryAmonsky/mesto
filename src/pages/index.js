@@ -21,15 +21,19 @@ import Section from '../components/Section.js';
 import PopupWithForm from '../components/PopupWithForm.js';
 import PopupWithImage from '../components/PopupWithImage.js';
 
+/**Объявление функций */
+function createCard(objCardData, objClssHolder, handleClick){
+  return new Card(objCardData, objClssHolder, (name, link)=>{            
+    popupViewImage.open({name: name, link: link});      
+  });
+}
 
 /**Создание экземпляров классов и вызовы функций*/
 /*----------------------------------------------*/
 const profile = new UserInfo(objProfileElementsClassHolder);
 
 const listlocations = new Section(selectorListLocations,{items: initialCards, renderer:(cardData)=>{
-    const newCard = new Card(cardData, objCardElementsClassHolder, (name, link)=>{            
-      popupViewImage.open({name, link});      
-    });    
+    const newCard = createCard(cardData, objCardElementsClassHolder);
     listlocations.appendItem(newCard.prepareCard());
   }
 });
@@ -42,10 +46,7 @@ const popupEditProfile = new PopupWithForm(objPopupEditProfileElementsClassHolde
 const validatorFormEditProfile = new FormValidator(popupEditProfile.getForm(), objFormElementsClassHolder);
 
 const popupNewLocation = new PopupWithForm(objPopupNewLocationElementsClassHolder, objFormElementsClassHolder, (objNewLocationData)=>{
-    const newCard = new Card({name:objNewLocationData.inputNewLocationName, link:objNewLocationData.inputNewLocationLink}, objCardElementsClassHolder, 
-   (name, link)=>{      
-     popupViewImage.open({name: name, link: link});
-  });
+    const newCard = createCard({name:objNewLocationData.inputNewLocationName, link:objNewLocationData.inputNewLocationLink}, objCardElementsClassHolder);
   listlocations.prependItem(newCard.prepareCard());
   popupNewLocation.close();
 });
