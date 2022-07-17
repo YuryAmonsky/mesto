@@ -70,10 +70,7 @@ export default class FormValidator {
     this._toggleSubmitButtonState();
   }
 
-  enableValidation(){      
-    /*this._form.addEventListener('submit', (evt) => {
-      evt.preventDefault();
-    });*/
+  enableValidation(){    
     this._setEventListenersToAllInputs();  
   };
 }
