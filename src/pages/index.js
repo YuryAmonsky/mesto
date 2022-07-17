@@ -25,9 +25,10 @@ import PopupWithImage from '../components/PopupWithImage.js';
 
 /**Объявление функций */
 function createCard(objCardData, objClssHolder){
-  return new Card(objCardData, objClssHolder, (name, link)=>{            
+  const newCard = new Card(objCardData, objClssHolder, (name, link)=>{            
     popupViewImage.open({name: name, link: link});      
   });
+  return newCard.prepareCard();
 }
 
 /**открытие попапа редактирования профиля*/
@@ -46,9 +47,8 @@ function handleClickButtonNewLocation(popup, formValidator) {
 /*----------------------------------------------*/
 const profile = new UserInfo(objProfileElementsClassHolder);
 
-const listlocations = new Section(selectorListLocations,{items: initialCards, renderer:(cardData)=>{
-    const newCard = createCard(cardData, objCardElementsClassHolder);
-    listlocations.appendItem(newCard.prepareCard());
+const listlocations = new Section(selectorListLocations,{items: initialCards, renderer:(cardData)=>{    
+    listlocations.appendItem(createCard(cardData, objCardElementsClassHolder));
   }
 });
 listlocations.renderItems();
@@ -59,9 +59,9 @@ const popupEditProfile = new PopupWithForm(objPopupEditProfileElementsClassHolde
 });
 const validatorFormEditProfile = new FormValidator(popupEditProfile.getForm(), objFormElementsClassHolder);
 
-const popupNewLocation = new PopupWithForm(objPopupNewLocationElementsClassHolder, objFormElementsClassHolder, (objNewLocationData)=>{
-    const newCard = createCard({name:objNewLocationData.inputNewLocationName, link:objNewLocationData.inputNewLocationLink}, objCardElementsClassHolder);
-  listlocations.prependItem(newCard.prepareCard());
+const popupNewLocation = new PopupWithForm(objPopupNewLocationElementsClassHolder, objFormElementsClassHolder, (objNewLocationData)=>{    
+  listlocations.prependItem(createCard({name:objNewLocationData.inputNewLocationName, link:objNewLocationData.inputNewLocationLink}, 
+    objCardElementsClassHolder));
   popupNewLocation.close();
 });
 const validatorFormNewLocation = new FormValidator(popupNewLocation.getForm(), objFormElementsClassHolder);
