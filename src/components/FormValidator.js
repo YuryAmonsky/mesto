@@ -20,14 +20,14 @@ export default class FormValidator {
     elementError.classList.remove(this._objClassHolder.classErrorActive);
   }
 
-  _disableButton(button){
-    button.setAttribute('disabled','true');
-    button.classList.add(this._objClassHolder.classButtonDisabled);
+  _disableButton(){
+    this._buttonSubmit.setAttribute('disabled','true');
+    this._buttonSubmit.classList.add(this._objClassHolder.classButtonDisabled);
   }
 
-  _enableButton(button){
-    button.removeAttribute('disabled');
-    button.classList.remove(this._objClassHolder.classButtonDisabled);
+  _enableButton(){
+    this._buttonSubmit.removeAttribute('disabled');
+    this._buttonSubmit.classList.remove(this._objClassHolder.classButtonDisabled);
   }
 
   _isFormValid(){// проверяет все ли инпуты валидны. 
@@ -38,9 +38,9 @@ export default class FormValidator {
 
   _toggleSubmitButtonState(){    
     if(this._isFormValid(this._inputList)){
-      this._enableButton(this._buttonSubmit);
+      this._enableButton();
     } else{
-      this._disableButton(this._buttonSubmit);
+      this._disableButton();
     }  
   }
 
@@ -71,9 +71,9 @@ export default class FormValidator {
   }
 
   enableValidation(){      
-    this._form.addEventListener('submit', (evt) => {
+    /*this._form.addEventListener('submit', (evt) => {
       evt.preventDefault();
-    });
+    });*/
     this._setEventListenersToAllInputs();  
   };
 }
