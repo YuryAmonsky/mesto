@@ -32,15 +32,15 @@ function createCard(objCardData, objClssHolder){
 }
 
 /**открытие попапа редактирования профиля*/
-function handleClickButtonEditProfile(popup, formValidator, objUserData) {  
-  popup.setInputValues(objUserData);
-  formValidator.initErrorHints();
-  popup.open();
+function handleClickButtonEditProfile(objUserData) {  
+  popupEditProfile.setInputValues(objUserData);
+  validatorFormEditProfile.initErrorHints();
+  popupEditProfile.open();
 }
 /**открытие попапа добавления новой карточки*/
-function handleClickButtonNewLocation(popup, formValidator) {
-  popup.open();
-  formValidator.initErrorHints();  
+function handleClickButtonNewLocation() {
+  popupNewLocation.open();
+  validatorFormNewLocation.initErrorHints();  
 }
 
 /**Создание экземпляров классов и вызовы функций*/
@@ -68,8 +68,8 @@ const validatorFormNewLocation = new FormValidator(popupNewLocation.getForm(), o
 
 const popupViewImage = new PopupWithImage(objPopupViewImageElementsClassHolder, objPopupViewImageContentClassHolder);
 
-buttonOpenEditProfile.addEventListener('click', ()=>{handleClickButtonEditProfile(popupEditProfile, validatorFormEditProfile, profile.getUserInfo())});
-buttonOpenNewLocation.addEventListener('click', ()=>{handleClickButtonNewLocation(popupNewLocation, validatorFormNewLocation)});
+buttonOpenEditProfile.addEventListener('click', ()=>{handleClickButtonEditProfile(profile.getUserInfo())});
+buttonOpenNewLocation.addEventListener('click', ()=>{handleClickButtonNewLocation()});
 popupEditProfile.setEventListeners();
 popupNewLocation.setEventListeners();
 popupViewImage.setEventListeners();
