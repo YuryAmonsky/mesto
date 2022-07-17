@@ -33,11 +33,12 @@ function createCard(objCardData, objClssHolder){
 /**открытие попапа редактирования профиля*/
 function handleClickButtonEditProfile(popup, formValidator, objUserData) {
   formValidator.initErrorHints();
-  popup.open(objUserData);
+  popup.setInputValues(objUserData)
+  popup.open();
 }
 /**открытие попапа добавления новой карточки*/
 function handleClickButtonNewLocation(popup, formValidator) {
-  popup.open({inputNewLocationName:'', inputNewLocationLink:''});
+  popup.open();
   formValidator.initErrorHints();  
 }
 
