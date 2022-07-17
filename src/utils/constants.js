@@ -47,10 +47,11 @@ const objCardElementsClassHolder = {
 /** объект с селекторами элементов профиля пользователя*/
 const objProfileElementsClassHolder = {
   selectorTextName: '.profile__name',
-  selectorTextAboutMe: '.profile__about-me',
-  selectorButtonEditProfile: '.profile__edit-button',
-  selectorButtonNewLocation: '.profile__add-button'
+  selectorTextAboutMe: '.profile__about-me',  
 }
+
+const buttonOpenEditProfile = document.querySelector('.profile__edit-button');
+const buttonOpenNewLocation = document.querySelector('.profile__add-button');
 
 const selectorPopupCloseButton = '.popup__close-icon';
 const classOpenedPopup = 'popup_opened';
@@ -96,6 +97,8 @@ export{
   initialCards,
   objCardElementsClassHolder,
   objProfileElementsClassHolder,
+  buttonOpenEditProfile,
+  buttonOpenNewLocation,
   objPopupEditProfileElementsClassHolder,
   objPopupNewLocationElementsClassHolder,
   objFormElementsClassHolder,

@@ -8,6 +8,8 @@ import {
   initialCards,
   objCardElementsClassHolder,
   objProfileElementsClassHolder,
+  buttonOpenEditProfile,
+  buttonOpenNewLocation,
   objPopupEditProfileElementsClassHolder,
   objPopupNewLocationElementsClassHolder,
   objFormElementsClassHolder,
@@ -22,10 +24,21 @@ import PopupWithForm from '../components/PopupWithForm.js';
 import PopupWithImage from '../components/PopupWithImage.js';
 
 /**Объявление функций */
-function createCard(objCardData, objClssHolder, handleClick){
+function createCard(objCardData, objClssHolder){
   return new Card(objCardData, objClssHolder, (name, link)=>{            
     popupViewImage.open({name: name, link: link});      
   });
+}
+
+/**открытие попапа редактирования профиля*/
+function handleClickButtonEditProfile(popup, formValidator, objUserData) {
+  formValidator.initErrorHints();
+  popup.open(objUserData);
+}
+/**открытие попапа добавления новой карточки*/
+function handleClickButtonNewLocation(popup, formValidator) {
+  popup.open({inputNewLocationName:'', inputNewLocationLink:''});
+  formValidator.initErrorHints();  
 }
 
 /**Создание экземпляров классов и вызовы функций*/
@@ -54,14 +67,8 @@ const validatorFormNewLocation = new FormValidator(popupNewLocation.getForm(), o
 
 const popupViewImage = new PopupWithImage(objPopupViewImageElementsClassHolder, objPopupViewImageContentClassHolder);
 
-profile.setEventListeners(()=>{    
-    popupEditProfile.open(profile.getUserInfo());
-    validatorFormEditProfile.initErrorHints();
-  },
-  ()=>{    
-    popupNewLocation.open({inputNewLocationName:'',inputNewLocationLink:''});
-    validatorFormNewLocation.initErrorHints();
-});
+buttonOpenEditProfile.addEventListener('click', ()=>{handleClickButtonEditProfile(popupEditProfile, validatorFormEditProfile, profile.getUserInfo())});
+buttonOpenNewLocation.addEventListener('click', ()=>{handleClickButtonNewLocation(popupNewLocation, validatorFormNewLocation)});
 popupEditProfile.setEventListeners();
 popupNewLocation.setEventListeners();
 popupViewImage.setEventListeners();
