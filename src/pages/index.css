@@ -16,8 +16,10 @@
 @import url(../blocks/location/__delete-icon/location__delete-icon.css);
 @import url(../blocks/location/__image/location__image.css);
 @import url(../blocks/location/__name/location__name.css);
+@import url(../blocks/location/__like-group/location__like-group.css);
 @import url(../blocks/location/__like/location__like.css);
 @import url(../blocks/location/__like/_active/location__like_active.css);
+@import url(../blocks/location/__likes-number/location__likes-number.css);
 @import url(../blocks/footer/footer.css);
 @import url(../blocks/copyright/copyright.css);
 @import url(../blocks/popup/popup.css);
