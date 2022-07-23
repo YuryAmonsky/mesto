@@ -4,6 +4,8 @@ import './index.css';
 /**Подключение модулей*/
 /*--------------------*/
 import {
+  url,
+  myId,
   selectorListLocations,
   initialCards,
   objCardElementsClassHolder,

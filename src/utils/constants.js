@@ -95,6 +95,8 @@ const objPopupViewImageContentClassHolder = {
 }
 
 export{
+  url,
+  myId,
   selectorListLocations,
   initialCards,
   objCardElementsClassHolder,
