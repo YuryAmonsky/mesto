@@ -49,7 +49,8 @@ const objCardElementsClassHolder = {
 /** объект с селекторами элементов профиля пользователя*/
 const objProfileElementsClassHolder = {
   selectorTextName: '.profile__name',
-  selectorTextAboutMe: '.profile__about-me',  
+  selectorTextAboutMe: '.profile__about-me',
+  selectorAvatar: '.profile__avatar'
 }
 
 const buttonOpenEditProfile = document.querySelector('.profile__edit-button');

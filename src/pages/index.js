@@ -24,8 +24,11 @@ import FormValidator from '../components/FormValidator.js';
 import Section from '../components/Section.js';
 import PopupWithForm from '../components/PopupWithForm.js';
 import PopupWithImage from '../components/PopupWithImage.js';
+import Api from '../components/Api';
 
 /**Объявление функций */
+/*-------------------------------------------------------------------*/
+ /**создание разметки карточки и установка слушателей событий для ее элементов */
 function createCard(objCardData, objClssHolder){
   const newCard = new Card(objCardData, objClssHolder, (name, link)=>{            
     popupViewImage.open({name: name, link: link});      
@@ -47,18 +50,26 @@ function handleClickButtonNewLocation() {
 
 /**Создание экземпляров классов и вызовы функций*/
 /*----------------------------------------------*/
+const server = new Api({
+  baseUrl: url,
+  headers: {
+    authorization: myId,
+    'Content-Type': 'application/json'
+  }
+});
+
 const profile = new UserInfo(objProfileElementsClassHolder);
 
 const listlocations = new Section(selectorListLocations,{items: initialCards, renderer:(cardData)=>{    
     listlocations.appendItem(createCard(cardData, objCardElementsClassHolder));
   }
 });
-listlocations.renderItems();
 
 const popupEditProfile = new PopupWithForm(objPopupEditProfileElementsClassHolder, objFormElementsClassHolder, (objProfileData)=>{
   profile.setUserInfo(objProfileData);
   popupEditProfile.close();
 });
+
 const validatorFormEditProfile = new FormValidator(popupEditProfile.getForm(), objFormElementsClassHolder);
 
 const popupNewLocation = new PopupWithForm(objPopupNewLocationElementsClassHolder, objFormElementsClassHolder, (objNewLocationData)=>{    
@@ -66,10 +77,23 @@ const popupNewLocation = new PopupWithForm(objPopupNewLocationElementsClassHolde
     objCardElementsClassHolder));
   popupNewLocation.close();
 });
+
 const validatorFormNewLocation = new FormValidator(popupNewLocation.getForm(), objFormElementsClassHolder);
 
 const popupViewImage = new PopupWithImage(objPopupViewImageElementsClassHolder, objPopupViewImageContentClassHolder);
-
+/**загрузка данных пользователя в профиль*/
+server.getUserInfo()
+  .then(res =>{
+    profile.setUserAvatar(res.avatar);
+    profile.setUserInfo(res);    
+  })
+  .catch((err) => {
+    console.log(err.status);
+    profile.setUserInfo({"name": "Ошибка получения данных с сервера",
+      "about": "Ошибка получения данных с сервера",
+    })
+});
+listlocations.renderItems();
 buttonOpenEditProfile.addEventListener('click', ()=>{handleClickButtonEditProfile(profile.getUserInfo())});
 buttonOpenNewLocation.addEventListener('click', ()=>{handleClickButtonNewLocation()});
 popupEditProfile.setEventListeners();
