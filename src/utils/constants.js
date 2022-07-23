@@ -1,5 +1,5 @@
-const myCohortId = 'cohort-46';
-сщтые myId = '5e6cc9f1-f651-45bc-a626-0a767814a31d';
+const url = 'https://mesto.nomoreparties.co/v1/cohort-46';
+const myId = '5e6cc9f1-f651-45bc-a626-0a767814a31d';
 const selectorListLocations = '.location-list';
 const karachaevsk = new URL('../images/content/Karachaevsk.jpg', import.meta.url);
 const elbrus = new URL('../images/content/Elbrus.jpg', import.meta.url);
