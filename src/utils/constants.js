@@ -7,7 +7,7 @@ const sochi = new URL('../images/content/Sochi.jpg', import.meta.url);
 const altay = new URL('../images/content/Altay.jpg', import.meta.url);
 const telets = new URL('../images/content/Teletskoe_ozero.jpg', import.meta.url);
 const shato = new URL('../images/content/Shato_Erken_Nalchik.jpg', import.meta.url);
-/**массив с даннымии для инициализации списка карточек */
+/**массив с даннымии для инициализации списка карточек 
 const initialCards = [
   {
     name: 'Карачаево-Черкессия',
@@ -33,7 +33,7 @@ const initialCards = [
     name: 'Шато Эркен, Кабардино-балкария',
     link: shato,
   }
-];
+];*/
 /**объект с селекторами и html-классами карточки места*/
 const objCardElementsClassHolder = {
   selectorTemplate: '.location-template',
@@ -42,7 +42,8 @@ const objCardElementsClassHolder = {
   selectorName: '.location__name',
   selectorButtonDelete: '.location__delete-icon',
   selectorButtonLike: '.location__like',
-  selectorPopup: '.popup_type_view-image',  
+  selectorPopup: '.popup_type_view-image',
+  selectorLikeNumber: '.location__likes-number',
   classLike: 'location__like_active'
 }
 

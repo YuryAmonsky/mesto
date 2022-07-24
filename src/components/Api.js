@@ -1,19 +1,32 @@
 export default class Api{
   constructor(options) {
-    this.baseUrl = options.baseUrl;
-    this.headers = options.headers;
+    this._baseUrl = options.baseUrl;
+    this._headers = options.headers;
+  }
+  
+  _checkServerResponse(res){
+    if (res.ok) {
+      return res.json();
+    }
+    return Promise.reject(`Ошибка: ${res.status}`);
   }
 
   getUserInfo(){
-    return fetch(this.baseUrl+'/users/me ', {
+    return fetch(this._baseUrl+'/users/me', {
       method: "GET",
-      headers: this.headers
+      headers: this._headers
     })
       .then(res => {
-        if (res.ok) {
-          return res.json();
-        }
-        return Promise.reject(`Ошибка: ${res.status}`);
+        this._checkServerResponse(res);
       });      
+  }
+
+  loadLocations(){
+    return fetch(this._baseUrl+'/cards',{
+      method: "GET",
+      headers: this._headers
+    }).then(res=>{
+      this._checkServerResponse(res);
+    })
   }
 }
