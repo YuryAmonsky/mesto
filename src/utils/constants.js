@@ -10,8 +10,7 @@ const objCardElementsClassHolder = {
   selectorName: '.location__name',
   selectorButtonDelete: '.location__delete-icon',
   selectorButtonLike: '.location__like',
-  selectorPopup: '.popup_type_view-image',
-  selectorLikeNumber: '.location__likes-number',
+  selectorLikesNumber: '.location__likes-number',
   classLike: 'location__like_active'
 }
 

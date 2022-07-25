@@ -1,16 +1,16 @@
 export default class Card {
   constructor (cardData, objClassHolder, handleClick){
-    this._name = cardData.name;
-    this._link = cardData.link;    
+    this._cardData = Object.assign({},cardData);
+    this._cardData.owner = Object.assign({},cardData.owner);
+    this._objElementClassHolder = objClassHolder;
+    this._handleImageClick = handleClick;
     this._template = document.querySelector(objClassHolder.selectorTemplate);
     this._elementCard = null;
     this._elementImage = null;
     this._elementName = null;
     this._elementButtonDelete = null;
     this._elementButtonLike = null;
-    this._elementPopup = null;
-    this._objElementClassHolder = objClassHolder;
-    this._handleImageClick = handleClick;
+    this._likesNumber = null;
   }
   
   _prepareLayuotElements(){
@@ -23,10 +23,11 @@ export default class Card {
     this._elementName = this._elementCard.querySelector(this._objElementClassHolder.selectorName);
     this._elementButtonDelete = this._elementCard.querySelector(this._objElementClassHolder.selectorButtonDelete);
     this._elementButtonLike = this._elementCard.querySelector(this._objElementClassHolder.selectorButtonLike);
-    //this._elementPopup = document.querySelector(this._objElementClassHolder.selectorPopup);    
-    this._elementImage.src = this._link;
-    this._elementImage.alt = `Фотография места ${this._name}`;
-    this._elementName.textContent = this._name;
+    this._likesNumber = this._elementCard.querySelector(this._objElementClassHolder.selectorLikesNumber);
+    this._elementImage.src = this._cardData.link;
+    this._elementImage.alt = `Фотография места ${this._cardData.name}`;
+    this._elementName.textContent = this._cardData.name;
+    this._likesNumber.textContent = this._cardData.likes.length;
   }
 
   _handleButtonLikeClick(){
@@ -46,6 +47,7 @@ export default class Card {
   prepareCard(){
     this._prepareLayuotElements();
     this._setEventListeners();
-    return this._elementCard;
+    console.log(this._cardData.likes);
+    return this._elementCard;    
   }
 }

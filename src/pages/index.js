@@ -32,7 +32,7 @@ function createCard(objCardData, objClssHolder){
   const newCard = new Card(objCardData, objClssHolder, (name, link)=>{            
     popupViewImage.open({name: name, link: link});      
   });
-  return newCard.prepareCard();
+  return newCard.prepareCard();  
 }
 
 /**открытие попапа редактирования профиля*/
