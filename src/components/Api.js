@@ -3,13 +3,13 @@ export default class Api{
     this._baseUrl = options.baseUrl;
     this._headers = options.headers;
   }
-  
+  /*
   _checkServerResponse(res){
     if (res.ok) {
       return res.json();
     }
     return Promise.reject(`Ошибка: ${res.status}`);
-  }
+  }*/
 
   getUserInfo(){
     return fetch(this._baseUrl+'/users/me', {
@@ -17,7 +17,10 @@ export default class Api{
       headers: this._headers
     })
       .then(res => {
-        this._checkServerResponse(res);
+        if (res.ok) {
+          return res.json();
+        }
+        return Promise.reject(`Ошибка: ${res.status}`);
       });      
   }
 
@@ -26,7 +29,10 @@ export default class Api{
       method: "GET",
       headers: this._headers
     }).then(res=>{
-      this._checkServerResponse(res);
+      if (res.ok) {
+        return res.json();
+      }
+      return Promise.reject(`Ошибка: ${res.status}`);
     })
   }
 }

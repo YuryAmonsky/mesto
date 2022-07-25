@@ -1,39 +1,7 @@
 const url = 'https://mesto.nomoreparties.co/v1/cohort-46';
 const myId = '5e6cc9f1-f651-45bc-a626-0a767814a31d';
 const selectorListLocations = '.location-list';
-const karachaevsk = new URL('../images/content/Karachaevsk.jpg', import.meta.url);
-const elbrus = new URL('../images/content/Elbrus.jpg', import.meta.url);
-const sochi = new URL('../images/content/Sochi.jpg', import.meta.url);
-const altay = new URL('../images/content/Altay.jpg', import.meta.url);
-const telets = new URL('../images/content/Teletskoe_ozero.jpg', import.meta.url);
-const shato = new URL('../images/content/Shato_Erken_Nalchik.jpg', import.meta.url);
-/**массив с даннымии для инициализации списка карточек 
-const initialCards = [
-  {
-    name: 'Карачаево-Черкессия',
-    link: karachaevsk,
-  },
-  {
-    name: 'Гора Эльбрус',
-    link: elbrus,
-  },
-  {
-    name: 'Сочи',
-    link: sochi,
-  },
-  {
-    name: 'Алтай',
-    link: altay,
-  },
-  {
-    name: 'Телецкое озеро',
-    link: telets,
-  },
-  {
-    name: 'Шато Эркен, Кабардино-балкария',
-    link: shato,
-  }
-];*/
+
 /**объект с селекторами и html-классами карточки места*/
 const objCardElementsClassHolder = {
   selectorTemplate: '.location-template',
@@ -100,7 +68,6 @@ export{
   url,
   myId,
   selectorListLocations,
-  initialCards,
   objCardElementsClassHolder,
   objProfileElementsClassHolder,
   buttonOpenEditProfile,

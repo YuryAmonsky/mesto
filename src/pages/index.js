@@ -7,7 +7,6 @@ import {
   url,
   myId,
   selectorListLocations,
-  initialCards,
   objCardElementsClassHolder,
   objProfileElementsClassHolder,
   buttonOpenEditProfile,
@@ -59,11 +58,35 @@ const server = new Api({
 });
 
 const profile = new UserInfo(objProfileElementsClassHolder);
-
-const listlocations = new Section(selectorListLocations,{items: initialCards, renderer:(cardData)=>{    
-    listlocations.appendItem(createCard(cardData, objCardElementsClassHolder));
-  }
+/**загрузка данных пользователя в профиль*/
+server.getUserInfo()
+  .then(res =>{
+    profile.setUserAvatar(res.avatar);
+    profile.setUserInfo(res);    
+  })
+  .catch((err) => {
+    console.log(err.status);
+    profile.setUserInfo({"name": "Ошибка получения данных с сервера",
+      "about": "Ошибка получения данных с сервера",
+    })
 });
+
+let listLocations = null;
+server.loadLocations()
+  .then(res=>{
+    listLocations = new Section(selectorListLocations, res, 
+      (cardData)=>{    
+        listLocations.appendItem(createCard(cardData, objCardElementsClassHolder));
+      });
+    listLocations.renderItems();
+  })
+  .catch(err=>{
+    console.log(err.status);
+    listLocations = new Section(selectorListLocations, [{'name':'Ошибка загрузки данных с сервера', 'link':''}], (cardData)=>{    
+        listLocations.appendItem(createCard(cardData, objCardElementsClassHolder));
+      });
+    listLocations.renderItems();  
+  });
 
 const popupEditProfile = new PopupWithForm(objPopupEditProfileElementsClassHolder, objFormElementsClassHolder, (objProfileData)=>{
   profile.setUserInfo(objProfileData);
@@ -81,19 +104,7 @@ const popupNewLocation = new PopupWithForm(objPopupNewLocationElementsClassHolde
 const validatorFormNewLocation = new FormValidator(popupNewLocation.getForm(), objFormElementsClassHolder);
 
 const popupViewImage = new PopupWithImage(objPopupViewImageElementsClassHolder, objPopupViewImageContentClassHolder);
-/**загрузка данных пользователя в профиль*/
-server.getUserInfo()
-  .then(res =>{
-    profile.setUserAvatar(res.avatar);
-    profile.setUserInfo(res);    
-  })
-  .catch((err) => {
-    console.log(err.status);
-    profile.setUserInfo({"name": "Ошибка получения данных с сервера",
-      "about": "Ошибка получения данных с сервера",
-    })
-});
-listlocations.renderItems();
+
 buttonOpenEditProfile.addEventListener('click', ()=>{handleClickButtonEditProfile(profile.getUserInfo())});
 buttonOpenNewLocation.addEventListener('click', ()=>{handleClickButtonNewLocation()});
 popupEditProfile.setEventListeners();
