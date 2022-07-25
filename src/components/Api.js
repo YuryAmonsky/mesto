@@ -21,7 +21,24 @@ export default class Api{
           return res.json();
         }
         return Promise.reject(`Ошибка: ${res.status}`);
-      });      
+      });
+  }
+  
+  setUserInfo(objUserInfo, popup){
+    popup.setSubmitStatus('Сохранение...');
+    return fetch(this._baseUrl+'/users/me', {
+      method: "PATCH",
+      headers: this._headers,
+      body: JSON.stringify(objUserInfo)
+    })
+      .then(res => {
+        if (res.ok) {
+          popup.setSubmitStatus('Сохранить');
+          return res.json();
+        }
+        popup.setSubmitStatus('Сохранить');
+        return Promise.reject(`Ошибка: ${res.status}`);
+      });  
   }
 
   loadLocations(){

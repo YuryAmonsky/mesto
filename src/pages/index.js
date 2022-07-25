@@ -80,7 +80,7 @@ server.loadLocations()
       });
     listLocations.renderItems();
   })
-  .catch(err=>{
+  .catch(err =>{
     console.log(err.status);
     listLocations = new Section(selectorListLocations, [{'name':'Ошибка загрузки данных с сервера', 'link':''}], (cardData)=>{    
         listLocations.appendItem(createCard(cardData, objCardElementsClassHolder));
@@ -89,8 +89,14 @@ server.loadLocations()
   });
 
 const popupEditProfile = new PopupWithForm(objPopupEditProfileElementsClassHolder, objFormElementsClassHolder, (objProfileData)=>{
-  profile.setUserInfo(objProfileData);
-  popupEditProfile.close();
+  server.setUserInfo({name:objProfileData.inputEditProfileName,about:objProfileData.inputEditProfileAboutMe}, popupEditProfile)
+    .then(res =>{
+      profile.setUserInfo(res);
+      popupEditProfile.close();
+    })
+    .catch((err) =>{
+      console.log(err.status);
+    });  
 });
 
 const validatorFormEditProfile = new FormValidator(popupEditProfile.getForm(), objFormElementsClassHolder);

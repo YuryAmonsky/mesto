@@ -46,8 +46,7 @@ export default class Card {
   }
   prepareCard(){
     this._prepareLayuotElements();
-    this._setEventListeners();
-    console.log(this._cardData.likes);
+    this._setEventListeners();    
     return this._elementCard;    
   }
 }
