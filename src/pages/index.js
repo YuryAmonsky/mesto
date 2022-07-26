@@ -104,9 +104,16 @@ const popupEditProfile = new PopupWithForm(objPopupEditProfileElementsClassHolde
 const validatorFormEditProfile = new FormValidator(popupEditProfile.getForm(), objFormElementsClassHolder);
 
 const popupNewLocation = new PopupWithForm(objPopupNewLocationElementsClassHolder, objFormElementsClassHolder, (objNewLocationData)=>{    
-  listlocations.prependItem(createCard({name:objNewLocationData.inputNewLocationName, link:objNewLocationData.inputNewLocationLink}, 
-    objCardElementsClassHolder));
-  popupNewLocation.close();
+  server.addNewLocation({name:objNewLocationData.inputNewLocationName, link:objNewLocationData.inputNewLocationLink}, popupNewLocation)
+    .then(res =>{
+      listLocations.prependItem(createCard(res, objCardElementsClassHolder));
+      popupNewLocation.setSubmitStatus('Создать');
+      popupNewLocation.close();
+    })
+    .catch((err) =>{
+      popupEditProfile.setSubmitStatus('Сохранить');
+      console.log(err.status);
+    })  
 });
 
 const validatorFormNewLocation = new FormValidator(popupNewLocation.getForm(), objFormElementsClassHolder);

@@ -36,7 +36,12 @@ export default class Api{
     }).then(this._checkServerResponse);
   }
 
-  addNewLocation(){
-
+  addNewLocation(objNewCardData, popup){
+    popup.setSubmitStatus('Добавление...');
+    return fetch(this._baseUrl+'/cards',{
+      method: "POST",
+      headers: this._headers,
+      body: JSON.stringify(objNewCardData)
+    }).then(this._checkServerResponse);
   }
 }

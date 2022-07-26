@@ -40,7 +40,7 @@ export default class Card {
   }
 
   _setEventListeners(){
-    this._elementImage.addEventListener('click', () => {this._handleImageClick(this._name, this._link);});
+    this._elementImage.addEventListener('click', () => {this._handleImageClick(this._cardData.name, this._cardData.link);});
     this._elementButtonDelete.addEventListener('click', () => {this._handleButtonDeleteClick();});
     this._elementButtonLike.addEventListener('click', () => { this._handleButtonLikeClick();});
   }
