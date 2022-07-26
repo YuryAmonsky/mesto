@@ -10,6 +10,7 @@ module.exports = {
         publicPath: ''
   },
   mode: 'development',
+  devtool  : "inline-source-map", //для более удобной отладки в devtools
   devServer: {
     static: path.resolve(__dirname, './dist'), // путь для выходных файлов режима разработчика
     compress: true, // это ускорит загрузку в режиме разработки

@@ -92,9 +92,11 @@ const popupEditProfile = new PopupWithForm(objPopupEditProfileElementsClassHolde
   server.setUserInfo({name:objProfileData.inputEditProfileName,about:objProfileData.inputEditProfileAboutMe}, popupEditProfile)
     .then(res =>{
       profile.setUserInfo(res);
+      popupEditProfile.setSubmitStatus('Сохранить');
       popupEditProfile.close();
     })
     .catch((err) =>{
+      popupEditProfile.setSubmitStatus('Сохранить');
       console.log(err.status);
     });  
 });
