@@ -21,7 +21,7 @@ export default class Api{
   
   setUserInfo(objUserInfo, popup){
     popup.setSubmitStatus('Сохранение...');
-    return fetch(this._baseUrl+'/users/me', {
+    return fetch(this._baseUrl + '/users/me', {
       method: "PATCH",
       headers: this._headers,
       body: JSON.stringify(objUserInfo)
@@ -30,7 +30,7 @@ export default class Api{
   }
 
   loadLocations(){
-    return fetch(this._baseUrl+'/cards',{
+    return fetch(this._baseUrl + '/cards',{
       method: "GET",
       headers: this._headers
     }).then(this._checkServerResponse);
@@ -38,10 +38,23 @@ export default class Api{
 
   addNewLocation(objNewCardData, popup){
     popup.setSubmitStatus('Добавление...');
-    return fetch(this._baseUrl+'/cards',{
+    return fetch(this._baseUrl + '/cards',{
       method: "POST",
       headers: this._headers,
       body: JSON.stringify(objNewCardData)
     }).then(this._checkServerResponse);
+  }
+  deleteLocation(card, popup){
+    popup.setSubmitStatus('Удаление...');
+    return fetch(this._baseUrl +'/cards/' + card.getCardId(),{
+      method: "DELETE",
+      headers: this._headers     
+    }).then(res => {
+      if(res.ok){
+        console.log(res);
+        return Promise.resolve(card);        
+      }
+      return Promise.reject(`Ошибка: ${res.status}`);
+    });
   }
 }

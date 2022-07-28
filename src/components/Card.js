@@ -1,9 +1,10 @@
 export default class Card {
-  constructor (cardData, objClassHolder, handleClick){
+  constructor (cardData, objClassHolder, handleImageClick, handleTrashClick){
     this._cardData = Object.assign({},cardData);
     this._cardData.owner = Object.assign({},cardData.owner);
     this._objElementClassHolder = objClassHolder;
-    this._handleImageClick = handleClick;
+    this._handleImageClick = handleImageClick;
+    this._handleTrashClick = handleTrashClick;
     this._template = document.querySelector(objClassHolder.selectorTemplate);
     this._elementCard = null;
     this._elementImage = null;
@@ -30,18 +31,22 @@ export default class Card {
     this._likesNumber.textContent = this._cardData.likes.length;
   }
 
+  getCardId(){
+    return this._cardData._id;
+  }
+
   _handleButtonLikeClick(){
     this._elementButtonLike.classList.toggle(this._objElementClassHolder.classLike);
   }
 
-  _handleButtonDeleteClick(){
+  Remove(){
     this._elementCard.remove();
     this._elementCard = null;
   }
 
   _setEventListeners(){
     this._elementImage.addEventListener('click', () => {this._handleImageClick(this._cardData.name, this._cardData.link);});
-    this._elementButtonDelete.addEventListener('click', () => {this._handleButtonDeleteClick();});
+    this._elementButtonDelete.addEventListener('click', () => {this._handleTrashClick(this);});
     this._elementButtonLike.addEventListener('click', () => { this._handleButtonLikeClick();});
   }
   prepareCard(){

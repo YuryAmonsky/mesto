@@ -41,6 +41,14 @@ const objPopupNewLocationElementsClassHolder = {
   classOpenedPopup: classOpenedPopup
 }
 
+/**объект с селекторами и html-классами попапа добавления новой карточки*/
+const objPopupDeleteLocationElementsClassHolder = {
+  selectorPopup: '.popup_type_delete-location',
+  selectorButtonClose: selectorPopupCloseButton,
+  classOpenedPopup: classOpenedPopup
+}
+
+
 /**объект с селекторами и html-классами формы попапа */
 const objFormElementsClassHolder = {
   selectorForm: '.dialog-form',
@@ -73,6 +81,7 @@ export{
   buttonOpenNewLocation,
   objPopupEditProfileElementsClassHolder,
   objPopupNewLocationElementsClassHolder,
+  objPopupDeleteLocationElementsClassHolder,
   objFormElementsClassHolder,
   objPopupViewImageElementsClassHolder,
   objPopupViewImageContentClassHolder

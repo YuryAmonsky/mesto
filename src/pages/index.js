@@ -13,6 +13,7 @@ import {
   buttonOpenNewLocation,
   objPopupEditProfileElementsClassHolder,
   objPopupNewLocationElementsClassHolder,
+  objPopupDeleteLocationElementsClassHolder,
   objFormElementsClassHolder,
   objPopupViewImageElementsClassHolder,
   objPopupViewImageContentClassHolder  
@@ -29,9 +30,14 @@ import Api from '../components/Api';
 /*-------------------------------------------------------------------*/
  /**создание разметки карточки и установка слушателей событий для ее элементов */
 function createCard(objCardData, objClssHolder){
-  const newCard = new Card(objCardData, objClssHolder, (name, link)=>{            
-    popupViewImage.open({name: name, link: link});      
-  });
+  const newCard = new Card(objCardData, objClssHolder, 
+    (name, link)=>{            
+      popupViewImage.open({name: name, link: link});      
+    },
+    (card)=>{
+      popupDeleteLocation.open(card);
+    }
+  );
   return newCard.prepareCard();  
 }
 
@@ -111,12 +117,24 @@ const popupNewLocation = new PopupWithForm(objPopupNewLocationElementsClassHolde
       popupNewLocation.close();
     })
     .catch((err) =>{
-      popupEditProfile.setSubmitStatus('Сохранить');
+      popupEditProfile.setSubmitStatus('Создать');
       console.log(err.status);
     })  
 });
 
 const validatorFormNewLocation = new FormValidator(popupNewLocation.getForm(), objFormElementsClassHolder);
+
+const popupDeleteLocation = new PopupWithForm(objPopupDeleteLocationElementsClassHolder, objFormElementsClassHolder, (card)=>{
+  server.deleteLocation(card, popupDeleteLocation)
+    .then(res=>{
+      res.Remove();      
+      popupDeleteLocation.setSubmitStatus('Да');
+    })
+    .catch(err=>{
+      popupDeleteLocation.setSubmitStatus('Да');
+      console.log(err.status);
+    });
+});
 
 const popupViewImage = new PopupWithImage(objPopupViewImageElementsClassHolder, objPopupViewImageContentClassHolder);
 
@@ -125,5 +143,6 @@ buttonOpenNewLocation.addEventListener('click', ()=>{handleClickButtonNewLocatio
 popupEditProfile.setEventListeners();
 popupNewLocation.setEventListeners();
 popupViewImage.setEventListeners();
+popupDeleteLocation.setEventListeners();
 validatorFormEditProfile.enableValidation();
 validatorFormNewLocation.enableValidation();
