@@ -5,7 +5,7 @@ export default class UserInfo {
     this._elementProfileAvatar = document.querySelector(selectorAvatar);
   }
 
-  getUserInfo() {
+  getData() {
     return Object.assign({},{
       inputEditProfileName: this._data.name,
       inputEditProfileAboutMe: this._data.about,
@@ -13,7 +13,7 @@ export default class UserInfo {
     });
   }
 
-  setUserInfo(objInfo) {
+  setData(objInfo) {
     this._data = Object.assign({}, objInfo);
     this._elementProfileName.textContent = this._data.name;
     this._elementProfileAboutMe.textContent = this._data.about;

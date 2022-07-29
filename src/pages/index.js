@@ -29,10 +29,11 @@ import Api from '../components/Api';
 /**Объявление функций */
 /*-------------------------------------------------------------------*/
 
-/**Проверка на принадлежность карточки */
-function isMineCard(card) {
-  return profile.getUserInfo()._id === card.getCardOwner()._id ? true : false;
+/**Проверка на принадлежность карточки*/
+function isUserCardOwner(card) {
+  return profile.getData()._id === card.getCardOwner()._id ? true : false;
 }
+
 /**создание разметки карточки и установка слушателей событий для ее элементов */
 function createCard(objCardData, objClssHolder) {
   const newCard = new Card(objCardData, objClssHolder,
@@ -43,7 +44,7 @@ function createCard(objCardData, objClssHolder) {
       popupDeleteLocation.open(card);
     }
   );
-  return newCard.prepareCard(isMineCard(newCard));
+  return newCard.prepareCard(isUserCardOwner(newCard));
 }
 
 /**открытие попапа редактирования профиля*/
@@ -73,11 +74,11 @@ const profile = new UserInfo(objProfileElementsClassHolder);
 server.getUserInfo()
   .then(res => {
     profile.setUserAvatar(res.avatar);
-    profile.setUserInfo(res);
+    profile.setData(res);
   })
   .catch((err) => {
     console.log(err.status);
-    profile.setUserInfo({
+    profile.setData({
       "name": "Ошибка получения данных с сервера",
       "about": "Ошибка получения данных с сервера",
     })
@@ -103,7 +104,7 @@ server.loadLocations()
 const popupEditProfile = new PopupWithForm(objPopupEditProfileElementsClassHolder, objFormElementsClassHolder, (objProfileData) => {
   server.setUserInfo({ name: objProfileData.inputEditProfileName, about: objProfileData.inputEditProfileAboutMe }, popupEditProfile)
     .then(res => {
-      profile.setUserInfo(res);
+      profile.setData(res);
       popupEditProfile.setSubmitStatus('Сохранить');
       popupEditProfile.close();
     })
@@ -133,7 +134,7 @@ const validatorFormNewLocation = new FormValidator(popupNewLocation.getForm(), o
 const popupDeleteLocation = new PopupWithForm(objPopupDeleteLocationElementsClassHolder, objFormElementsClassHolder, (card) => {
   server.deleteLocation(card, popupDeleteLocation)
     .then(res => {
-      res.Remove();
+      res.remove();
       popupDeleteLocation.setSubmitStatus('Да');
     })
     .catch(err => {
@@ -144,7 +145,7 @@ const popupDeleteLocation = new PopupWithForm(objPopupDeleteLocationElementsClas
 
 const popupViewImage = new PopupWithImage(objPopupViewImageElementsClassHolder, objPopupViewImageContentClassHolder);
 
-buttonOpenEditProfile.addEventListener('click', () => { handleClickButtonEditProfile(profile.getUserInfo()) });
+buttonOpenEditProfile.addEventListener('click', () => { handleClickButtonEditProfile(profile.getData()) });
 buttonOpenNewLocation.addEventListener('click', () => { handleClickButtonNewLocation() });
 popupEditProfile.setEventListeners();
 popupNewLocation.setEventListeners();

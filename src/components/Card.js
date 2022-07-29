@@ -13,6 +13,13 @@ export default class Card {
     this._elementButtonLike = null;
     this._likesNumber = null;
   }
+
+  /**подготовка карточки происходит с учетом того является ли пользователь владельцем карточки */
+  prepareCard(isMine){
+    this._prepareLayuotElements(isMine);
+    this._setEventListeners(isMine);    
+    return this._elementCard;    
+  }
   
   _prepareLayuotElements(isMine){
     this._elementCard = this
@@ -29,6 +36,7 @@ export default class Card {
     this._elementImage.alt = `Фотография места ${this._cardData.name}`;
     this._elementName.textContent = this._cardData.name;
     this._likesNumber.textContent = this._cardData.likes.length;
+    /*если карточка моя то показываем иконку удаления*/
     if(isMine){
       this._elementButtonDelete.style.visibility = 'visible';
     }
@@ -41,26 +49,22 @@ export default class Card {
   getCardOwner(){
     return Object.assign({},this._cardData.owner);
   }
-
+  
   _handleButtonLikeClick(){
     this._elementButtonLike.classList.toggle(this._objElementClassHolder.classLike);
   }
 
-  Remove(){
+  remove(){
     this._elementCard.remove();
     this._elementCard = null;
   }
 
   _setEventListeners(isMine){
     this._elementImage.addEventListener('click', () => {this._handleImageClick(this._cardData.name, this._cardData.link);});
+    /*если карточка моя то на иконку удаления вешаем слушатель*/
     if(isMine){
       this._elementButtonDelete.addEventListener('click', () => {this._handleTrashClick(this);});
     }    
     this._elementButtonLike.addEventListener('click', () => { this._handleButtonLikeClick();});
-  }
-  prepareCard(isMine){
-    this._prepareLayuotElements(isMine);
-    this._setEventListeners(isMine);    
-    return this._elementCard;    
-  }
+  }  
 }
