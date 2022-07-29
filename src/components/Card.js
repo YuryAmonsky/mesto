@@ -42,11 +42,11 @@ export default class Card {
     }
   }
 
-  getCardId(){
+  getId(){
     return this._cardData._id;
   }
 
-  getCardOwner(){
+  getOwner(){
     return Object.assign({},this._cardData.owner);
   }
   

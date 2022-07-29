@@ -31,7 +31,7 @@ import Api from '../components/Api';
 
 /**Проверка на принадлежность карточки*/
 function isUserCardOwner(card) {
-  return profile.getData()._id === card.getCardOwner()._id ? true : false;
+  return profile.getData()._id === card.getOwner()._id ? true : false;
 }
 
 /**создание разметки карточки и установка слушателей событий для ее элементов */
@@ -132,9 +132,10 @@ const popupNewLocation = new PopupWithForm(objPopupNewLocationElementsClassHolde
 const validatorFormNewLocation = new FormValidator(popupNewLocation.getForm(), objFormElementsClassHolder);
 
 const popupDeleteLocation = new PopupWithForm(objPopupDeleteLocationElementsClassHolder, objFormElementsClassHolder, (card) => {
-  server.deleteLocation(card, popupDeleteLocation)
+  server.deleteLocation(card.getId(), popupDeleteLocation)
     .then(res => {
-      res.remove();
+      console.log(res);
+      card.remove();
       popupDeleteLocation.setSubmitStatus('Да');
     })
     .catch(err => {

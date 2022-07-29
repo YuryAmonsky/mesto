@@ -44,17 +44,11 @@ export default class Api{
       body: JSON.stringify(objNewCardData)
     }).then(this._checkServerResponse);
   }
-  deleteLocation(card, popup){
+  deleteLocation(cardId, popup){
     popup.setSubmitStatus('Удаление...');
-    return fetch(this._baseUrl +'/cards/' + card.getCardId(),{
+    return fetch(this._baseUrl +'/cards/' + cardId,{
       method: "DELETE",
       headers: this._headers     
-    }).then(res => {
-      if(res.ok){
-        console.log(res);
-        return Promise.resolve(card);        
-      }
-      return Promise.reject(`Ошибка: ${res.status}`);
-    });
+    }).then(this._checkServerResponse);
   }
 }
