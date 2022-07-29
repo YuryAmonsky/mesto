@@ -38,6 +38,10 @@ export default class Card {
     return this._cardData._id;
   }
 
+  getCardOwner(){
+    return Object.assign({},this._cardData.owner);
+  }
+
   _handleButtonLikeClick(){
     this._elementButtonLike.classList.toggle(this._objElementClassHolder.classLike);
   }

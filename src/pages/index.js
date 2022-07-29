@@ -16,7 +16,7 @@ import {
   objPopupDeleteLocationElementsClassHolder,
   objFormElementsClassHolder,
   objPopupViewImageElementsClassHolder,
-  objPopupViewImageContentClassHolder  
+  objPopupViewImageContentClassHolder
 } from '../utils/constants.js';
 import UserInfo from '../components/UserInfo.js';
 import Card from '../components/Card.js';
@@ -28,22 +28,26 @@ import Api from '../components/Api';
 
 /**Объявление функций */
 /*-------------------------------------------------------------------*/
- /**создание разметки карточки и установка слушателей событий для ее элементов */
-function createCard(objCardData, objClssHolder){
-  const newCard = new Card(objCardData, objClssHolder, 
-    (name, link)=>{            
-      popupViewImage.open({name: name, link: link});      
+
+/**Проверка на принадлежность карточки */
+function isMineCard(card) {
+  return profile.getUserInfo()._id === card.getCardOwner()._id ? true : false;
+}
+/**создание разметки карточки и установка слушателей событий для ее элементов */
+function createCard(objCardData, objClssHolder) {
+  const newCard = new Card(objCardData, objClssHolder,
+    (name, link) => {
+      popupViewImage.open({ name: name, link: link });
     },
-    (card)=>{
+    (card) => {
       popupDeleteLocation.open(card);
     }
   );
-  const isMine = profile.getUserInfo()._id===objCardData.owner._id ? true: false;
-  return newCard.prepareCard(isMine);  
+  return newCard.prepareCard(isMineCard(newCard));
 }
 
 /**открытие попапа редактирования профиля*/
-function handleClickButtonEditProfile(objUserData) {  
+function handleClickButtonEditProfile(objUserData) {
   popupEditProfile.setInputValues(objUserData);
   validatorFormEditProfile.initErrorHints();
   popupEditProfile.open();
@@ -51,7 +55,7 @@ function handleClickButtonEditProfile(objUserData) {
 /**открытие попапа добавления новой карточки*/
 function handleClickButtonNewLocation() {
   popupNewLocation.open();
-  validatorFormNewLocation.initErrorHints();  
+  validatorFormNewLocation.initErrorHints();
 }
 
 /**Создание экземпляров классов и вызовы функций*/
@@ -67,71 +71,72 @@ const server = new Api({
 const profile = new UserInfo(objProfileElementsClassHolder);
 /**загрузка данных пользователя в профиль*/
 server.getUserInfo()
-  .then(res =>{
+  .then(res => {
     profile.setUserAvatar(res.avatar);
-    profile.setUserInfo(res);    
+    profile.setUserInfo(res);
   })
   .catch((err) => {
     console.log(err.status);
-    profile.setUserInfo({"name": "Ошибка получения данных с сервера",
+    profile.setUserInfo({
+      "name": "Ошибка получения данных с сервера",
       "about": "Ошибка получения данных с сервера",
     })
-});
+  });
 
 let listLocations = null;
 server.loadLocations()
-  .then(res=>{
-    listLocations = new Section(selectorListLocations, res, 
-      (cardData)=>{    
+  .then(res => {
+    listLocations = new Section(selectorListLocations, res,
+      (cardData) => {
         listLocations.appendItem(createCard(cardData, objCardElementsClassHolder));
       });
     listLocations.renderItems();
   })
-  .catch(err =>{
+  .catch(err => {
     console.log(err.status);
-    listLocations = new Section(selectorListLocations, [{'name':'Ошибка загрузки данных с сервера', 'link':''}], (cardData)=>{    
-        listLocations.appendItem(createCard(cardData, objCardElementsClassHolder));
-      });
-    listLocations.renderItems();  
+    listLocations = new Section(selectorListLocations, [{ 'name': 'Ошибка загрузки данных с сервера', 'link': '' }], (cardData) => {
+      listLocations.appendItem(createCard(cardData, objCardElementsClassHolder));
+    });
+    listLocations.renderItems();
   });
 
-const popupEditProfile = new PopupWithForm(objPopupEditProfileElementsClassHolder, objFormElementsClassHolder, (objProfileData)=>{
-  server.setUserInfo({name:objProfileData.inputEditProfileName,about:objProfileData.inputEditProfileAboutMe}, popupEditProfile)
-    .then(res =>{
+const popupEditProfile = new PopupWithForm(objPopupEditProfileElementsClassHolder, objFormElementsClassHolder, (objProfileData) => {
+  server.setUserInfo({ name: objProfileData.inputEditProfileName, about: objProfileData.inputEditProfileAboutMe }, popupEditProfile)
+    .then(res => {
       profile.setUserInfo(res);
       popupEditProfile.setSubmitStatus('Сохранить');
       popupEditProfile.close();
     })
-    .catch((err) =>{
+    .catch((err) => {
       popupEditProfile.setSubmitStatus('Сохранить');
       console.log(err.status);
-    });  
+    });
 });
 
 const validatorFormEditProfile = new FormValidator(popupEditProfile.getForm(), objFormElementsClassHolder);
 
-const popupNewLocation = new PopupWithForm(objPopupNewLocationElementsClassHolder, objFormElementsClassHolder, (objNewLocationData)=>{    
-  server.addNewLocation({name:objNewLocationData.inputNewLocationName, link:objNewLocationData.inputNewLocationLink}, popupNewLocation)
-    .then(res =>{
+const popupNewLocation = new PopupWithForm(objPopupNewLocationElementsClassHolder, objFormElementsClassHolder, (objNewLocationData) => {
+  server.addNewLocation({ name: objNewLocationData.inputNewLocationName, link: objNewLocationData.inputNewLocationLink }, popupNewLocation)
+    .then(res => {
       listLocations.prependItem(createCard(res, objCardElementsClassHolder));
       popupNewLocation.setSubmitStatus('Создать');
       popupNewLocation.close();
     })
-    .catch((err) =>{
+    .catch((err) => {
       popupEditProfile.setSubmitStatus('Создать');
       console.log(err.status);
-    })  
+    })
 });
 
 const validatorFormNewLocation = new FormValidator(popupNewLocation.getForm(), objFormElementsClassHolder);
 
-const popupDeleteLocation = new PopupWithForm(objPopupDeleteLocationElementsClassHolder, objFormElementsClassHolder, (card)=>{
+const popupDeleteLocation = new PopupWithForm(objPopupDeleteLocationElementsClassHolder, objFormElementsClassHolder, (card) => {
   server.deleteLocation(card, popupDeleteLocation)
-    .then(res=>{
-      res.Remove();      
+    .then(res => {
+      res.Remove();
       popupDeleteLocation.setSubmitStatus('Да');
     })
-    .catch(err=>{
+    .catch(err => {
       popupDeleteLocation.setSubmitStatus('Да');
       console.log(err.status);
     });
@@ -139,8 +144,8 @@ const popupDeleteLocation = new PopupWithForm(objPopupDeleteLocationElementsClas
 
 const popupViewImage = new PopupWithImage(objPopupViewImageElementsClassHolder, objPopupViewImageContentClassHolder);
 
-buttonOpenEditProfile.addEventListener('click', ()=>{handleClickButtonEditProfile(profile.getUserInfo())});
-buttonOpenNewLocation.addEventListener('click', ()=>{handleClickButtonNewLocation()});
+buttonOpenEditProfile.addEventListener('click', () => { handleClickButtonEditProfile(profile.getUserInfo()) });
+buttonOpenNewLocation.addEventListener('click', () => { handleClickButtonNewLocation() });
 popupEditProfile.setEventListeners();
 popupNewLocation.setEventListeners();
 popupViewImage.setEventListeners();
