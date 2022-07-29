@@ -5,7 +5,7 @@ import './index.css';
 /*--------------------*/
 import {
   url,
-  myId,
+  myToken,
   selectorListLocations,
   objCardElementsClassHolder,
   objProfileElementsClassHolder,
@@ -38,7 +38,8 @@ function createCard(objCardData, objClssHolder){
       popupDeleteLocation.open(card);
     }
   );
-  return newCard.prepareCard();  
+  const isMine = profile.getUserInfo()._id===objCardData.owner._id ? true: false;
+  return newCard.prepareCard(isMine);  
 }
 
 /**открытие попапа редактирования профиля*/
@@ -58,7 +59,7 @@ function handleClickButtonNewLocation() {
 const server = new Api({
   baseUrl: url,
   headers: {
-    authorization: myId,
+    authorization: myToken,
     'Content-Type': 'application/json'
   }
 });

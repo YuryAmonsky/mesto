@@ -6,12 +6,19 @@ export default class UserInfo{
   }
 
   getUserInfo(){
-   return {inputEditProfileName:this._elementProfileName.textContent, inputEditProfileAboutMe:this._elementProfileAboutMe.textContent};
+   return {
+            //inputEditProfileName:this._elementProfileName.textContent,
+            //inputEditProfileAboutMe:this._elementProfileAboutMe.textContent
+            inputEditProfileName:this._data.name, 
+            inputEditProfileAboutMe:this._data.about,
+            ...this._data
+          };
   }
 
   setUserInfo(objInfo){
-    this._elementProfileName.textContent = objInfo.name;
-    this._elementProfileAboutMe.textContent = objInfo.about;
+    this._data = Object.assign({},objInfo);
+    this._elementProfileName.textContent = this._data.name;
+    this._elementProfileAboutMe.textContent = this._data.about;
   }
 
   setUserAvatar(link){

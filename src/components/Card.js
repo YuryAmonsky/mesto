@@ -14,7 +14,7 @@ export default class Card {
     this._likesNumber = null;
   }
   
-  _prepareLayuotElements(){
+  _prepareLayuotElements(isMine){
     this._elementCard = this
       ._template
       .content
@@ -29,6 +29,9 @@ export default class Card {
     this._elementImage.alt = `Фотография места ${this._cardData.name}`;
     this._elementName.textContent = this._cardData.name;
     this._likesNumber.textContent = this._cardData.likes.length;
+    if(isMine){
+      this._elementButtonDelete.style.visibility = 'visible';
+    }
   }
 
   getCardId(){
@@ -44,14 +47,16 @@ export default class Card {
     this._elementCard = null;
   }
 
-  _setEventListeners(){
+  _setEventListeners(isMine){
     this._elementImage.addEventListener('click', () => {this._handleImageClick(this._cardData.name, this._cardData.link);});
-    this._elementButtonDelete.addEventListener('click', () => {this._handleTrashClick(this);});
+    if(isMine){
+      this._elementButtonDelete.addEventListener('click', () => {this._handleTrashClick(this);});
+    }    
     this._elementButtonLike.addEventListener('click', () => { this._handleButtonLikeClick();});
   }
-  prepareCard(){
-    this._prepareLayuotElements();
-    this._setEventListeners();    
+  prepareCard(isMine){
+    this._prepareLayuotElements(isMine);
+    this._setEventListeners(isMine);    
     return this._elementCard;    
   }
 }

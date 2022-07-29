@@ -1,5 +1,5 @@
 const url = 'https://mesto.nomoreparties.co/v1/cohort-46';
-const myId = '5e6cc9f1-f651-45bc-a626-0a767814a31d';
+const myToken = '5e6cc9f1-f651-45bc-a626-0a767814a31d';
 const selectorListLocations = '.location-list';
 
 /**объект с селекторами и html-классами карточки места*/
@@ -73,7 +73,7 @@ const objPopupViewImageContentClassHolder = {
 
 export{
   url,
-  myId,
+  myToken,
   selectorListLocations,
   objCardElementsClassHolder,
   objProfileElementsClassHolder,
