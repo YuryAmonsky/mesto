@@ -29,22 +29,39 @@ import Api from '../components/Api';
 /**Объявление функций */
 /*-------------------------------------------------------------------*/
 
-/**Проверка на принадлежность карточки*/
-function isUserCardOwner(card) {
-  return profile.getData()._id === card.getOwner()._id ? true : false;
-}
-
 /**создание разметки карточки и установка слушателей событий для ее элементов */
 function createCard(objCardData, objClssHolder) {
   const newCard = new Card(objCardData, objClssHolder,
+    /*обработчик нажатия на картинку карточки */
     (name, link) => {
       popupViewImage.open({ name: name, link: link });
     },
+    /*обработчик нажатия на иконку удаления карточки */
     (card) => {
       popupDeleteLocation.open(card);
+    },
+    /*обработчик нажатия на лайк */
+    (card) => {
+      if(!card.isLiked()){
+        server.setLike(card.getId())
+          .then(res =>{            
+            card.updateCardData(res, currentUserId);
+          })
+          .catch(err =>{
+            console.log(err.status);
+          })
+      }else{
+        server.deleteLike(card.getId())
+          .then(res =>{            
+            card.updateCardData(res, currentUserId);
+          })
+          .catch(err =>{
+            console.log(err.status);
+          })
+      }
     }
   );
-  return newCard.prepareCard(isUserCardOwner(newCard));
+  return newCard.prepareCard(currentUserId);
 }
 
 /**открытие попапа редактирования профиля*/
@@ -70,11 +87,13 @@ const server = new Api({
 });
 
 const profile = new UserInfo(objProfileElementsClassHolder);
+let currentUserId = '';
 /**загрузка данных пользователя в профиль*/
 server.getUserInfo()
   .then(res => {
     profile.setUserAvatar(res.avatar);
     profile.setData(res);
+    currentUserId = profile.getData()._id;
   })
   .catch((err) => {
     console.log(err.status);
@@ -83,6 +102,7 @@ server.getUserInfo()
       "about": "Ошибка получения данных с сервера",
     })
   });
+  
 
 let listLocations = null;
 server.loadLocations()
@@ -95,8 +115,23 @@ server.loadLocations()
   })
   .catch(err => {
     console.log(err.status);
-    listLocations = new Section(selectorListLocations, [{ 'name': 'Ошибка загрузки данных с сервера', 'link': '' }], (cardData) => {
-      listLocations.appendItem(createCard(cardData, objCardElementsClassHolder));
+    listLocations = new Section(selectorListLocations, 
+      [{
+         'likes': [],
+         '_id': '',
+         'name': 'Ошибка загрузки данных с сервера', 
+         'link': '',
+         'owner': {
+           'name': '',
+           'about': '',
+           'avatar': '',
+           '_id': '',
+           'cohort': '' 
+         },
+         'createdAt': ''
+      }],
+       (cardData) => {
+         listLocations.appendItem(createCard(cardData, objCardElementsClassHolder));
     });
     listLocations.renderItems();
   });

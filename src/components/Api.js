@@ -16,7 +16,7 @@ export default class Api{
       method: "GET",
       headers: this._headers
     })
-      .then(this._checkServerResponse);
+    .then(this._checkServerResponse);
   }
   
   setUserInfo(objUserInfo, popup){
@@ -26,14 +26,15 @@ export default class Api{
       headers: this._headers,
       body: JSON.stringify(objUserInfo)
     })
-      .then(this._checkServerResponse);  
+    .then(this._checkServerResponse);  
   }
 
   loadLocations(){
     return fetch(this._baseUrl + '/cards',{
       method: "GET",
       headers: this._headers
-    }).then(this._checkServerResponse);
+    })
+    .then(this._checkServerResponse);
   }
 
   addNewLocation(objNewCardData, popup){
@@ -42,13 +43,31 @@ export default class Api{
       method: "POST",
       headers: this._headers,
       body: JSON.stringify(objNewCardData)
-    }).then(this._checkServerResponse);
+    })
+    .then(this._checkServerResponse);
   }
   deleteLocation(cardId, popup){
     popup.setSubmitStatus('Удаление...');
     return fetch(this._baseUrl +'/cards/' + cardId,{
       method: "DELETE",
       headers: this._headers     
-    }).then(this._checkServerResponse);
+    })
+    .then(this._checkServerResponse);
+  }
+
+  setLike(cardId){
+    return fetch(this._baseUrl +'/cards/' + cardId + '/likes',{
+      method: "PUT",
+      headers: this._headers     
+    })
+    .then(this._checkServerResponse);
+  }
+
+  deleteLike(cardId){
+    return fetch(this._baseUrl +'/cards/' + cardId + '/likes',{
+      method: "DELETE",
+      headers: this._headers     
+    })
+    .then(this._checkServerResponse);
   }
 }
