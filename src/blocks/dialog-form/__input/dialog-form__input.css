@@ -18,6 +18,10 @@
   margin: 0;
 }
 
+.dialog-form__input:only-of-type {
+  margin: 54px 0 0 0;
+}
+
 @media screen and (max-width: 619px) {
   .dialog-form__input:first-of-type {
     margin-top: calc(75px - 21 * (100vw - 320px) /300);
