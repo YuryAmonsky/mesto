@@ -9,9 +9,12 @@ import {
   selectorListLocations,
   objCardElementsClassHolder,
   objProfileElementsClassHolder,
+  containerAvatar,
+  imageAvatar,
   buttonOpenEditProfile,
   buttonOpenNewLocation,
   objPopupEditProfileElementsClassHolder,
+  objPopupEditAvatarElementsClassHolder,
   objPopupNewLocationElementsClassHolder,
   objPopupDeleteLocationElementsClassHolder,
   objFormElementsClassHolder,
@@ -64,12 +67,19 @@ function createCard(objCardData, objClssHolder) {
   return newCard.prepareCard(currentUserId);
 }
 
+/**открытие попапа смены аватара */
+function handleClickimageAvatar(){
+  popupEditAvatar.open();
+  validatorFormEditAvatar.initErrorHints();
+}
+
 /**открытие попапа редактирования профиля*/
 function handleClickButtonEditProfile(objUserData) {
   popupEditProfile.setInputValues(objUserData);
   validatorFormEditProfile.initErrorHints();
   popupEditProfile.open();
 }
+
 /**открытие попапа добавления новой карточки*/
 function handleClickButtonNewLocation() {
   popupNewLocation.open();
@@ -151,6 +161,22 @@ const popupEditProfile = new PopupWithForm(objPopupEditProfileElementsClassHolde
 
 const validatorFormEditProfile = new FormValidator(popupEditProfile.getForm(), objFormElementsClassHolder);
 
+
+const popupEditAvatar = new PopupWithForm(objPopupEditAvatarElementsClassHolder, objFormElementsClassHolder, (link) => {
+  server.setAvatar(link.inputEditAvatar, popupEditAvatar)
+    .then(res => {
+      imageAvatar.src = res.avatar;
+      popupEditAvatar.setSubmitStatus('Сохранить');      
+    })
+    .catch((err) => {
+      imageAvatar.src = '';
+      popupEditAvatar.setSubmitStatus('Сохранить');
+      console.log(err.status);
+    });
+});
+
+const validatorFormEditAvatar = new FormValidator(popupEditAvatar.getForm(), objFormElementsClassHolder);
+
 const popupNewLocation = new PopupWithForm(objPopupNewLocationElementsClassHolder, objFormElementsClassHolder, (objNewLocationData) => {
   server.addNewLocation({ name: objNewLocationData.inputNewLocationName, link: objNewLocationData.inputNewLocationLink }, popupNewLocation)
     .then(res => {
@@ -181,11 +207,14 @@ const popupDeleteLocation = new PopupWithForm(objPopupDeleteLocationElementsClas
 
 const popupViewImage = new PopupWithImage(objPopupViewImageElementsClassHolder, objPopupViewImageContentClassHolder);
 
+containerAvatar.addEventListener('click', () => {handleClickimageAvatar() });
 buttonOpenEditProfile.addEventListener('click', () => { handleClickButtonEditProfile(profile.getData()) });
 buttonOpenNewLocation.addEventListener('click', () => { handleClickButtonNewLocation() });
 popupEditProfile.setEventListeners();
+popupEditAvatar.setEventListeners();
 popupNewLocation.setEventListeners();
 popupViewImage.setEventListeners();
 popupDeleteLocation.setEventListeners();
 validatorFormEditProfile.enableValidation();
 validatorFormNewLocation.enableValidation();
+validatorFormEditAvatar.enableValidation();

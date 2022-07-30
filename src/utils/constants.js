@@ -21,6 +21,8 @@ const objProfileElementsClassHolder = {
   selectorAvatar: '.profile__avatar'
 }
 
+const containerAvatar = document.querySelector('.profile__avatar-container');
+const imageAvatar = document.querySelector('.profile__avatar');
 const buttonOpenEditProfile = document.querySelector('.profile__edit-button');
 const buttonOpenNewLocation = document.querySelector('.profile__add-button');
 
@@ -30,6 +32,13 @@ const classOpenedPopup = 'popup_opened';
 /**объект с селекторами и html-классами попапа редактирования профиля пользователя*/
 const objPopupEditProfileElementsClassHolder = {
   selectorPopup: '.popup_type_edit-profile',
+  selectorButtonClose: selectorPopupCloseButton,
+  classOpenedPopup: classOpenedPopup
+}
+
+/**объект с селекторами и html-классами попапа смены пользователя*/
+const objPopupEditAvatarElementsClassHolder = {
+  selectorPopup: '.popup_type_edit-avatar',
   selectorButtonClose: selectorPopupCloseButton,
   classOpenedPopup: classOpenedPopup
 }
@@ -77,9 +86,12 @@ export{
   selectorListLocations,
   objCardElementsClassHolder,
   objProfileElementsClassHolder,
+  containerAvatar,
+  imageAvatar,
   buttonOpenEditProfile,
   buttonOpenNewLocation,
   objPopupEditProfileElementsClassHolder,
+  objPopupEditAvatarElementsClassHolder,
   objPopupNewLocationElementsClassHolder,
   objPopupDeleteLocationElementsClassHolder,
   objFormElementsClassHolder,
