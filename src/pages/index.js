@@ -147,7 +147,8 @@ server.loadLocations()
   });
 
 const popupEditProfile = new PopupWithForm(objPopupEditProfileElementsClassHolder, objFormElementsClassHolder, (objProfileData) => {
-  server.setUserInfo({ name: objProfileData.inputEditProfileName, about: objProfileData.inputEditProfileAboutMe }, popupEditProfile)
+  popupEditProfile.setSubmitStatus('Сохранение...');
+  server.setUserInfo({ name: objProfileData.inputEditProfileName, about: objProfileData.inputEditProfileAboutMe })
     .then(res => {
       profile.setData(res);
       popupEditProfile.setSubmitStatus('Сохранить');
@@ -163,7 +164,8 @@ const validatorFormEditProfile = new FormValidator(popupEditProfile.getForm(), o
 
 
 const popupEditAvatar = new PopupWithForm(objPopupEditAvatarElementsClassHolder, objFormElementsClassHolder, (link) => {
-  server.setAvatar(link.inputEditAvatar, popupEditAvatar)
+  popupEditAvatar.setSubmitStatus('Загрузка...');
+  server.setAvatar(link.inputEditAvatar)
     .then(res => {
       imageAvatar.src = res.avatar;
       popupEditAvatar.setSubmitStatus('Сохранить');      
@@ -178,7 +180,8 @@ const popupEditAvatar = new PopupWithForm(objPopupEditAvatarElementsClassHolder,
 const validatorFormEditAvatar = new FormValidator(popupEditAvatar.getForm(), objFormElementsClassHolder);
 
 const popupNewLocation = new PopupWithForm(objPopupNewLocationElementsClassHolder, objFormElementsClassHolder, (objNewLocationData) => {
-  server.addNewLocation({ name: objNewLocationData.inputNewLocationName, link: objNewLocationData.inputNewLocationLink }, popupNewLocation)
+  popupNewLocation.setSubmitStatus('Добавление...');
+  server.addNewLocation({ name: objNewLocationData.inputNewLocationName, link: objNewLocationData.inputNewLocationLink })
     .then(res => {
       listLocations.prependItem(createCard(res, objCardElementsClassHolder));
       popupNewLocation.setSubmitStatus('Создать');
@@ -193,7 +196,8 @@ const popupNewLocation = new PopupWithForm(objPopupNewLocationElementsClassHolde
 const validatorFormNewLocation = new FormValidator(popupNewLocation.getForm(), objFormElementsClassHolder);
 
 const popupDeleteLocation = new PopupWithForm(objPopupDeleteLocationElementsClassHolder, objFormElementsClassHolder, (card) => {
-  server.deleteLocation(card.getId(), popupDeleteLocation)
+  popupDeleteLocation.setSubmitStatus('Удаление...');
+  server.deleteLocation(card.getId())
     .then(res => {
       console.log(res);
       card.remove();

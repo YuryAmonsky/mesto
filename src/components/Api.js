@@ -19,8 +19,7 @@ export default class Api{
     .then(this._checkServerResponse);
   }
   
-  setUserInfo(objUserInfo, popup){
-    popup.setSubmitStatus('Сохранение...');
+  setUserInfo(objUserInfo){    
     return fetch(this._baseUrl + '/users/me', {
       method: "PATCH",
       headers: this._headers,
@@ -29,8 +28,7 @@ export default class Api{
     .then(this._checkServerResponse);  
   }
 
-  setAvatar(link, popup){
-    popup.setSubmitStatus('Загрузка...');
+  setAvatar(link){    
     return fetch(this._baseUrl + '/users/me/avatar', {
       method: "PATCH",
       headers: this._headers,
@@ -47,8 +45,7 @@ export default class Api{
     .then(this._checkServerResponse);
   }
 
-  addNewLocation(objNewCardData, popup){
-    popup.setSubmitStatus('Добавление...');
+  addNewLocation(objNewCardData){    
     return fetch(this._baseUrl + '/cards',{
       method: "POST",
       headers: this._headers,
@@ -56,8 +53,7 @@ export default class Api{
     })
     .then(this._checkServerResponse);
   }
-  deleteLocation(cardId, popup){
-    popup.setSubmitStatus('Удаление...');
+  deleteLocation(cardId){    
     return fetch(this._baseUrl +'/cards/' + cardId,{
       method: "DELETE",
       headers: this._headers     
