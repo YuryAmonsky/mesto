@@ -168,7 +168,8 @@ const popupEditAvatar = new PopupWithForm(objPopupEditAvatarElementsClassHolder,
   server.setAvatar(link.inputEditAvatar)
     .then(res => {
       imageAvatar.src = res.avatar;
-      popupEditAvatar.setSubmitStatus('Сохранить');      
+      popupEditAvatar.setSubmitStatus('Сохранить');
+      popupEditAvatar.close();    
     })
     .catch((err) => {
       imageAvatar.src = '';
@@ -202,6 +203,7 @@ const popupDeleteLocation = new PopupWithForm(objPopupDeleteLocationElementsClas
       console.log(res);
       card.remove();
       popupDeleteLocation.setSubmitStatus('Да');
+      popupDeleteLocation.close();
     })
     .catch(err => {
       popupDeleteLocation.setSubmitStatus('Да');

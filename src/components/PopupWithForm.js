@@ -51,8 +51,7 @@ export default class PopupWithForm extends Popup{
         this._handleSubmit(this._getInputValues());
       }else{
         this._handleSubmit(this._caller);
-      }      
-      this.close();      
+      }                 
     });
   }
 }
