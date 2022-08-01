@@ -52,6 +52,7 @@ function createCard(objCardData, objClssHolder) {
           })
           .catch(err =>{
             console.log(err.status);
+            alert(`Ошибка добавления лайка: ${err.status}`);
           })
       }else{
         server.deleteLike(card.getId())
@@ -60,6 +61,7 @@ function createCard(objCardData, objClssHolder) {
           })
           .catch(err =>{
             console.log(err.status);
+            alert(`Ошибка удаления лайка: ${err.status}`);
           })
       }
     }
@@ -114,36 +116,17 @@ server.getUserInfo()
   });
   
 
-let listLocations = null;
+const listLocations = new Section(selectorListLocations,
+  (cardData) => {
+    listLocations.appendItem(createCard(cardData, objCardElementsClassHolder));
+  });
 server.loadLocations()
-  .then(res => {
-    listLocations = new Section(selectorListLocations, res,
-      (cardData) => {
-        listLocations.appendItem(createCard(cardData, objCardElementsClassHolder));
-      });
-    listLocations.renderItems();
+  .then(res => {    
+    listLocations.renderItems(res);
   })
   .catch(err => {
     console.log(err.status);
-    listLocations = new Section(selectorListLocations, 
-      [{
-         'likes': [],
-         '_id': '',
-         'name': 'Ошибка загрузки данных с сервера', 
-         'link': '',
-         'owner': {
-           'name': '',
-           'about': '',
-           'avatar': '',
-           '_id': '',
-           'cohort': '' 
-         },
-         'createdAt': ''
-      }],
-       (cardData) => {
-         listLocations.appendItem(createCard(cardData, objCardElementsClassHolder));
-    });
-    listLocations.renderItems();
+    alert(`Ошибка загрузки списка постов: ${err.status}`);
   });
 
 const popupEditProfile = new PopupWithForm(objPopupEditProfileElementsClassHolder, objFormElementsClassHolder, (objProfileData) => {
@@ -157,6 +140,7 @@ const popupEditProfile = new PopupWithForm(objPopupEditProfileElementsClassHolde
     .catch((err) => {
       popupEditProfile.setSubmitStatus('Сохранить');
       console.log(err.status);
+      alert(`Ошибка сохранения данных профиля: ${err.status}`);
     });
 });
 
@@ -171,10 +155,10 @@ const popupEditAvatar = new PopupWithForm(objPopupEditAvatarElementsClassHolder,
       popupEditAvatar.setSubmitStatus('Сохранить');
       popupEditAvatar.close();    
     })
-    .catch((err) => {
-      imageAvatar.src = '';
+    .catch((err) => {      
       popupEditAvatar.setSubmitStatus('Сохранить');
       console.log(err.status);
+      alert(`Ошибка сохранения аватара: ${err.status}`);
     });
 });
 
@@ -191,6 +175,7 @@ const popupNewLocation = new PopupWithForm(objPopupNewLocationElementsClassHolde
     .catch((err) => {
       popupEditProfile.setSubmitStatus('Создать');
       console.log(err.status);
+      alert(`Ошибка добавления поста: ${err.status}`);
     })
 });
 
@@ -208,6 +193,7 @@ const popupDeleteLocation = new PopupWithForm(objPopupDeleteLocationElementsClas
     .catch(err => {
       popupDeleteLocation.setSubmitStatus('Да');
       console.log(err.status);
+      alert(`Ошибка удаления поста: ${err.status}`);
     });
 });
 
