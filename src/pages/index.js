@@ -126,14 +126,15 @@ const popupEditProfile = new PopupWithForm(objPopupEditProfileElementsClassHolde
   popupEditProfile.setSubmitStatus('Сохранение...');
   server.setUserInfo({ name: objProfileData.inputEditProfileName, about: objProfileData.inputEditProfileAboutMe })
     .then(res => {
-      profile.setData(res);
-      popupEditProfile.setSubmitStatus('Сохранить');
+      profile.setData(res);      
       popupEditProfile.close();
     })
     .catch((err) => {
-      popupEditProfile.setSubmitStatus('Сохранить');
       console.log(err.status);
       alert(`Ошибка сохранения данных профиля:\n ${err.status}\n ${err.text}`);
+    })
+    .finally(()=>{
+      popupEditProfile.setSubmitStatus('Сохранить');  
     });
 });
 
@@ -144,14 +145,15 @@ const popupEditAvatar = new PopupWithForm(objPopupEditAvatarElementsClassHolder,
   popupEditAvatar.setSubmitStatus('Загрузка...');
   server.setAvatar(link.inputEditAvatar)
     .then(res => {
-      imageAvatar.src = res.avatar;
-      popupEditAvatar.setSubmitStatus('Сохранить');
+      imageAvatar.src = res.avatar;      
       popupEditAvatar.close();    
     })
     .catch((err) => {      
-      popupEditAvatar.setSubmitStatus('Сохранить');
       console.log(err.status);
       alert(`Ошибка сохранения аватара:\n ${err.status}\n ${err.text}`);
+    })
+    .finally(()=>{
+      popupEditAvatar.setSubmitStatus('Сохранить');
     });
 });
 
@@ -161,15 +163,16 @@ const popupNewLocation = new PopupWithForm(objPopupNewLocationElementsClassHolde
   popupNewLocation.setSubmitStatus('Добавление...');
   server.addNewLocation({ name: objNewLocationData.inputNewLocationName, link: objNewLocationData.inputNewLocationLink })
     .then(res => {
-      listLocations.prependItem(createCard(res, objCardElementsClassHolder));
-      popupNewLocation.setSubmitStatus('Создать');
+      listLocations.prependItem(createCard(res, objCardElementsClassHolder));      
       popupNewLocation.close();
     })
     .catch((err) => {
-      popupEditProfile.setSubmitStatus('Создать');
       console.log(err.status);
       alert(`Ошибка добавления поста:\n ${err.status}\n ${err.text}`);
     })
+    .finally(()=>{
+      popupNewLocation.setSubmitStatus('Создать');
+    });
 });
 
 const validatorFormNewLocation = new FormValidator(popupNewLocation.getForm(), objFormElementsClassHolder);
@@ -179,14 +182,15 @@ const popupDeleteLocation = new PopupWithForm(objPopupDeleteLocationElementsClas
   server.deleteLocation(card.getId())
     .then(res => {
       console.log(res);
-      card.remove();
-      popupDeleteLocation.setSubmitStatus('Да');
+      card.remove();      
       popupDeleteLocation.close();
     })
     .catch(err => {
-      popupDeleteLocation.setSubmitStatus('Да');
       console.log(err.status);
       alert(`Ошибка удаления поста:\n ${err.status}\n ${err.text}`);
+    })
+    .finally(()=>{
+      popupDeleteLocation.setSubmitStatus('Да');
     });
 });
 
