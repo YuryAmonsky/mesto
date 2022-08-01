@@ -145,7 +145,7 @@ const popupEditAvatar = new PopupWithForm(objPopupEditAvatarElementsClassHolder,
   popupEditAvatar.setSubmitStatus('Загрузка...');
   server.setAvatar(link.inputEditAvatar)
     .then(res => {
-      imageAvatar.src = res.avatar;      
+      profile.setUserAvatar(res.avatar);      
       popupEditAvatar.close();    
     })
     .catch((err) => {      
