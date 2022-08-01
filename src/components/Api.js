@@ -12,7 +12,7 @@ export default class Api{
   }
 
   getUserInfo(){
-    return fetch(this._baseUrl+'/users/me', {
+    return fetch(`${this._baseUrl}/users/me`, {
       method: "GET",
       headers: this._headers
     })
@@ -20,7 +20,7 @@ export default class Api{
   }
   
   setUserInfo(objUserInfo){    
-    return fetch(this._baseUrl + '/users/me', {
+    return fetch(`${this._baseUrl}/users/me`, {
       method: "PATCH",
       headers: this._headers,
       body: JSON.stringify(objUserInfo)
@@ -29,7 +29,7 @@ export default class Api{
   }
 
   setAvatar(link){    
-    return fetch(this._baseUrl + '/users/me/avatar', {
+    return fetch(`${this._baseUrl}/users/me/avatar`, {
       method: "PATCH",
       headers: this._headers,
       body: JSON.stringify({"avatar":link})
@@ -38,7 +38,7 @@ export default class Api{
   }
 
   loadLocations(){
-    return fetch(this._baseUrl + '/cards',{
+    return fetch(`${this._baseUrl}/cards`,{
       method: "GET",
       headers: this._headers
     })
@@ -46,7 +46,7 @@ export default class Api{
   }
 
   addNewLocation(objNewCardData){    
-    return fetch(this._baseUrl + '/cards',{
+    return fetch(`${this._baseUrl}/cards`,{
       method: "POST",
       headers: this._headers,
       body: JSON.stringify(objNewCardData)
@@ -54,7 +54,7 @@ export default class Api{
     .then(this._checkServerResponse);
   }
   deleteLocation(cardId){    
-    return fetch(this._baseUrl +'/cards/' + cardId,{
+    return fetch(`${this._baseUrl}/cards/${cardId}`,{
       method: "DELETE",
       headers: this._headers     
     })
@@ -62,7 +62,7 @@ export default class Api{
   }
 
   setLike(cardId){
-    return fetch(this._baseUrl +'/cards/' + cardId + '/likes',{
+    return fetch(`${this._baseUrl}/cards/${cardId}/likes`,{
       method: "PUT",
       headers: this._headers     
     })
@@ -70,7 +70,7 @@ export default class Api{
   }
 
   deleteLike(cardId){
-    return fetch(this._baseUrl +'/cards/' + cardId + '/likes',{
+    return fetch(`${this._baseUrl}/cards/${cardId}/likes`,{
       method: "DELETE",
       headers: this._headers     
     })
