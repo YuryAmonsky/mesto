@@ -28,6 +28,7 @@ import Section from '../components/Section.js';
 import PopupWithForm from '../components/PopupWithForm.js';
 import PopupWithImage from '../components/PopupWithImage.js';
 import Api from '../components/Api';
+//import { values } from 'core-js/core/array';
 
 /**Объявление функций */
 /*-------------------------------------------------------------------*/
@@ -100,33 +101,25 @@ const server = new Api({
 
 const profile = new UserInfo(objProfileElementsClassHolder);
 let currentUserId = '';
-/**загрузка данных пользователя в профиль*/
-server.getUserInfo()
-  .then(res => {
-    profile.setUserAvatar(res.avatar);
-    profile.setData(res);
-    currentUserId = profile.getData()._id;
-  })
-  .catch((err) => {
-    console.log(err.status);
-    profile.setData({
-      "name": "Ошибка получения данных с сервера",
-      "about": "Ошибка получения данных с сервера",
-    })
-  });
-  
+const listLocations = new Section(selectorListLocations,(cardData) => {
+  listLocations.appendItem(createCard(cardData, objCardElementsClassHolder));
+});
 
-const listLocations = new Section(selectorListLocations,
-  (cardData) => {
-    listLocations.appendItem(createCard(cardData, objCardElementsClassHolder));
-  });
-server.loadLocations()
-  .then(res => {    
-    listLocations.renderItems(res);
+Promise.all([
+/**загрузка данных пользователя в профиль*/
+  server.getUserInfo(),
+  /*загрузка списка карточек*/
+  server.loadLocations()  
+])
+  .then((values) =>{
+    profile.setUserAvatar(values[0].avatar);
+    profile.setData(values[0]);
+    currentUserId = profile.getData()._id;
+    listLocations.renderItems(values[1]);
   })
-  .catch(err => {
+  .catch((err) =>{
     console.log(err.status);
-    alert(`Ошибка загрузки списка постов: ${err.status}`);
+    alert(`Ошибка загрузки данных:\n ${err.status}\n ${err.text}`);
   });
 
 const popupEditProfile = new PopupWithForm(objPopupEditProfileElementsClassHolder, objFormElementsClassHolder, (objProfileData) => {
@@ -140,7 +133,7 @@ const popupEditProfile = new PopupWithForm(objPopupEditProfileElementsClassHolde
     .catch((err) => {
       popupEditProfile.setSubmitStatus('Сохранить');
       console.log(err.status);
-      alert(`Ошибка сохранения данных профиля: ${err.status}`);
+      alert(`Ошибка сохранения данных профиля:\n ${err.status}\n ${err.text}`);
     });
 });
 
@@ -158,7 +151,7 @@ const popupEditAvatar = new PopupWithForm(objPopupEditAvatarElementsClassHolder,
     .catch((err) => {      
       popupEditAvatar.setSubmitStatus('Сохранить');
       console.log(err.status);
-      alert(`Ошибка сохранения аватара: ${err.status}`);
+      alert(`Ошибка сохранения аватара:\n ${err.status}\n ${err.text}`);
     });
 });
 
@@ -175,7 +168,7 @@ const popupNewLocation = new PopupWithForm(objPopupNewLocationElementsClassHolde
     .catch((err) => {
       popupEditProfile.setSubmitStatus('Создать');
       console.log(err.status);
-      alert(`Ошибка добавления поста: ${err.status}`);
+      alert(`Ошибка добавления поста:\n ${err.status}\n ${err.text}`);
     })
 });
 
@@ -193,7 +186,7 @@ const popupDeleteLocation = new PopupWithForm(objPopupDeleteLocationElementsClas
     .catch(err => {
       popupDeleteLocation.setSubmitStatus('Да');
       console.log(err.status);
-      alert(`Ошибка удаления поста: ${err.status}`);
+      alert(`Ошибка удаления поста:\n ${err.status}\n ${err.text}`);
     });
 });
 
