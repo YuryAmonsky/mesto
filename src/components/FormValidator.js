@@ -3,21 +3,20 @@ export default class FormValidator {
     this._form = form;
     this._objClassHolder = objClassHolder;    
     this._buttonSubmit = this._form.querySelector(this._objClassHolder.selectorSubmitButton);
-    this._inputList = Array.from(form.querySelectorAll(this._objClassHolder.selectorInput));
+    this._superInputList = Array.from(form.querySelectorAll(this._objClassHolder.selectorInput))
+      .map((input)=>({elementInput:input, elementError: this._form.querySelector(`.${input.id}-error`)}));
   }
   
-  _showInputError(input, errorText){
-    input.classList.add(this._objClassHolder.classInputInvalid);
-    const elementError = this._form.querySelector(`.${input.id}-error`);
-    elementError.textContent = errorText;
-    elementError.classList.add(this._objClassHolder.classErrorActive);
+  _showInputError(superInput, errorText){    
+    superInput.elementInput.classList.add(this._objClassHolder.classInputInvalid);
+    superInput.elementError.textContent = errorText;
+    superInput.elementError.classList.add(this._objClassHolder.classErrorActive);
   }
 
-  _hideInputError(input){
-    input.classList.remove(this._objClassHolder.classInputInvalid);
-    const elementError = this._form.querySelector(`.${input.id}-error`);
-    elementError.textContent='';
-    elementError.classList.remove(this._objClassHolder.classErrorActive);
+  _hideInputError(superInput){    
+    superInput.elementInput.classList.remove(this._objClassHolder.classInputInvalid);
+    superInput.elementError.textContent = '';
+    superInput.elementError.classList.remove(this._objClassHolder.classErrorActive);
   }
 
   _disableButton(){
@@ -29,34 +28,40 @@ export default class FormValidator {
     this._buttonSubmit.removeAttribute('disabled');
     this._buttonSubmit.classList.remove(this._objClassHolder.classButtonDisabled);
   }
-
-  _isFormValid(){// проверяет все ли инпуты валидны. 
-    return !this._inputList.some(input =>{
-      return !input.validity.valid;
+  
+  // проверяет все ли инпуты валидны. 
+  _isFormValid(){
+    return !this._superInputList.some(input =>{
+      return !input.elementInput.validity.valid;
     })  
   } 
 
   _toggleSubmitButtonState(){    
-    if(this._isFormValid(this._inputList)){
+    if(this._isFormValid()){
       this._enableButton();
     } else{
       this._disableButton();
     }  
   }
 
-  _checkInputValidity(input){
-    if (!input.validity.valid) {
-      this._showInputError(input, input.validationMessage);    
+  _checkInputValidity(superInput){
+    if (!superInput.elementInput.validity.valid) {
+      this._showInputError(superInput, superInput.elementInput.validationMessage);    
     }else{
-      this._hideInputError(input);    
+      this._hideInputError(superInput);    
     }
   }
 
   _setEventListenersToAllInputs(){
-    this._inputList.forEach((input) => {    
-      input.addEventListener('input', () => {
-        this._checkInputValidity(input);
+    this._superInputList.forEach((input) => {    
+      input.elementInput.addEventListener('input', () => {        
         this._toggleSubmitButtonState();
+        if(input.elementError.classList.contains(this._objClassHolder.classErrorActive)){
+          this._checkInputValidity(input);
+        }
+      });
+      input.elementInput.addEventListener('blur', () => {
+        this._checkInputValidity(input);
       });
     });
   };
@@ -64,7 +69,7 @@ export default class FormValidator {
   //Ниже функция инициализации ошибок для использования при открытии формы, 
   //чтобы избежать соохранения состояния спана ошибки при закрытии попапа с невалидными инпутами
   initErrorHints(){
-    this._inputList.forEach(input=>{
+    this._superInputList.forEach(input=>{
       this._hideInputError(input);
     })
     this._toggleSubmitButtonState();
