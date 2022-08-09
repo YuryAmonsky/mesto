@@ -7,7 +7,7 @@ export default class PopupWithForm extends Popup{
     this._elementSubmitButton = this._elementForm.querySelector(objFormClassHolder.selectorSubmitButton);
     this._inputsList = Array.from(this._elementForm.querySelectorAll(objFormClassHolder.selectorInput));
     this._inputsList.forEach((input)=>{
-      input.autocomplete = false;
+      input.autocomplete = "off";
     })
     this._handleSubmit =  handleSubmit;
     this._caller = null;     
